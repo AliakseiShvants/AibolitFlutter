@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'appbar/adaptive_appbar.dart';
 
 import '../utils/strings.dart';
+import 'appbar/location.dart';
+import 'login_action.dart';
 
 class MainContainer extends StatefulWidget {
   @override
@@ -11,37 +12,33 @@ class MainContainer extends StatefulWidget {
 class _MainContainerState extends State<MainContainer> {
   bool _isLoggedIn = false;
 
-  void _login() {
-    setState(() {
-      _isLoggedIn = !_isLoggedIn;
-    });
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AdaptiveAppBar(
-        height: 56,
-        isLoggedIn: _isLoggedIn,
-        loginCallback: _login,
+      appBar: AppBar(
+        titleSpacing: 8.0,
+        title: Location(),
+        actions: <Widget>[
+          LoginAction(),
+        ],
       ),
       body: SafeArea(
-          child: Center(
-        child: Column(
-          children: <Widget>[
-            Text('Some text', style: TextStyle(fontSize: 26)),
-            Text('Some text', style: TextStyle(fontSize: 24)),
-            Text('Some text', style: TextStyle(fontSize: 22)),
-            Text('Some text', style: TextStyle(fontSize: 20)),
-            Text('Some text', style: TextStyle(fontSize: 18)),
-            Text('Some text', style: TextStyle(fontSize: 16)),
-            Text('Some text', style: TextStyle(fontSize: 14)),
-            Text('Some text', style: TextStyle(fontSize: 12)),
-            Text('Some text', style: TextStyle(fontSize: 10)),
-          ],
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text('Some text', style: TextStyle(fontSize: 26)),
+              Text('Some text', style: TextStyle(fontSize: 24)),
+              Text('Some text', style: TextStyle(fontSize: 22)),
+              Text('Some text', style: TextStyle(fontSize: 20)),
+              Text('Some text', style: TextStyle(fontSize: 18)),
+              Text('Some text', style: TextStyle(fontSize: 16)),
+              Text('Some text', style: TextStyle(fontSize: 14)),
+              Text('Some text', style: TextStyle(fontSize: 12)),
+              Text('Some text', style: TextStyle(fontSize: 10)),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 }
