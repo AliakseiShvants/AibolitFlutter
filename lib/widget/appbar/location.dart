@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -29,14 +30,14 @@ class Location extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               border: Border(
-                bottom: BorderSide(color: Colors.white),
+                bottom: Borders.whiteBorderSide,
               ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(2.0),
               child: Text(
-                'City',
-                style: TextStyle(fontSize: Dimens.TEXT_SIZE_M),
+                Strings.CITY,
+                style: const TextStyle(fontSize: Dimens.TEXT_SIZE_M),
               ),
             ),
           ),
@@ -44,20 +45,23 @@ class Location extends StatelessWidget {
             _showLocations(context);
           },
         ),
-        Expanded(child: const Center(child: const Text(Strings.APP_NAME)))
+        Expanded(
+            child: const Center(
+                child: const Text(
+          Strings.APP_NAME,
+          style: TextStyle(fontSize: Dimens.TEXT_SIZE_APP_BAR),
+        )))
       ],
     );
   }
 
   List<Widget> _getCities() {
     return List.generate(_cities.length, (index) {
-      final BorderSide borderSide = BorderSide(color: Colors.grey);
-
       return Container(
         decoration: BoxDecoration(
           border: Border(
-            top: index == 0 ? borderSide : BorderSide(color: Colors.white),
-            bottom: borderSide,
+            top: index == 0 ? Borders.greyBorderSide : Borders.whiteBorderSide,
+            bottom: Borders.greyBorderSide,
           ),
         ),
         child: ListTile(
@@ -82,10 +86,10 @@ class Location extends StatelessWidget {
     cities.add(
       GestureDetector(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16.0),
+          padding: const EdgeInsets.only(top: Dimens.DOUBLE_PADDING),
           child: Center(
             child: Text(
-              'Close',
+              Strings.CLOSE,
               style: TextStyle(
                 color: Colors.blueAccent,
                 fontSize: Dimens.TEXT_SIZE_L,
@@ -104,7 +108,7 @@ class Location extends StatelessWidget {
     final SimpleDialog dialog = SimpleDialog(
       title: Center(
         child: Text(
-          'Choose your location',
+          Strings.CHOOSE_LOCATION,
           style: TextStyle(
             color: Colors.black,
             fontSize: Dimens.TEXT_SIZE_M,

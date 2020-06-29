@@ -29,7 +29,8 @@ class Themes {
 
   static final TextTheme appBarTextTheme = ThemeData.light().textTheme.copyWith(
         headline6: const TextStyle(
-          fontSize: Dimens.TEXT_SIZE_APP_BAR,
+          fontSize: Dimens.TEXT_SIZE_L,
+          fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
       );
