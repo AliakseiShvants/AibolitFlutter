@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   flutter_material_pickers: ^1.5.4
   flutter_svg: ^0.17.3
+  flutter_vector_icons: ^0.2.1
   shared_preferences: ^0.5.7+3
 
   # The following adds the Cupertino Icons font to your application.

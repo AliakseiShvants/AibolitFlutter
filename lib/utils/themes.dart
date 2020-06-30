@@ -2,7 +2,7 @@ import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'colors.dart';
+import 'app_colors.dart';
 import 'dimens.dart';
 import 'strings.dart';
 

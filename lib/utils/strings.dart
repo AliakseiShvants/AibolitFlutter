@@ -5,6 +5,7 @@ class Strings {
   static const String CITY = 'City';
   static const String CLOSE = 'Close';
 
+  static const String LOCATION_INDEX = 'LOCATION_INDEX';
   static const String LOGIN = 'Log in';
 
   static const String RALEWAY = 'Raleway';

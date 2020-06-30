@@ -16,10 +16,7 @@ class AibolitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Themes.appTheme,
-      routes: {
-        '/' : (context) => MainScreen(),
-        '/account' : (context) => AccountScreen()
-      },
+      home: MainScreen(),
     );
   }
 }
