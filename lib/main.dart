@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'utils/themes.dart';
-import 'widget/screen/account_screen.dart';
-import 'widget/screen/main_screen.dart';
+import 'widget/main_container.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(Themes.systemUiOverlayStyle);
@@ -16,7 +15,11 @@ class AibolitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Themes.appTheme,
-      home: MainScreen(),
+//      initialRoute: '/',
+//      routes: {
+//        '/' : (context) => MainContainer(),
+//      },
+      home: MainContainer(),
     );
   }
 }

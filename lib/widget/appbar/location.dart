@@ -16,14 +16,14 @@ class Location extends StatefulWidget {
 }
 
 class _LocationState extends State<Location> {
-  int _locationIndex;
+  int _locationIndex = 0;
   final List<City> _cities = [
-    City(1, 'Brest'),
-    City(2, 'Vitebsk'),
-    City(3, 'Gomel'),
-    City(4, 'Grodno'),
-    City(5, 'Minsk'),
-    City(6, 'Mogilev'),
+    City(1, 'Брест'),
+    City(2, 'Витебск'),
+    City(3, 'Гомель'),
+    City(4, 'Гродно'),
+    City(5, 'Минск'),
+    City(6, 'Могилев'),
   ];
 
   @override
@@ -107,77 +107,4 @@ class _LocationState extends State<Location> {
       );
     }).toList();
   }
-
-//  List<Widget> _getCities() {
-//    return List.generate(_cities.length, (index) {
-//      return Container(
-//        decoration: BoxDecoration(
-//          border: Border(
-//            top: index == 0 ? Borders.greyBorderSide : Borders.whiteBorderSide,
-//            bottom: Borders.greyBorderSide,
-//          ),
-//        ),
-//        child: ListTile(
-//          dense: true,
-//          leading: Radio(
-//            activeColor: Colors.blueAccent,
-//          ),
-//          title: Text(
-//            _cities[index].title,
-//            style: TextStyle(
-//              color: Colors.black,
-//              fontSize: Dimens.TEXT_SIZE_M,
-//            ),
-//          ),
-//        ),
-//      );
-//    });
-//  }
-
-//  List<Widget> _getDialogContent(BuildContext context) {
-//    List<Widget> cities = _getCities();
-//    cities.add(
-//      GestureDetector(
-//        child: Padding(
-//          padding: const EdgeInsets.only(top: Dimens.DOUBLE_PADDING),
-//          child: Center(
-//            child: Text(
-//              Strings.CLOSE,
-//              style: TextStyle(
-//                color: Colors.blueAccent,
-//                fontSize: Dimens.TEXT_SIZE_L,
-//              ),
-//            ),
-//          ),
-//        ),
-//        onTap: () => Navigator.of(context).pop(),
-//      ),
-//    );
-//
-//    return cities;
-//  }
-
-//  void _showLocations(BuildContext context) {
-//    final SimpleDialog dialog = SimpleDialog(
-//      title: Center(
-//        child: Text(
-//          Strings.CHOOSE_LOCATION,
-//          style: TextStyle(
-//            color: Colors.black,
-//            fontSize: Dimens.TEXT_SIZE_M,
-//            fontWeight: FontWeight.bold,
-//          ),
-//        ),
-//      ),
-//      children: _getDialogContent(context),
-//    );
-//
-//    showDialog(
-//      context: context,
-//      barrierDismissible: false,
-//      builder: (BuildContext context) {
-//        return dialog;
-//      },
-//    );
-//  }
 }

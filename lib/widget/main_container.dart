@@ -1,29 +1,19 @@
-import 'package:AibolitFlutter/utils/app_colors.dart';
-import 'package:AibolitFlutter/utils/app_icons.dart';
-import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 
-import '../appbar/location.dart';
-import '../appbar/login_action.dart';
+import '../utils/app_colors.dart';
+import '../utils/app_icons.dart';
+import '../utils/app_widgets.dart';
+import '../utils/dimens.dart';
+import 'appbar/location.dart';
+import 'appbar/login_action.dart';
 
-class MainScreen extends StatefulWidget {
+class MainContainer extends StatefulWidget {
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _MainContainerState createState() => _MainContainerState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainContainerState extends State<MainContainer> {
   int _selectedItem = 0;
-  List<Widget> _temp = <Widget>[
-    Text('Some text1', style: TextStyle(fontSize: 10)),
-    Text('Some text2', style: TextStyle(fontSize: 24)),
-    Text('Some text3', style: TextStyle(fontSize: 22)),
-    Text('Some text4', style: TextStyle(fontSize: 20)),
-    Text('Some text5', style: TextStyle(fontSize: 18)),
-    Text('Some text', style: TextStyle(fontSize: 16)),
-    Text('Some text', style: TextStyle(fontSize: 14)),
-    Text('Some text', style: TextStyle(fontSize: 12)),
-    Text('Some text', style: TextStyle(fontSize: 10)),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +26,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
       body: SafeArea(
-        child: Center(child: _temp.elementAt(_selectedItem)),
+        child: AppWidgets.bottomNavWidgets[_selectedItem],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedItem,
