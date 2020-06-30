@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-import '../utils/strings.dart';
-import 'appbar/location.dart';
-import 'login_action.dart';
-
-class MainContainer extends StatefulWidget {
-  @override
-  _MainContainerState createState() => _MainContainerState();
-}
-
-class _MainContainerState extends State<MainContainer> {
-  bool _isLoggedIn = false;
+class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 8.0,
-        title: Location(),
-        actions: <Widget>[
-          LoginAction(),
-        ],
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        title: Text('Account')
       ),
       body: SafeArea(
         child: Center(
@@ -40,5 +31,6 @@ class _MainContainerState extends State<MainContainer> {
         ),
       ),
     );
+    ;
   }
 }

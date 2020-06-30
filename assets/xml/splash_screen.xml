@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap android:src="@drawable/splash_bg_stamp" android:tileMode="repeat" />
+    </item>
+    <item android:bottom="@dimen/splash_phrase_bottom_margin">
+        <bitmap android:gravity="bottom|center" android:src="@drawable/splash_phrase" />
+    </item>
+    <item>
+        <bitmap android:gravity="center" android:src="@drawable/splash_icon" />
+    </item>
+</layer-list>

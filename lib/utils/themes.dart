@@ -2,7 +2,7 @@ import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'colors.dart';
+import 'app_colors.dart';
 import 'dimens.dart';
 import 'strings.dart';
 
@@ -29,7 +29,8 @@ class Themes {
 
   static final TextTheme appBarTextTheme = ThemeData.light().textTheme.copyWith(
         headline6: const TextStyle(
-          fontSize: Dimens.TEXT_SIZE_APP_BAR,
+          fontSize: Dimens.TEXT_SIZE_L,
+          fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
       );

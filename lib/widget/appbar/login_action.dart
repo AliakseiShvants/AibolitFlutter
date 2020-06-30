@@ -1,5 +1,5 @@
-//import 'dart:html';
-
+import '../../utils/dimens.dart';
+import '../../utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,15 +19,15 @@ class _LoginActionState extends State<LoginAction> {
     return _isLoggedIn
         ? MaterialButton(
             child: CircleAvatar(
-              radius: 16,
+              radius: Dimens.DOUBLE_PADDING,
               backgroundColor: Colors.white,
             ),
-            onPressed: _onPressed,
+            onPressed: () => Navigator.of(context).pushNamed('/account'),
           )
         : MaterialButton(
             child: Text(
-              'Log in',
-              style: TextStyle(color: Colors.white),
+              Strings.LOGIN,
+              style: const TextStyle(color: Colors.white),
             ),
             onPressed: _onPressed,
           );
@@ -39,7 +39,6 @@ class _LoginActionState extends State<LoginAction> {
 
     setState(() {
       _isLoggedIn = !_isLoggedIn;
-
     });
 //    widget._onPress.call();
   }
