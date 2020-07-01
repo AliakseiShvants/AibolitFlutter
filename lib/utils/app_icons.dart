@@ -4,10 +4,10 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class AppIcons {
   static final Map<String, Widget> bottomNavIcons = {
-    "Home" : Icon(AntDesign.home),
-    "Medical center" : Icon(FontAwesome5Regular.hospital),
-    "Medicament" : Icon(Fontisto.pills),
-    "Card" : Icon(Foundation.clipboard_notes),
-    "Other" : Transform.rotate(angle: 3.14, child: Icon(AntDesign.bars))
+    "Главная" : Icon(AntDesign.home),
+    "Медцентры" : Icon(FontAwesome5Regular.hospital),
+    "Лекарства" : Icon(Fontisto.pills),
+    "Карточка" : Icon(Foundation.clipboard_notes),
+    "Прочее" : Transform.rotate(angle: 3.14, child: Icon(AntDesign.bars))
   };
 }

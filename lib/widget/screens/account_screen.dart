@@ -1,36 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AccountScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text('Account')
-      ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.pop(context),
+          ),
+          title: Text('Учетная запись')),
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: <Widget>[
-              Text('Some text', style: TextStyle(fontSize: 26)),
-              Text('Some text', style: TextStyle(fontSize: 24)),
-              Text('Some text', style: TextStyle(fontSize: 22)),
-              Text('Some text', style: TextStyle(fontSize: 20)),
-              Text('Some text', style: TextStyle(fontSize: 18)),
-              Text('Some text', style: TextStyle(fontSize: 16)),
-              Text('Some text', style: TextStyle(fontSize: 14)),
-              Text('Some text', style: TextStyle(fontSize: 12)),
-              Text('Some text', style: TextStyle(fontSize: 10)),
-            ],
-          ),
-        ),
+            child: GestureDetector(
+          child: Text('Выйти'),
+          onTap: () => _logout(context),
+        )),
       ),
     );
-    ;
+  }
+
+  void _logout(BuildContext context) async {
+    Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
+    prefs.setBool('isLoggedIn', false);
+
+    Navigator.pop(context);
   }
 }
