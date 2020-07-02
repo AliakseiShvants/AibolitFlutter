@@ -1,12 +1,11 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
-
-import '../../utils/borders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../entity/city.dart';
+import '../../utils/borders.dart';
 import '../../utils/dimens.dart';
 import '../../utils/strings.dart';
 
@@ -37,44 +36,42 @@ class _LocationState extends State<Location> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Icon(
           Entypo.location_pin,
           color: Colors.white,
         ),
-        DropdownButton<City>(
-          items: _getLocations(),
-//          value: _cities[_locationIndex],
-          hint: Text(
-            _cities[_locationIndex].title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: Dimens.TEXT_SIZE_SM,
-            ),
-          ),
-          underline: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: Borders.whiteBorderSide,
+        DropdownButtonHideUnderline(
+          child: DropdownButton<City>(
+            items: _getLocations(),
+            hint: Container(
+              padding: EdgeInsets.only(bottom: 2),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: Borders.whiteBorderSide,
+                ),
+              ),
+              child: Text(
+                _cities[_locationIndex].title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: Dimens.TEXT_SIZE_SM,
+                ),
               ),
             ),
+            iconSize: 0,
+            iconEnabledColor: AppColors.PRIMARY_COLOR,
+            onChanged: (value) => _setLocation(_cities.indexOf(value)),
           ),
-          iconSize: 0,
-          iconEnabledColor: AppColors.PRIMARY_COLOR,
-          onChanged: (value) => _setLocation(_cities.indexOf(value)),
-//              padding: const EdgeInsets.all(2.0),
-//              child: Text(
-//                Strings.CITY,
-//                style: const TextStyle(fontSize: Dimens.TEXT_SIZE_M),
-//              ),
         ),
         Expanded(
-            child: const Center(
-                child: const Text(
-          Strings.APP_NAME,
-          style: TextStyle(fontSize: Dimens.TEXT_SIZE_APP_BAR),
-        )))
+          child: const Center(
+            child: const Text(
+              Strings.APP_NAME,
+              style: TextStyle(fontSize: Dimens.TEXT_SIZE_APP_BAR),
+            ),
+          ),
+        )
       ],
     );
   }

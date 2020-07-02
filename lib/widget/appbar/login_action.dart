@@ -25,6 +25,12 @@ class _LoginActionState extends State<LoginAction> {
     });
   }
 
+  void _disableFlag() {
+    setState(() {
+      _loginFlag = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final stubImg = AssetImage('assets/img/user_avatar.png');
@@ -43,9 +49,7 @@ class _LoginActionState extends State<LoginAction> {
                 Strings.LOGIN,
                 style: const TextStyle(color: Colors.white),
               );
-              callback = () => setState(() {
-                    _loginFlag = true;
-                  });
+              callback = _enableFlag;
 
               break;
             }
@@ -78,7 +82,10 @@ class _LoginActionState extends State<LoginAction> {
                 backgroundColor: Colors.green,
                 backgroundImage: avatar,
               );
-              callback = () => Navigator.pushNamed(context, '/account');
+              callback = () => Navigator.pushNamed(
+                    context,
+                    '/account',
+                  ).then((value) => _disableFlag());
 
               break;
             }
@@ -88,37 +95,19 @@ class _LoginActionState extends State<LoginAction> {
           child: child,
           onPressed: callback,
         );
-        if (snapshot.connectionState == ConnectionState.waiting ||
-            snapshot.connectionState == ConnectionState.active) {
-          return MaterialButton(
-            child: Stack(
-              children: <Widget>[
-                CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                ),
-                CircleAvatar(
-                  radius: 16.0,
-                  backgroundImage: AssetImage('assets/img/user_avatar.png'),
-                ),
-              ],
-            ),
-            onPressed: null,
-          );
-        } else
-        /*if (snapshot.connectionState == ConnectionState.done)*/ {
-          return MaterialButton(
-            child: CircleAvatar(
-              radius: 16.0,
-              backgroundColor: AppColors.PRIMARY_COLOR,
-              backgroundImage: AssetImage(
-                  'assets/img/family.jpg') /*Icon(Icons.account_circle)*/,
-            ),
-            onPressed: () => Navigator.pushNamed(context, '/account'),
-          );
-        }
       },
     );
   }
 
   Future<bool> _login() => Future.delayed(Duration(seconds: 3), () => true);
+
+  void logout() async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', false);
+
+    setState(() {
+      _isLoggedIn = false;
+      _loginFlag = false;
+    });
+  }
 }

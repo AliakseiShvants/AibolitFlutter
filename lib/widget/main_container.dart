@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_icons.dart';
@@ -19,8 +20,9 @@ class _MainContainerState extends State<MainContainer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: Dimens.ONE_PADDING,
+        automaticallyImplyLeading: true,
         title: Location(),
+//        centerTitle: true,
         actions: <Widget>[
           LoginAction(),
         ],
