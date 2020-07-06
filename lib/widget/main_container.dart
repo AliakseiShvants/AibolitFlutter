@@ -1,10 +1,9 @@
+import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/app_icons.dart';
 import '../utils/app_widgets.dart';
-import '../utils/dimens.dart';
 import 'appbar/location.dart';
 import 'appbar/login_action.dart';
 
@@ -22,7 +21,6 @@ class _MainContainerState extends State<MainContainer> {
       appBar: AppBar(
         automaticallyImplyLeading: true,
         title: Location(),
-//        centerTitle: true,
         actions: <Widget>[
           LoginAction(),
         ],
@@ -33,18 +31,21 @@ class _MainContainerState extends State<MainContainer> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedItem,
         iconSize: 32,
-        items: List.generate(AppIcons.bottomNavIcons.length, (index) {
-          final String key = AppIcons.bottomNavIcons.keys.elementAt(index);
-          final Widget value = AppIcons.bottomNavIcons.values.elementAt(index);
+        items: List.generate(
+          AppIcons.bottomNavIcons.length,
+          (index) {
+            final String key = AppIcons.bottomNavIcons.keys.elementAt(index);
+            final Widget value = AppIcons.bottomNavIcons.values.elementAt(index);
 
-          return BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: value,
-            ),
-            title: Text(key),
-          );
-        }),
+            return BottomNavigationBarItem(
+              icon: Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: value,
+              ),
+              title: Text(key),
+            );
+          },
+        ),
         onTap: _onMenuItemClick,
         selectedFontSize: 8,
         selectedItemColor: AppColors.PRIMARY_COLOR,
