@@ -1,45 +1,139 @@
-import '../../utils/dimens.dart';
-import '../../utils/strings.dart';
+import 'dart:async';
+
+import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
-//  const LoginAction({@required this.onPress, Key key}) : super(key: key);
-
   @override
   _LoginActionState createState() => _LoginActionState();
 }
 
 class _LoginActionState extends State<LoginAction> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   bool _isLoggedIn = false;
+  bool _isLoginEnabled = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    init();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final stubImg = AssetImage('assets/img/user_avatar.png');
+    final avatar = AssetImage('assets/img/family.jpg');
+    final _loggedInAvatar = CircleAvatar(
+      radius: 16.0,
+      backgroundColor: Colors.green,
+      backgroundImage: avatar,
+    );
+    void _loggedInCallback() {
+      Navigator.pushNamed(
+        context,
+        '/account',
+      ).then((value) {
+        if (value) {
+          _logout();
+        }
+      });
+    }
+
     return _isLoggedIn
         ? MaterialButton(
-            child: CircleAvatar(
-              radius: Dimens.DOUBLE_PADDING,
-              backgroundColor: Colors.white,
-            ),
-            onPressed: () => Navigator.of(context).pushNamed('/account'),
+            child: _loggedInAvatar,
+            onPressed: _loggedInCallback,
           )
-        : MaterialButton(
-            child: Text(
-              Strings.LOGIN,
-              style: const TextStyle(color: Colors.white),
-            ),
-            onPressed: _onPressed,
+        : FutureBuilder<bool>(
+            future: _isLoginEnabled ? _login() : null,
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              var child;
+              var callback;
+
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                  {
+                    child = Text(
+                      Strings.LOGIN,
+                      style: const TextStyle(color: Colors.white),
+                    );
+                    callback = _enableLogin;
+
+                    break;
+                  }
+                case ConnectionState.waiting:
+                  {
+                    child = Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 16.0,
+                          backgroundColor: Colors.red,
+                          backgroundImage: stubImg,
+                        ),
+                        CircularProgressIndicator(
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
+                        ),
+                      ],
+                    );
+                    callback = null;
+
+                    break;
+                  }
+                case ConnectionState.done:
+                  {
+                    child = _loggedInAvatar;
+                    callback = _loggedInCallback;
+
+                    break;
+                  }
+              }
+
+              return MaterialButton(
+                child: child,
+                onPressed: callback,
+              );
+            },
           );
   }
 
-  Future<void> _onPressed() async {
-//    final SharedPreferences prefs = await _prefs;
-//    prefs.setBool('isLoggedIn', _isLoggedIn);
+  init() {
+    Preferences.readBoolPrefs().then((value) {
+      setState(() {
+        _isLoggedIn = value[0];
+        _isLoginEnabled = value[1];
+      });
+    });
+  }
+
+  void _enableLogin() {
+    Preferences.writeBoolPref(Strings.IS_LOGIN_ENABLED, true);
 
     setState(() {
-      _isLoggedIn = !_isLoggedIn;
+      _isLoginEnabled = true;
     });
-//    widget._onPress.call();
+  }
+
+  Future<bool> _login() => Future.delayed(Duration(seconds: 3), () {
+        Preferences.writeBoolPrefs(
+            {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
+
+        _isLoginEnabled = true;
+        _isLoggedIn = false;
+
+        return true;
+      });
+
+  void _logout() async {
+    Preferences.writeBoolPrefs(
+        {Strings.IS_LOGGED_IN: false, Strings.IS_LOGIN_ENABLED: false});
+
+    setState(() {
+      _isLoginEnabled = false;
+      _isLoggedIn = false;
+    });
   }
 }

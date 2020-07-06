@@ -22,14 +22,14 @@ class Themes {
 
   static final TextTheme mainTextTheme = ThemeData.light().textTheme.copyWith(
         headline6: const TextStyle(
-          fontSize: Dimens.TEXT_SIZE_L,
+          fontSize: Dimens.TEXT_SIZE_18,
           color: Colors.white,
         ),
       );
 
   static final TextTheme appBarTextTheme = ThemeData.light().textTheme.copyWith(
         headline6: const TextStyle(
-          fontSize: Dimens.TEXT_SIZE_L,
+          fontSize: Dimens.TEXT_SIZE_18,
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
