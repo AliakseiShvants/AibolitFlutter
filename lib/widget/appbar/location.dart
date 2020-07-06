@@ -55,7 +55,7 @@ class _LocationState extends State<Location> {
                 _cities[_locationIndex].title,
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: Dimens.TEXT_SIZE_SM,
+                  fontSize: Dimens.TEXT_SIZE_15,
                 ),
               ),
             ),
@@ -98,7 +98,7 @@ class _LocationState extends State<Location> {
           city.title,
           style: TextStyle(
             color: Colors.black,
-            fontSize: Dimens.TEXT_SIZE_M,
+            fontSize: Dimens.TEXT_SIZE_16,
           ),
         ),
       );
