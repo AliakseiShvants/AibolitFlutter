@@ -1,6 +1,7 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
+import 'package:AibolitFlutter/widget/container/info_item_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -36,7 +37,9 @@ class SettingsScreen extends StatelessWidget {
           Text(
             'Поиск врачей и лекарств онлайн.',
             style: TextStyle(
-                fontWeight: FontWeight.bold, fontSize: Dimens.TEXT_SIZE_14),
+              fontWeight: FontWeight.bold,
+              fontSize: Dimens.TEXT_SIZE_14,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 16),
@@ -45,14 +48,16 @@ class SettingsScreen extends StatelessWidget {
                 Text(
                   'Информация о лекарствах',
                   style: TextStyle(
-                      fontSize: Dimens.TEXT_SIZE_11,
-                      color: AppColors.primaryGrey),
+                    fontSize: Dimens.TEXT_SIZE_11,
+                    color: AppColors.primaryGrey,
+                  ),
                 ),
                 Text(
                   'предоставлена сервисом tabletka.by',
                   style: TextStyle(
-                      fontSize: Dimens.TEXT_SIZE_11,
-                      color: AppColors.primaryGrey),
+                    fontSize: Dimens.TEXT_SIZE_11,
+                    color: AppColors.primaryGrey,
+                  ),
                 ),
               ],
             ),
@@ -89,37 +94,7 @@ class SettingsScreen extends StatelessWidget {
 
   List<Widget> _getSettingItems() {
     return List.generate(_settingItems.length, (index) {
-      return Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: BorderSide(color: AppColors.grey400),
-          ),
-        ),
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 16.0),
-                  child: Text(
-                    _settingItems[index],
-                    style: TextStyle(fontSize: Dimens.TEXT_SIZE_16),
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.topRight,
-                child: Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: AppColors.grey400,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+      return InfoItemContainer(_settingItems[index]);
     });
   }
 
