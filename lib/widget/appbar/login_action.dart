@@ -30,6 +30,7 @@ class _LoginActionState extends State<LoginAction> {
       backgroundColor: Colors.green,
       backgroundImage: avatar,
     );
+
     void _loggedInCallback() {
       Navigator.pushNamed(
         context,
@@ -102,10 +103,8 @@ class _LoginActionState extends State<LoginAction> {
 
   init() {
     Preferences.readBoolPrefs().then((value) {
-      setState(() {
-        _isLoggedIn = value[0];
-        _isLoginEnabled = value[1];
-      });
+      _isLoggedIn = value[0];
+      _isLoginEnabled = value[1];
     });
   }
 
@@ -117,18 +116,16 @@ class _LoginActionState extends State<LoginAction> {
     });
   }
 
-  Future<bool> _login() => Future.delayed(Duration(seconds: 3), () {
-        Preferences.writeBoolPrefs(
-            {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
+  Future<bool> _login() async {
+    await Future.delayed(Duration(seconds: 3));
+    await Preferences.writeBoolPrefs(
+        {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
 
-        _isLoginEnabled = true;
-        _isLoggedIn = false;
-
-        return true;
-      });
+    return true;
+  }
 
   void _logout() async {
-    Preferences.writeBoolPrefs(
+    await Preferences.writeBoolPrefs(
         {Strings.IS_LOGGED_IN: false, Strings.IS_LOGIN_ENABLED: false});
 
     setState(() {
