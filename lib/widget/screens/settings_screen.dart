@@ -1,7 +1,6 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
-import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
-import 'package:AibolitFlutter/widget/container/info_item_container.dart';
+import 'package:AibolitFlutter/widget/container/info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -94,7 +93,7 @@ class SettingsScreen extends StatelessWidget {
 
   List<Widget> _getSettingItems() {
     return List.generate(_settingItems.length, (index) {
-      return InfoItemContainer(_settingItems[index]);
+      return InfoItem(_settingItems[index]);
     });
   }
 

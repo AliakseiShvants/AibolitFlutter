@@ -1,23 +1,13 @@
-import 'package:AibolitFlutter/entity/program.dart';
-import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
-import 'package:AibolitFlutter/widget/container/info_item_container.dart';
+import 'package:AibolitFlutter/widget/container/info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class AccountScreen extends StatelessWidget {
-  static User _user = User(
-      firstName: 'Алексей',
-      middleName: 'Олегович',
-      lastName: 'Шванц',
-      birthDay: DateTime(1991, 9, 11),
-      phoneNumber: '375295786646',
-      email: 'ashvants91@gmail.com',
-      programs: [Program('assets/img/epam_logo.png', 'EPAM Health Care')]);
-
-  static String _birthDay = DateFormat('dd MMMM yyyy').format(_user.birthDay);
+  static String _birthDay = DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
 
   final Widget _accountHeader = Container(
     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -26,7 +16,7 @@ class AccountScreen extends StatelessWidget {
       children: <Widget>[
         CircleAvatar(
           radius: 40,
-          backgroundImage: AssetImage('assets/img/family.jpg'),
+          backgroundImage: AssetImage(Data.user1.avatar),
         ),
         Expanded(
           child: Padding(
@@ -35,7 +25,7 @@ class AccountScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '${_user.lastName} ${_user.firstName} ${_user.middleName}',
+                  '${Data.user1.lastName} ${Data.user1.firstName} ${Data.user1.middleName}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: Dimens.TEXT_SIZE_14,
@@ -71,9 +61,9 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _accountHeader,
-              InfoItemContainer('Моя семья'),
-              InfoItemContainer('Документы'),
-              InfoItemContainer(
+              InfoItem('Моя семья'),
+              InfoItem('Документы'),
+              InfoItem(
                 'Мой аккаунт',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
@@ -82,7 +72,7 @@ class AccountScreen extends StatelessWidget {
                 isTrailing: false,
               ),
               ..._getAccountInfo(),
-              InfoItemContainer(
+              InfoItem(
                 'Программы',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
@@ -90,8 +80,11 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              ..._getPrograms(),
-              InfoItemContainer(
+              InfoItem(
+                Data.user1.program.title,
+                logo: Data.user1.program.logo,
+              ),
+              InfoItem(
                 'Другое',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
@@ -99,8 +92,8 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItemContainer('Напоминание о визитах'),
-              InfoItemContainer(
+              InfoItem('Напоминание о визитах'),
+              InfoItem(
                 'Выйти',
                 textColor: Colors.red.shade800,
                 callback: () => _logout(context),
@@ -113,36 +106,25 @@ class AccountScreen extends StatelessWidget {
   }
 
   List<Widget> _getAccountInfo() {
-    final phone = _user.phoneNumber;
+    final phone = Data.user1.phoneNumber;
     final fontSize = Dimens.TEXT_SIZE_13;
     final String phoneLine = '+${phone.substring(0, 3)} '
         '(${phone.substring(3, 5)}) '
         '${phone.substring(5, 8)}-${phone.substring(8, 10)}-${phone.substring(10)}';
 
     return [
-      InfoItemContainer(
+      InfoItem(
         phoneLine,
         fontSize: fontSize,
         hint: 'Телефон:',
         isTrailing: false,
       ),
-      InfoItemContainer(
-        _user.email,
+      InfoItem(
+        Data.user1.email,
         fontSize: fontSize,
         hint: 'Личный e-mail:',
       ),
     ];
-  }
-
-  List<Widget> _getPrograms() {
-    return List.generate(_user.programs.length, (index) {
-      var program = _user.programs[index];
-
-      return InfoItemContainer(
-        program.title,
-        logo: program.logo,
-      );
-    });
   }
 
   void _logout(BuildContext context) => Navigator.pop(context, true);

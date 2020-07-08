@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:flutter/material.dart';
 
@@ -23,12 +24,10 @@ class _LoginActionState extends State<LoginAction> {
 
   @override
   Widget build(BuildContext context) {
-    final stubImg = AssetImage('assets/img/user_avatar.png');
-    final avatar = AssetImage('assets/img/family.jpg');
     final _loggedInAvatar = CircleAvatar(
       radius: 16.0,
       backgroundColor: Colors.green,
-      backgroundImage: avatar,
+      backgroundImage: AssetImage(Data.user1.avatar),
     );
 
     void _loggedInCallback() {
@@ -72,7 +71,7 @@ class _LoginActionState extends State<LoginAction> {
                         CircleAvatar(
                           radius: 16.0,
                           backgroundColor: Colors.red,
-                          backgroundImage: stubImg,
+                          backgroundImage: AssetImage(Data.user1.avatar),
                         ),
                         CircularProgressIndicator(
                           valueColor:
