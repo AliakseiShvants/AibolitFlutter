@@ -34,4 +34,12 @@ class Themes {
           color: Colors.white,
         ),
       );
+
+  static TextStyle getTextStyle({double fontSize, FontWeight fontWeight, Color color}) {
+    return TextStyle(
+      fontSize: fontSize != null ? fontSize : Dimens.TEXT_SIZE_12,
+      fontWeight: fontWeight != null ? fontWeight : FontWeight.normal,
+      color: color != null ? color : Colors.black,
+    );
+  }
 }

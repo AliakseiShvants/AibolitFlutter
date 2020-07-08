@@ -8,7 +8,8 @@ class User {
   final DateTime birthDay;
   final String phoneNumber;
   final String email;
-  final List<Program> programs;
+  final Program program;
+  final String avatar;
 
   User({
     @required this.firstName,
@@ -17,6 +18,7 @@ class User {
     this.birthDay,
     this.phoneNumber,
     this.email,
-    this.programs
+    this.program,
+    this.avatar
   });
 }
