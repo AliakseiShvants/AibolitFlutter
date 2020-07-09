@@ -13,13 +13,15 @@ class VisitCardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: AppColors.grey200,
-      child: SingleChildScrollView(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          children: <Widget>[
-            VisitCardHeader(),
-            ..._getVisits(),
-          ],
+      child: Scrollbar(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(8),
+          child: Column(
+            children: <Widget>[
+              VisitCardHeader(),
+              ..._getVisits(),
+            ],
+          ),
         ),
       ),
     );

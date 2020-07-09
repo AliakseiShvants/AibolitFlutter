@@ -11,14 +11,25 @@ class User {
   final Program program;
   final String avatar;
 
-  User({
-    @required this.firstName,
-    this.middleName,
-    @required this.lastName,
-    this.birthDay,
-    this.phoneNumber,
-    this.email,
-    this.program,
-    this.avatar
-  });
+  User(
+      {@required this.firstName,
+      this.middleName,
+      @required this.lastName,
+      this.birthDay,
+      this.phoneNumber,
+      this.email,
+      this.program,
+      this.avatar});
+
+  @override
+  bool operator ==(other) {
+    return this.firstName == (other as User).firstName &&
+        this.lastName == (other as User).lastName &&
+        this.middleName == (other as User).middleName &&
+        this.birthDay == (other as User).birthDay &&
+        this.phoneNumber == (other as User).phoneNumber &&
+        this.email == (other as User).email &&
+        this.program == (other as User).program &&
+        this.avatar == (other as User).avatar;
+  }
 }

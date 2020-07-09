@@ -25,15 +25,27 @@ class Data {
       'МЦ "Лодэ" на Полиграфистов', 'Гродно, ул. Полиграфистов, д. 2');
   static List<MedCenter> centers = [center1, center2];
 
+  static User owner = User(
+    firstName: 'Алексей',
+    middleName: 'Олегович',
+    lastName: 'Шванц',
+    birthDay: DateTime(1991, 9, 11),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program1,
+    avatar: 'assets/img/shvants.jpg',
+  );
+
   static User user1 = User(
-      firstName: 'Алексей',
-      middleName: 'Олегович',
-      lastName: 'Шванц',
-      birthDay: DateTime(1991, 9, 11),
-      phoneNumber: '375295786646',
-      email: 'ashvants91@gmail.com',
-      program: program1,
-      avatar: 'assets/img/shvants.jpg');
+    firstName: 'Алексей',
+    middleName: 'Олегович',
+    lastName: 'Шванц',
+    birthDay: DateTime(1991, 9, 11),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program1,
+    avatar: 'assets/img/shvants.jpg',
+  );
   static User user2 = User(
       firstName: 'Надежда',
       middleName: 'Алексеевна',
@@ -81,7 +93,7 @@ class Data {
     owner: user1,
     doctor: doctor1,
     center: center1,
-    date: DateTime.now(),
+    date: DateTime.now().add(Duration(hours: 1)),
   );
 
   static final List<Visit> visits = [
@@ -94,7 +106,7 @@ class Data {
     Data.visit,
     Data.getVisitWithDate(
       Data.user1,
-      DateTime.now(),
+      DateTime.now().add(Duration(hours: 1)),
       Data.center2,
       Data.doctor2,
     ),
@@ -105,7 +117,7 @@ class Data {
       Data.doctor3,
     ),
     Data.getVisitWithDate(
-        Data.user2, DateTime.now(), Data.center2, Data.doctor1),
+        Data.user2, DateTime.now().add(Duration(hours: 1)), Data.center2, Data.doctor1),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 2)),

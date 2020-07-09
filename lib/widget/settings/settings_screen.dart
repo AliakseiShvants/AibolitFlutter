@@ -1,4 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/widget/container/info_item.dart';
 import 'package:flutter/material.dart';
@@ -108,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
             child: _settingsFooter,
             decoration: BoxDecoration(
               border: Border(
-                top: BorderSide(color: AppColors.grey400),
+                top: Borders.primaryGreyBorderSide,
               ),
             ),
           ),

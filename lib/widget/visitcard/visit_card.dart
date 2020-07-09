@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/data.dart';
@@ -13,30 +14,43 @@ class VisitCard extends StatelessWidget {
 
   VisitCard(this._visit);
 
+  bool _isFuture(DateTime date) => date.isAfter(DateTime.now());
+
   bool _isToday(DateTime date) =>
       DateTime.now().year == date.year &&
       DateTime.now().month == date.month &&
       DateTime.now().day == date.day;
 
   BoxDecoration _getTodayBorder(DateTime date) {
-    return _isToday(date)
+    return _isFuture(date)
         ? BoxDecoration(
             border: Border(
-                left: BorderSide(color: AppColors.PRIMARY_COLOR, width: 4)))
+              left: BorderSide(
+                color: AppColors.PRIMARY_COLOR,
+                width: 4,
+              ),
+            ),
+          )
         : null;
   }
 
   String _getVisitTitle(DateTime date, String speciality) {
+    final visitTime = DateFormat('HH:mm').format(date);
     var result = 'Визит';
 
     if (_isToday(date)) {
-      final visitTime = DateFormat('HH:mm').format(date);
       result = 'Сегодня - $visitTime';
+    } else if (_isFuture(date)) {
+      result = DateFormat('dd MMMM - HH:mm').format(date);
     } else {
       result += ': $speciality';
     }
 
     return result;
+  }
+
+  String _getVisitOwnerName(User user) {
+    return user == Data.owner ? 'Мой визит' : user.firstName;
   }
 
   @override
@@ -125,14 +139,14 @@ class VisitCard extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: Text(
-                          '${_visit.owner.firstName}',
+                          _getVisitOwnerName(_visit.owner),
                           style: Themes.getTextStyle(
                             fontSize: Dimens.TEXT_SIZE_11,
                           ),
                         ),
                       ),
                     ),
-                    if (!_isToday(_visit.date))
+                    if (!_isFuture(_visit.date))
                       Text(
                         DateFormat('dd MMMM HH:mm').format(_visit.date),
                         style: Themes.getTextStyle(
@@ -150,6 +164,8 @@ class VisitCard extends StatelessWidget {
   }
 
   double _getLogoOpacity(Visit visit) {
-    return Data.programToDoctors[visit.owner.program].contains(visit.doctor) ? 1 : 0;
+    return Data.programToDoctors[visit.owner.program].contains(visit.doctor)
+        ? 1
+        : 0;
   }
 }
