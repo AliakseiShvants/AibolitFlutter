@@ -23,7 +23,10 @@ class _MainContainerState extends State<MainContainer> {
         automaticallyImplyLeading: true,
         title: Location(Data.cities),
         actions: <Widget>[
-          LoginAction(),
+          LoginAction(
+            isLoggedIn: false,
+            isNeedToRefresh: false,
+          ),
         ],
       ),
       body: SafeArea(

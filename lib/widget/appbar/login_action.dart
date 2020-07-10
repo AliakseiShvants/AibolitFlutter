@@ -7,20 +7,28 @@ import 'package:flutter/material.dart';
 import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
+  final bool isLoggedIn;
+  final bool isNeedToRefresh;
+
+  LoginAction({this.isLoggedIn, this.isNeedToRefresh});
+
   @override
-  _LoginActionState createState() => _LoginActionState();
+  _LoginActionState createState() => _LoginActionState(isLoggedIn, isNeedToRefresh);
 }
 
 class _LoginActionState extends State<LoginAction> {
-  bool _isLoggedIn = false;
+  final bool _isLoggedIn;
+  final bool _isNeedToRefresh;
   bool _isLoginEnabled = false;
 
-  @override
-  void initState() {
-    super.initState();
+  _LoginActionState(this._isLoggedIn, this._isNeedToRefresh);
 
-    init();
-  }
+//  @override
+//  void initState() {
+//    super.initState();
+//
+//    init();
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,13 +49,16 @@ class _LoginActionState extends State<LoginAction> {
       });
     }
 
-    return _isLoggedIn
+    return !_isLoggedIn
         ? MaterialButton(
-            child: _loggedInAvatar,
-            onPressed: _loggedInCallback,
+            child: Text(
+              Strings.LOGIN,
+              style: const TextStyle(color: Colors.white),
+            ),
+            onPressed: () => Navigator.pushNamed(context, '/login'),
           )
         : FutureBuilder<bool>(
-            future: _isLoginEnabled ? _login() : null,
+            future: _isNeedToRefresh ? _needToRefresh() : null,
             builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
               var child;
               var callback;
@@ -55,11 +66,8 @@ class _LoginActionState extends State<LoginAction> {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
                   {
-                    child = Text(
-                      Strings.LOGIN,
-                      style: const TextStyle(color: Colors.white),
-                    );
-                    callback = _enableLogin;
+                    child = _loggedInAvatar;
+                    callback = _loggedInCallback;
 
                     break;
                   }
@@ -102,7 +110,7 @@ class _LoginActionState extends State<LoginAction> {
 
   init() {
     Preferences.readBoolPrefs().then((value) {
-      _isLoggedIn = value[0];
+//      _isLoggedIn = value[0];
       _isLoginEnabled = value[1];
     });
   }
@@ -115,13 +123,8 @@ class _LoginActionState extends State<LoginAction> {
     });
   }
 
-  Future<bool> _login() async {
-    await Future.delayed(Duration(seconds: 3));
-    await Preferences.writeBoolPrefs(
-        {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
+  Future<void> _needToRefresh() {}
 
-    return true;
-  }
 
   void _logout() async {
     await Preferences.writeBoolPrefs(
@@ -129,7 +132,7 @@ class _LoginActionState extends State<LoginAction> {
 
     setState(() {
       _isLoginEnabled = false;
-      _isLoggedIn = false;
+//      _isLoggedIn = false;
     });
   }
 }
