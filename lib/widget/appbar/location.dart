@@ -1,4 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -10,20 +11,19 @@ import '../../utils/dimens.dart';
 import '../../utils/strings.dart';
 
 class Location extends StatefulWidget {
+  final List<City> _cities;
+
+  Location(this._cities);
+
   @override
-  _LocationState createState() => _LocationState();
+  _LocationState createState() => _LocationState(_cities);
 }
 
 class _LocationState extends State<Location> {
+  final List<City> _cities;
   int _locationIndex = 0;
-  final List<City> _cities = [
-    City(1, 'Брест'),
-    City(2, 'Витебск'),
-    City(3, 'Гомель'),
-    City(4, 'Гродно'),
-    City(5, 'Минск'),
-    City(6, 'Могилев'),
-  ];
+
+  _LocationState(this._cities);
 
   @override
   void initState() {

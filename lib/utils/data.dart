@@ -1,6 +1,8 @@
+import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/med_center.dart';
 import 'package:AibolitFlutter/entity/program.dart';
+import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:flutter/cupertino.dart';
@@ -164,4 +166,23 @@ class Data {
         center: center,
         date: date,
       );
+
+  static List<RequestItem> popularRequests = [
+    RequestItem('Терапевт', true),
+    RequestItem('Хирург', true),
+    RequestItem('Педиатр', true),
+    RequestItem('Офтальмолог', true),
+    RequestItem('Мирасептин', false),
+    RequestItem('Септоцид', false),
+    RequestItem('Маска медицинская', false),
+  ];
+
+  static List<City> cities = [
+    City(1, 'Брест'),
+    City(2, 'Витебск'),
+    City(3, 'Гомель'),
+    City(4, 'Гродно'),
+    City(5, 'Минск'),
+    City(6, 'Могилев'),
+  ];
 }

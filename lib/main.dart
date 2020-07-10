@@ -12,6 +12,7 @@ void main() {
 }
 
 class AibolitApp extends StatelessWidget {
+  bool isLoggedIn = false;
 
   @override
   Widget build(BuildContext context) {

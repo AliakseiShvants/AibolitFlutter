@@ -1,7 +1,8 @@
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/data.dart';
-import 'package:AibolitFlutter/widget/visitcard/visit_card_header.dart';
+import 'package:AibolitFlutter/widget/visitcard/visit_card_bookmark.dart';
+import 'package:AibolitFlutter/widget/visitcard/visit_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,16 +19,12 @@ class VisitCardScreen extends StatelessWidget {
           padding: EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
-              VisitCardHeader(),
-              ..._getVisits(),
+              VisitCardBookmark(),
+              VisitList(),
             ],
           ),
         ),
       ),
     );
   }
-
-  List<VisitCard> _getVisits() => List.generate(Data.visits.length, (index) {
-        return VisitCard(Data.visits[index]);
-      });
 }

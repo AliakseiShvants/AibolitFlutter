@@ -1,10 +1,10 @@
-import 'package:AibolitFlutter/utils/borders.dart';
-import 'package:AibolitFlutter/utils/preferences.dart';
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_icons.dart';
 import '../../utils/app_widgets.dart';
+import '../../utils/borders.dart';
 import '../appbar/location.dart';
 import '../appbar/login_action.dart';
 
@@ -21,7 +21,7 @@ class _MainContainerState extends State<MainContainer> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Location(),
+        title: Location(Data.cities),
         actions: <Widget>[
           LoginAction(),
         ],

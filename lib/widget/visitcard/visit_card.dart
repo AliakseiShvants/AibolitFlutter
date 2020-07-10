@@ -78,21 +78,26 @@ class VisitCard extends StatelessWidget {
                 Row(
                   children: <Widget>[
                     Expanded(
-                        child: Text(
-                      _getVisitTitle(_visit.date, _visit.doctor.speciality),
-                      style: Themes.getTextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimens.TEXT_SIZE_13,
+                      child: Text(
+                        _getVisitTitle(_visit.date, _visit.doctor.speciality),
+                        style: Themes.getTextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimens.TEXT_SIZE_13,
+                        ),
                       ),
-                    )),
-                    GestureDetector(
-                      child: Icon(
-                        MaterialCommunityIcons.delete,
-                        size: 20,
-                        color: AppColors.primaryGrey,
-                      ),
-                      onTap: null,
                     ),
+                    _isFuture(_visit.date)
+                        ? GestureDetector(
+                            child: Icon(
+                              Feather.more_vertical,
+                            ),
+                          )
+                        : GestureDetector(
+                            child: Icon(
+                              EvilIcons.trash,
+                            ),
+                            onTap: null,
+                          ),
                   ],
                 ),
                 Padding(
