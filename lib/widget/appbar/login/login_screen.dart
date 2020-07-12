@@ -1,10 +1,12 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
+import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:AibolitFlutter/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -18,7 +20,13 @@ class _LoginScreenState extends State<LoginScreen> {
       'которое будет выслано на ваш номер. '
       'Убедитесь, что ваше устройство сможет его принять.';
 
+  var _phonePrefixController = TextEditingController(text: '+ 375');
+  var _phoneNumberController = MaskedTextController(
+    mask: '(00) 000 00 00',
+  );
+
   bool _isLoginEnable = false;
+  bool _isLoginButtonEnabled = false;
 
   void _enableLogin() {
     setState(() {
@@ -31,17 +39,51 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           children: <Widget>[
             AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg),
-            SizedBox(
-              width: double.infinity,
-              child: FlatButton(
-                color: AppColors.grey500,
-                child: Text(
-                  'Продолжить'.toUpperCase(),
-                  style: TextStyle(
-                    color: Colors.white,
+            Row(
+              children: <Widget>[
+                Expanded(
+                  flex: 3,
+                  child: TextField(
+                    controller: _phonePrefixController,
+                    decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(),
+                      hintText: _phonePrefixController.text
+                    ),
+                    keyboardType: TextInputType.phone,
                   ),
                 ),
-                onPressed: callback,
+                SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  flex: 7,
+                  child: TextField(
+                    controller: _phoneNumberController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: '(__) ___ __ __',
+                    ),
+                    keyboardType: TextInputType.phone,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 16),
+              child: SizedBox(
+                width: double.infinity,
+                child: FlatButton(
+                  disabledColor: AppColors.grey500,
+                  color:  AppColors.green,
+                  child: Text(
+                    'Продолжить'.toUpperCase(),
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  onPressed: _isLoginButtonEnabled ? callback : null,
+                ),
               ),
             ),
           ],
@@ -50,7 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    _phoneNumberController.addListener(() {_validate();});
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.grey200,
       appBar: AppWidgets.getAppBar(context, _appBarTitle),
       body: SafeArea(
@@ -62,11 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 alignment: Alignment.center,
                 children: <Widget>[
                   _loginWidget(),
-                  Opacity(
-                    opacity: 0.8,
-                    child: Container(
-                      color: AppColors.primaryGrey,
-                    ),
+                  Container(
+                    color: AppColors.primaryGrey.withOpacity(0.8),
                   ),
                   CircularProgressIndicator(),
                 ],
@@ -86,5 +128,13 @@ class _LoginScreenState extends State<LoginScreen> {
         {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
 
     Navigator.pop(context);
+  }
+
+  void _validate() {
+    if (_phoneNumberController.text.length == 14) {
+      setState(() {
+        _isLoginButtonEnabled = true;
+      });
+    }
   }
 }

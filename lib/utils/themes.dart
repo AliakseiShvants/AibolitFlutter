@@ -18,6 +18,10 @@ class Themes {
     primaryColor: AppColors.PRIMARY_COLOR,
     textTheme: mainTextTheme,
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    buttonTheme: ButtonThemeData(
+      buttonColor: Color(0xff009688),
+      disabledColor: AppColors.grey400,
+    ),
   );
 
   static final TextTheme mainTextTheme = ThemeData.light().textTheme.copyWith(
