@@ -9,12 +9,14 @@ import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
   final User _user;
+  final bool _isLoggedIn;
   final bool _isNeedToRefresh;
   final Function _loginCallback;
   final Function _logoutCallback;
 
   LoginAction(
       this._user,
+      this._isLoggedIn,
       this._isNeedToRefresh,
       this._loginCallback,
       this._logoutCallback,
@@ -27,59 +29,68 @@ class LoginAction extends StatefulWidget {
 class _LoginActionState extends State<LoginAction> {
   @override
   Widget build(BuildContext context) {
-    return widget._user == Data.guest
-        ? MaterialButton(
-            child: Text(
-              Strings.LOGIN,
-              style: const TextStyle(color: Colors.white),
-            ),
-            onPressed: widget._loginCallback,
-          )
-        : FutureBuilder<bool>(
-            future: widget._isNeedToRefresh ? _needToRefresh() : null,
-            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-              var child;
-              var callback;
+    final Widget loggedInAvatar = MaterialButton(
+      child: AppWidgets.getCircleAvatar(16, Data.owner.avatar),
+      onPressed: widget._logoutCallback,
+    );
 
-              switch (snapshot.connectionState) {
-                case ConnectionState.none:
-                  {
-                    child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
-                    callback = null;
+    if (widget._isLoggedIn) {
+      return loggedInAvatar;
+    } else {
+      return widget._user == Data.guest
+          ? MaterialButton(
+        child: Text(
+          Strings.LOGIN,
+          style: const TextStyle(color: Colors.white),
+        ),
+        onPressed: widget._loginCallback,
+      )
+          : FutureBuilder<bool>(
+        future: widget._isNeedToRefresh ? _needToRefresh() : null,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          var child;
+          var callback;
 
-                    break;
-                  }
-                case ConnectionState.waiting:
-                  {
-                    child = Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        AppWidgets.getCircleAvatar(16, Data.stubAsset),
-                        CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.white),
-                        ),
-                      ],
-                    );
-                    callback = null;
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+              {
+                child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
+                callback = null;
 
-                    break;
-                  }
-                case ConnectionState.done:
-                  {
-                    child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
-                    callback = widget._logoutCallback;
-
-                    break;
-                  }
+                break;
               }
+            case ConnectionState.waiting:
+              {
+                child = Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    AppWidgets.getCircleAvatar(16, Data.stubAsset),
+                    CircularProgressIndicator(
+                      valueColor:
+                      AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  ],
+                );
+                callback = null;
 
-              return MaterialButton(
-                child: child,
-                onPressed: callback,
-              );
-            },
+                break;
+              }
+            case ConnectionState.done:
+              {
+                child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
+                callback = widget._logoutCallback;
+
+                break;
+              }
+          }
+
+          return MaterialButton(
+            child: child,
+            onPressed: callback,
           );
+        },
+      );
+    }
   }
 
   Future<bool> _needToRefresh() async {

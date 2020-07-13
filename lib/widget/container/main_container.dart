@@ -45,10 +45,11 @@ class _MainContainerState extends State<MainContainer> {
         title: Location(_locationIndex, Data.cities, _setLocation),
         actions: <Widget>[
           LoginAction(
-            _user,
-            _isLoggedIn,
+             _user,
+             _isLoggedIn,
+             true,
             _login,
-            _logout,
+             _logout,
           ),
         ],
       ),
@@ -102,7 +103,8 @@ class _MainContainerState extends State<MainContainer> {
     Navigator.pushNamed(context, '/login').then((value) async {
       if (value) {
         await Preferences.writeBoolPref(Strings.IS_LOGGED_IN, true);
-        await Preferences.writeIntPref(Strings.LOCATION_INDEX, Data.cities.indexOf(Data.owner.city));
+        await Preferences.writeIntPref(
+            Strings.LOCATION_INDEX, Data.cities.indexOf(Data.owner.city));
 
         setState(() {
           _user = Data.owner;
