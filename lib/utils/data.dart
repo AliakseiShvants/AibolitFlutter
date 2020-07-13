@@ -36,6 +36,7 @@ class Data {
     email: 'ashvants91@gmail.com',
     program: program1,
     avatar: 'assets/img/shvants.jpg',
+    city: City(4, 'Гродно'),
   );
 
   static User user1 = User(
@@ -47,16 +48,19 @@ class Data {
     email: 'ashvants91@gmail.com',
     program: program1,
     avatar: 'assets/img/shvants.jpg',
+    city: City(4, 'Гродно'),
   );
   static User user2 = User(
-      firstName: 'Надежда',
-      middleName: 'Алексеевна',
-      lastName: 'Шванц',
-      birthDay: DateTime(2016, 9, 14),
-      phoneNumber: '375295786646',
-      email: 'ashvants91@gmail.com',
-      program: program2,
-      avatar: 'assets/img/nadzeya.jpg');
+    firstName: 'Надежда',
+    middleName: 'Алексеевна',
+    lastName: 'Шванц',
+    birthDay: DateTime(2016, 9, 14),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program2,
+    avatar: 'assets/img/nadzeya.jpg',
+    city: City(4, 'Гродно'),
+  );
 
   static Doctor doctor1 = Doctor(
     firstName: 'Юлия',
@@ -118,8 +122,8 @@ class Data {
       Data.center2,
       Data.doctor3,
     ),
-    Data.getVisitWithDate(
-        Data.user2, DateTime.now().add(Duration(hours: 1)), Data.center2, Data.doctor1),
+    Data.getVisitWithDate(Data.user2, DateTime.now().add(Duration(hours: 1)),
+        Data.center2, Data.doctor1),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 2)),

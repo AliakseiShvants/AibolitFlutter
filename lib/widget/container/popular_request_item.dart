@@ -13,16 +13,15 @@ class PopularRequestItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      key: GlobalKey(),
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
       child: Container(
         decoration: BoxDecoration(
           color: isHuman ? AppColors.PRIMARY_COLOR : Color(0xff009688),
           borderRadius: BorderRadius.all(
-            Radius.circular(24),
+            Radius.circular(32),
           ),
         ),
-        padding: EdgeInsets.all(12),
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
         child: Text(
           title,
           style: Themes.getTextStyle(

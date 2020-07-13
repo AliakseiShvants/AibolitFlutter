@@ -78,6 +78,7 @@ class _LocationState extends State<Location> {
 
   void _initLocation() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+
     _locationIndex = prefs.getInt(Strings.LOCATION_INDEX) ?? 0;
   }
 

@@ -78,7 +78,6 @@ class _LoginActionState extends State<LoginAction> {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 16.0,
-                          backgroundColor: Colors.red,
                           backgroundImage: AssetImage(Data.user1.avatar),
                         ),
                         CircularProgressIndicator(

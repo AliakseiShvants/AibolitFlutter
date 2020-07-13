@@ -1,7 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/borders.dart';
-import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:AibolitFlutter/utils/strings.dart';
 import 'package:flutter/material.dart';

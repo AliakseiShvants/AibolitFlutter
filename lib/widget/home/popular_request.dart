@@ -18,31 +18,28 @@ class PopularRequest extends StatelessWidget {
           child: Text(
             'Популярные запросы'.toUpperCase(),
             style: Themes.getTextStyle(
-              fontSize: Dimens.TEXT_SIZE_10,
+              fontSize: Dimens.TEXT_SIZE_11,
               fontWeight: FontWeight.bold,
               color: Colors.black54,
             ),
           ),
         ),
-//        Row(
-//          children: <Widget>[
-//            PopularRequestItem(
-//              title: 'Терапевт',
-//              isHuman: true,
-//            ),
-//            PopularRequestItem(
-//              title: 'Терапевт',
-//              isHuman: true,
-//            ),
-//            PopularRequestItem(
-//              title: 'Терапевт',
-//              isHuman: true,
-//            ),
-//          ],
-//        ),
-      ..._getRows(context, Data.popularRequests),
+        Wrap(
+          children: <Widget>[
+            ..._getPopularRequests(Data.popularRequests),
+          ],
+        ),
       ],
     );
+  }
+
+  List<PopularRequestItem> _getPopularRequests(List<RequestItem> list) {
+    return List.generate(
+        list.length,
+        (index) => PopularRequestItem(
+              title: list[index].title,
+              isHuman: list[index].isHuman,
+            ));
   }
 
   List<Row> _getRows(BuildContext context, List<RequestItem> list) {
@@ -53,7 +50,7 @@ class PopularRequest extends StatelessWidget {
 
 //    double overallLength = 0.0;
 
-    for(int i = 0; i < list.length; i++) {
+    for (int i = 0; i < list.length; i++) {
       var element = list[i];
       var request = PopularRequestItem(
 //        key: GlobalKey(),
@@ -70,14 +67,14 @@ class PopularRequest extends StatelessWidget {
 
 //    int rowsCount = (overallLength / width).floor();
 
-    for (int i = 0; i < /*rowsCount*/(list.length / 2).floor(); i++) {
+    for (int i = 0; i < /*rowsCount*/ (list.length / 2).floor(); i++) {
 //      double rowWidth = 0;
       List<PopularRequestItem> children = [];
 
       //temp
       var trigger = 0;
 
-      while (/*rowWidth < width*/trigger < 2) {
+      while (/*rowWidth < width*/ trigger < 2) {
         if (items.length != 0) {
           children.add(items.first);
           items.removeAt(0);
@@ -85,14 +82,14 @@ class PopularRequest extends StatelessWidget {
 
 //        rowWidth += itemsWidth.first;
 
-
-
         //temp
         trigger++;
 //        itemsWidth.removeAt(0);
       }
 
-      result.add(Row(children: children,));
+      result.add(Row(
+        children: children,
+      ));
     }
 
     return result;
