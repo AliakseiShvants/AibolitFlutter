@@ -68,4 +68,11 @@ class AppWidgets {
       ),
     ),
   );
+
+  static Widget getCircleAvatar(double radius, String asset) {
+    return CircleAvatar(
+      radius: radius,
+      backgroundImage: AssetImage(asset),
+    );
+  }
 }

@@ -1,64 +1,42 @@
 import 'dart:async';
 
+import 'package:AibolitFlutter/entity/user.dart';
+import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
-import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
-  final bool isLoggedIn;
-  final bool isNeedToRefresh;
+  final User _user;
+  final bool _isNeedToRefresh;
+  final Function _loginCallback;
+  final Function _logoutCallback;
 
-  LoginAction({this.isLoggedIn, this.isNeedToRefresh});
+  LoginAction(
+      this._user,
+      this._isNeedToRefresh,
+      this._loginCallback,
+      this._logoutCallback,
+  );
 
   @override
-  _LoginActionState createState() => _LoginActionState(isLoggedIn, isNeedToRefresh);
+  _LoginActionState createState() => _LoginActionState();
 }
 
 class _LoginActionState extends State<LoginAction> {
-  final bool _isLoggedIn;
-  final bool _isNeedToRefresh;
-  bool _isLoginEnabled = false;
-
-  _LoginActionState(this._isLoggedIn, this._isNeedToRefresh);
-
-//  @override
-//  void initState() {
-//    super.initState();
-//
-//    init();
-//  }
-
   @override
   Widget build(BuildContext context) {
-    final _loggedInAvatar = CircleAvatar(
-      radius: 16.0,
-      backgroundColor: Colors.green,
-      backgroundImage: AssetImage(Data.user1.avatar),
-    );
-
-    void _loggedInCallback() {
-      Navigator.pushNamed(
-        context,
-        '/account',
-      ).then((value) {
-        if (value) {
-          _logout();
-        }
-      });
-    }
-
-    return !_isLoggedIn
+    return widget._user == Data.guest
         ? MaterialButton(
             child: Text(
               Strings.LOGIN,
               style: const TextStyle(color: Colors.white),
             ),
-            onPressed: () => Navigator.pushNamed(context, '/login'),
+            onPressed: widget._loginCallback,
           )
         : FutureBuilder<bool>(
-            future: _isNeedToRefresh ? _needToRefresh() : null,
+            future: widget._isNeedToRefresh ? _needToRefresh() : null,
             builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
               var child;
               var callback;
@@ -66,8 +44,8 @@ class _LoginActionState extends State<LoginAction> {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
                   {
-                    child = _loggedInAvatar;
-                    callback = _loggedInCallback;
+                    child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
+                    callback = null;
 
                     break;
                   }
@@ -76,10 +54,7 @@ class _LoginActionState extends State<LoginAction> {
                     child = Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 16.0,
-                          backgroundImage: AssetImage(Data.user1.avatar),
-                        ),
+                        AppWidgets.getCircleAvatar(16, Data.stubAsset),
                         CircularProgressIndicator(
                           valueColor:
                               AlwaysStoppedAnimation<Color>(Colors.white),
@@ -92,8 +67,8 @@ class _LoginActionState extends State<LoginAction> {
                   }
                 case ConnectionState.done:
                   {
-                    child = _loggedInAvatar;
-                    callback = _loggedInCallback;
+                    child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
+                    callback = widget._logoutCallback;
 
                     break;
                   }
@@ -107,31 +82,9 @@ class _LoginActionState extends State<LoginAction> {
           );
   }
 
-  init() {
-    Preferences.readBoolPrefs().then((value) {
-//      _isLoggedIn = value[0];
-      _isLoginEnabled = value[1];
-    });
-  }
+  Future<bool> _needToRefresh() async {
+    await Future.delayed(Duration(seconds: 5));
 
-  void _enableLogin() {
-    Preferences.writeBoolPref(Strings.IS_LOGIN_ENABLED, true);
-
-    setState(() {
-      _isLoginEnabled = true;
-    });
-  }
-
-  Future<void> _needToRefresh() {}
-
-
-  void _logout() async {
-    await Preferences.writeBoolPrefs(
-        {Strings.IS_LOGGED_IN: false, Strings.IS_LOGIN_ENABLED: false});
-
-    setState(() {
-      _isLoginEnabled = false;
-//      _isLoggedIn = false;
-    });
+    return true;
   }
 }

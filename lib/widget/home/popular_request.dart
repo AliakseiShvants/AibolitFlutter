@@ -1,5 +1,4 @@
 import 'package:AibolitFlutter/entity/request_item.dart';
-import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
@@ -35,63 +34,11 @@ class PopularRequest extends StatelessWidget {
 
   List<PopularRequestItem> _getPopularRequests(List<RequestItem> list) {
     return List.generate(
-        list.length,
-        (index) => PopularRequestItem(
-              title: list[index].title,
-              isHuman: list[index].isHuman,
-            ));
-  }
-
-  List<Row> _getRows(BuildContext context, List<RequestItem> list) {
-//    final double width = MediaQuery.of(context).size.width - 24;
-    List<Row> result = [];
-    List<PopularRequestItem> items = [];
-//    List<double> itemsWidth = [];
-
-//    double overallLength = 0.0;
-
-    for (int i = 0; i < list.length; i++) {
-      var element = list[i];
-      var request = PopularRequestItem(
-//        key: GlobalKey(),
-        title: element.title,
-        isHuman: element.isHuman,
-      );
-      items.add(request);
-
-//      RenderBox renderBox = request.key.currentContext.findRenderObject();
-//      itemsWidth.add(renderBox.size.width);
-    }
-
-//    itemsWidth.forEach((element) => overallLength += element);
-
-//    int rowsCount = (overallLength / width).floor();
-
-    for (int i = 0; i < /*rowsCount*/ (list.length / 2).floor(); i++) {
-//      double rowWidth = 0;
-      List<PopularRequestItem> children = [];
-
-      //temp
-      var trigger = 0;
-
-      while (/*rowWidth < width*/ trigger < 2) {
-        if (items.length != 0) {
-          children.add(items.first);
-          items.removeAt(0);
-        }
-
-//        rowWidth += itemsWidth.first;
-
-        //temp
-        trigger++;
-//        itemsWidth.removeAt(0);
-      }
-
-      result.add(Row(
-        children: children,
-      ));
-    }
-
-    return result;
+      list.length,
+      (index) => PopularRequestItem(
+        title: list[index].title,
+        isHuman: list[index].isHuman,
+      ),
+    );
   }
 }

@@ -15,9 +15,9 @@ class User {
   final City city;
 
   User({
-    @required this.firstName,
+    this.firstName,
     this.middleName,
-    @required this.lastName,
+    this.lastName,
     this.birthDay,
     this.phoneNumber,
     this.email,

@@ -121,11 +121,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Future<void> _login(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 5));
-    await Preferences.writeBoolPrefs(
-        {Strings.IS_LOGGED_IN: true, Strings.IS_LOGIN_ENABLED: true});
+    await Future.delayed(Duration(seconds: 3));
 
-    Navigator.pop(context);
+    Navigator.pop(context, true);
   }
 
   void _validate() {

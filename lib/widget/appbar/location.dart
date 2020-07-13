@@ -10,27 +10,12 @@ import '../../utils/borders.dart';
 import '../../utils/dimens.dart';
 import '../../utils/strings.dart';
 
-class Location extends StatefulWidget {
+class Location extends StatelessWidget {
+  final int _locationIndex;
   final List<City> _cities;
+  final Function _locationCallback;
 
-  Location(this._cities);
-
-  @override
-  _LocationState createState() => _LocationState(_cities);
-}
-
-class _LocationState extends State<Location> {
-  final List<City> _cities;
-  int _locationIndex = 0;
-
-  _LocationState(this._cities);
-
-  @override
-  void initState() {
-    _initLocation();
-
-    super.initState();
-  }
+  Location(this._locationIndex, this._cities, this._locationCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +46,7 @@ class _LocationState extends State<Location> {
             ),
             iconSize: 0,
             iconEnabledColor: AppColors.PRIMARY_COLOR,
-            onChanged: (value) => _setLocation(_cities.indexOf(value)),
+            onChanged: (value) => _locationCallback(_cities.indexOf(value)),
           ),
         ),
         Expanded(
@@ -74,21 +59,6 @@ class _LocationState extends State<Location> {
         )
       ],
     );
-  }
-
-  void _initLocation() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    _locationIndex = prefs.getInt(Strings.LOCATION_INDEX) ?? 0;
-  }
-
-  void _setLocation(int index) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(Strings.LOCATION_INDEX, index);
-
-    setState(() {
-      _locationIndex = index;
-    });
   }
 
   List<DropdownMenuItem<City>> _getLocations() {

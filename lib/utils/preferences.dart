@@ -17,6 +17,12 @@ class Preferences {
     await prefs.setBool(tag, flag);
   }
 
+  static Future<void> writeIntPref(String tag, int flag) async {
+    var prefs = await SharedPreferences.getInstance();
+
+    await prefs.setInt(tag, flag);
+  }
+
   static Future<List<bool>> readBoolPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     var isLoggedIn = prefs.getBool(Strings.IS_LOGGED_IN) ?? false;

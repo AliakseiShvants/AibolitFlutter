@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 
 class Data {
   static final stubImg = AssetImage('assets/img/user_avatar.png');
+  static final stubAsset = 'assets/img/user_avatar.png';
 
   static Program program1 = Program(
       logo: 'assets/img/epam_logo.png',
@@ -27,6 +28,10 @@ class Data {
       'МЦ "Лодэ" на Полиграфистов', 'Гродно, ул. Полиграфистов, д. 2');
   static List<MedCenter> centers = [center1, center2];
 
+  static User guest = User(
+    avatar: stubAsset,
+  );
+
   static User owner = User(
     firstName: 'Алексей',
     middleName: 'Олегович',
@@ -36,7 +41,7 @@ class Data {
     email: 'ashvants91@gmail.com',
     program: program1,
     avatar: 'assets/img/shvants.jpg',
-    city: City(4, 'Гродно'),
+    city: cities[3],
   );
 
   static User user1 = User(
@@ -48,7 +53,7 @@ class Data {
     email: 'ashvants91@gmail.com',
     program: program1,
     avatar: 'assets/img/shvants.jpg',
-    city: City(4, 'Гродно'),
+    city: cities[3],
   );
   static User user2 = User(
     firstName: 'Надежда',
@@ -59,7 +64,7 @@ class Data {
     email: 'ashvants91@gmail.com',
     program: program2,
     avatar: 'assets/img/nadzeya.jpg',
-    city: City(4, 'Гродно'),
+    city: cities[3],
   );
 
   static Doctor doctor1 = Doctor(
