@@ -79,17 +79,17 @@ class VisitCard extends StatelessWidget {
                             Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 2, bottom: 2),
+                        padding: const EdgeInsets.only(top: 2, bottom: 2,),
                         child: Text(
                           '${_visit.doctor.specialityLong}',
                           style: Themes.getTextStyle(
-                              fontSize: Dimens.TEXT_SIZE_11),
+                              fontSize: Dimens.TEXT_SIZE_11,),
                         ),
                       ),
                       Text(
                         '${_visit.center.title}',
                         style:
-                            Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11),
+                            Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11,),
                       ),
                     ],
                   ),

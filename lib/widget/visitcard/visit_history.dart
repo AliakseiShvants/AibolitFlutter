@@ -11,12 +11,13 @@ class VisitHistory extends StatelessWidget {
     return Column(
       children: <Widget>[
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
               child: AppWidgets.getTextHeader('История посещений'),
             ),
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.only(right: 16, top: 16, bottom: 8),
               child: Transform.rotate(
                   angle: 3.14 / 2,
                   child: Icon(
