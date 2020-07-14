@@ -114,7 +114,12 @@ class Data {
       Data.center1,
       Data.doctor1,
     ),
-    Data.visit,
+    Data.getVisitWithDate(
+      Data.user2,
+      DateTime.now().add(Duration(hours: 2)),
+      Data.center2,
+      Data.doctor3,
+    ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime.now().add(Duration(hours: 1)),
@@ -127,14 +132,13 @@ class Data {
       Data.center2,
       Data.doctor3,
     ),
-    Data.getVisitWithDate(Data.user2, DateTime.now().add(Duration(hours: 1)),
-        Data.center2, Data.doctor1),
     Data.getVisitWithDate(
       Data.user2,
-      DateTime.now().add(Duration(hours: 2)),
+      DateTime.now().add(Duration(hours: 1)),
       Data.center2,
-      Data.doctor3,
+      Data.doctor1,
     ),
+    Data.visit,
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 25, 15, 30),

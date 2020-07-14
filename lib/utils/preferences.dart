@@ -23,6 +23,12 @@ class Preferences {
     await prefs.setInt(tag, flag);
   }
 
+  static Future<bool> readBoolPref(String tag, bool flag) async {
+    var prefs = await SharedPreferences.getInstance();
+
+    return prefs.getBool(tag) ?? flag;
+  }
+
   static Future<List<bool>> readBoolPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     var isLoggedIn = prefs.getBool(Strings.IS_LOGGED_IN) ?? false;

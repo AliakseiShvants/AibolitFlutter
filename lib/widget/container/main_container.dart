@@ -1,4 +1,3 @@
-import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
@@ -42,7 +41,7 @@ class _MainContainerState extends State<MainContainer> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Location(_locationIndex, Data.cities, _setLocation),
+        title: Location(_locationIndex, Data.cities, _setLocation,),
         actions: <Widget>[
           LoginAction(
              _user,

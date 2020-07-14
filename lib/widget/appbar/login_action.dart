@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:AibolitFlutter/entity/user.dart';
-import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/data.dart';
 import 'package:flutter/material.dart';
 
+import '../../entity/user.dart';
+import '../../utils/app_widgets.dart';
+import '../../utils/data.dart';
 import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
@@ -29,13 +29,11 @@ class LoginAction extends StatefulWidget {
 class _LoginActionState extends State<LoginAction> {
   @override
   Widget build(BuildContext context) {
-    final Widget loggedInAvatar = MaterialButton(
-      child: AppWidgets.getCircleAvatar(16, Data.owner.avatar),
-      onPressed: widget._logoutCallback,
-    );
-
     if (widget._isLoggedIn) {
-      return loggedInAvatar;
+      return MaterialButton(
+        child: AppWidgets.getCircleAvatar(16, Data.owner.avatar),
+        onPressed: widget._logoutCallback,
+      );
     } else {
       return widget._user == Data.guest
           ? MaterialButton(
