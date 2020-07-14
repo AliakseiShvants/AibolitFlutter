@@ -1,4 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/widget/container/info_item.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class AccountScreen extends StatelessWidget {
+  final String _appBarTitle = 'Учетная запись';
   static String _birthDay = DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
 
   final Widget _accountHeader = Container(
@@ -49,13 +51,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text('Учетная запись'),
-      ),
+      appBar: AppWidgets.getAppBar(context, _appBarTitle),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

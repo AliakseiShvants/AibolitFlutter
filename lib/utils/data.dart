@@ -1,12 +1,15 @@
+import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/med_center.dart';
 import 'package:AibolitFlutter/entity/program.dart';
+import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:flutter/cupertino.dart';
 
 class Data {
   static final stubImg = AssetImage('assets/img/user_avatar.png');
+  static final stubAsset = 'assets/img/user_avatar.png';
 
   static Program program1 = Program(
       logo: 'assets/img/epam_logo.png',
@@ -25,24 +28,44 @@ class Data {
       'МЦ "Лодэ" на Полиграфистов', 'Гродно, ул. Полиграфистов, д. 2');
   static List<MedCenter> centers = [center1, center2];
 
+  static User guest = User(
+    avatar: stubAsset,
+  );
+
+  static User owner = User(
+    firstName: 'Алексей',
+    middleName: 'Олегович',
+    lastName: 'Шванц',
+    birthDay: DateTime(1991, 9, 11),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program1,
+    avatar: 'assets/img/shvants.jpg',
+    city: cities[3],
+  );
+
   static User user1 = User(
-      firstName: 'Алексей',
-      middleName: 'Олегович',
-      lastName: 'Шванц',
-      birthDay: DateTime(1991, 9, 11),
-      phoneNumber: '375295786646',
-      email: 'ashvants91@gmail.com',
-      program: program1,
-      avatar: 'assets/img/shvants.jpg');
+    firstName: 'Алексей',
+    middleName: 'Олегович',
+    lastName: 'Шванц',
+    birthDay: DateTime(1991, 9, 11),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program1,
+    avatar: 'assets/img/shvants.jpg',
+    city: cities[3],
+  );
   static User user2 = User(
-      firstName: 'Надежда',
-      middleName: 'Алексеевна',
-      lastName: 'Шванц',
-      birthDay: DateTime(2016, 9, 14),
-      phoneNumber: '375295786646',
-      email: 'ashvants91@gmail.com',
-      program: program2,
-      avatar: 'assets/img/nadzeya.jpg');
+    firstName: 'Надежда',
+    middleName: 'Алексеевна',
+    lastName: 'Шванц',
+    birthDay: DateTime(2016, 9, 14),
+    phoneNumber: '375295786646',
+    email: 'ashvants91@gmail.com',
+    program: program2,
+    avatar: 'assets/img/nadzeya.jpg',
+    city: cities[3],
+  );
 
   static Doctor doctor1 = Doctor(
     firstName: 'Юлия',
@@ -81,7 +104,7 @@ class Data {
     owner: user1,
     doctor: doctor1,
     center: center1,
-    date: DateTime.now(),
+    date: DateTime.now().add(Duration(hours: 1)),
   );
 
   static final List<Visit> visits = [
@@ -91,10 +114,15 @@ class Data {
       Data.center1,
       Data.doctor1,
     ),
-    Data.visit,
+    Data.getVisitWithDate(
+      Data.user2,
+      DateTime.now().add(Duration(hours: 2)),
+      Data.center2,
+      Data.doctor3,
+    ),
     Data.getVisitWithDate(
       Data.user1,
-      DateTime.now(),
+      DateTime.now().add(Duration(hours: 1)),
       Data.center2,
       Data.doctor2,
     ),
@@ -105,13 +133,12 @@ class Data {
       Data.doctor3,
     ),
     Data.getVisitWithDate(
-        Data.user2, DateTime.now(), Data.center2, Data.doctor1),
-    Data.getVisitWithDate(
       Data.user2,
-      DateTime.now().add(Duration(hours: 2)),
+      DateTime.now().add(Duration(hours: 1)),
       Data.center2,
-      Data.doctor3,
+      Data.doctor1,
     ),
+    Data.visit,
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 25, 15, 30),
@@ -152,4 +179,23 @@ class Data {
         center: center,
         date: date,
       );
+
+  static List<RequestItem> popularRequests = [
+    RequestItem('Терапевт', true),
+    RequestItem('Хирург', true),
+    RequestItem('Педиатр', true),
+    RequestItem('Офтальмолог', true),
+    RequestItem('Мирасептин', false),
+    RequestItem('Септоцид', false),
+    RequestItem('Маска медицинская', false),
+  ];
+
+  static List<City> cities = [
+    City(1, 'Брест'),
+    City(2, 'Витебск'),
+    City(3, 'Гомель'),
+    City(4, 'Гродно'),
+    City(5, 'Минск'),
+    City(6, 'Могилев'),
+  ];
 }

@@ -15,16 +15,18 @@ class InfoItem extends StatelessWidget {
   final bool isTrailing;
   final Function callback;
 
-  InfoItem(this.text,
-      {this.color = Colors.white,
-      this.logo,
-      this.hint,
-      this.textColor = Colors.black,
-      this.fontSize = Dimens.TEXT_SIZE_16,
-      this.isCapitalize = false,
-      this.fontWeight = FontWeight.normal,
-      this.isTrailing = true,
-      this.callback});
+  InfoItem(
+    this.text, {
+    this.color = Colors.white,
+    this.logo,
+    this.hint,
+    this.textColor = Colors.black,
+    this.fontSize = Dimens.TEXT_SIZE_16,
+    this.isCapitalize = false,
+    this.fontWeight = FontWeight.normal,
+    this.isTrailing = true,
+    this.callback,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,10 @@ class InfoItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           border: Border(
-            top: BorderSide(color: AppColors.grey400),
+            top: BorderSide(
+              color: AppColors.grey400,
+              width: .5,
+            ),
           ),
         ),
         child: Padding(

@@ -1,5 +1,8 @@
-import 'package:AibolitFlutter/entity/program.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:AibolitFlutter/entity/visit.dart';
+import 'package:flutter/widgets.dart';
+
+import 'city.dart';
+import 'program.dart';
 
 class User {
   final String firstName;
@@ -10,15 +13,33 @@ class User {
   final String email;
   final Program program;
   final String avatar;
+  final City city;
+  final List<Visit> visits;
 
   User({
-    @required this.firstName,
+    this.firstName,
     this.middleName,
-    @required this.lastName,
+    this.lastName,
     this.birthDay,
     this.phoneNumber,
     this.email,
     this.program,
-    this.avatar
+    this.avatar,
+    this.city,
+    this.visits,
   });
+
+  @override
+  bool operator ==(other) {
+    return this.firstName == (other as User).firstName &&
+        this.lastName == (other as User).lastName &&
+        this.middleName == (other as User).middleName &&
+        this.birthDay == (other as User).birthDay &&
+        this.phoneNumber == (other as User).phoneNumber &&
+        this.email == (other as User).email &&
+        this.program == (other as User).program &&
+        this.avatar == (other as User).avatar &&
+        this.city == (other as User).city &&
+        this.visits == (other as User).visits;
+  }
 }
