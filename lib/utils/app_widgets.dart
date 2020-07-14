@@ -16,6 +16,9 @@ import 'data.dart';
 import 'dimens.dart';
 
 class AppWidgets {
+  static final stubImg = AssetImage('assets/img/user_avatar.png');
+  static final programLogo = AssetImage('assets/img/epam_logo.png');
+
   static final List<Widget> bottomNavWidgets = [
     HomeScreen(),
     MedicalCenterScreen(),
@@ -83,7 +86,7 @@ class AppWidgets {
   }
 
   static Widget getTextHeader(String title) => Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8,),
         child: Text(
           title.toUpperCase(),
           style: Themes.getTextStyle(

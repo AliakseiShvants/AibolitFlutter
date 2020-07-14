@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:intl/intl.dart';
 
@@ -36,6 +37,12 @@ class Util {
 
   static double getLogoOpacity(Visit visit) {
     return Data.programToDoctors[visit.owner.program].contains(visit.doctor)
+        ? 1
+        : 0;
+  }
+
+  static double getLogoOpacityByClinic(Clinic clinic) {
+    return Data.programCenters.contains(clinic)
         ? 1
         : 0;
   }

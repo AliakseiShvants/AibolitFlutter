@@ -1,6 +1,6 @@
 import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
-import 'package:AibolitFlutter/entity/med_center.dart';
+import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
@@ -8,7 +8,6 @@ import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:flutter/cupertino.dart';
 
 class Data {
-  static final stubImg = AssetImage('assets/img/user_avatar.png');
   static final stubAsset = 'assets/img/user_avatar.png';
 
   static Program program1 = Program(
@@ -22,11 +21,18 @@ class Data {
       company: 'ЭПАМ Системз',
       program: 'EPAM Дети (Гродно)');
 
-  static MedCenter center1 =
-      MedCenter('МЦ "Лодэ" на Замковой', 'Гродно, ул. Замковая, д. 4');
-  static MedCenter center2 = MedCenter(
-      'МЦ "Лодэ" на Полиграфистов', 'Гродно, ул. Полиграфистов, д. 2');
-  static List<MedCenter> centers = [center1, center2];
+  static Clinic center1 = Clinic(
+    'assets/img/clinic/zamk.jpg',
+    'МЦ "Лодэ" на Замковой',
+    'Гродно, ул. Замковая, д. 4',
+  );
+  static Clinic center2 = Clinic(
+    'assets/img/clinic/poli.jpg',
+    'МЦ "Лодэ" на Полиграфистов',
+    'Гродно, ул. Полиграфистов, д. 2',
+  );
+  static List<Clinic> centers = [center1, center2];
+  static List<Clinic> programCenters = [center1, center2];
 
   static User guest = User(
     avatar: stubAsset,
@@ -172,7 +178,7 @@ class Data {
   ];
 
   static getVisitWithDate(
-          User owner, DateTime date, MedCenter center, Doctor doctor) =>
+          User owner, DateTime date, Clinic center, Doctor doctor) =>
       Visit(
         owner: owner,
         doctor: doctor,
