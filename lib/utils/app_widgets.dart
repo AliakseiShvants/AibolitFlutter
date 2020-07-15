@@ -43,7 +43,7 @@ class AppWidgets {
     ),
   );
 
-  static getHeaderWithLogo(String title, String msg) => SizedBox(
+  static getHeaderWithLogo(String title, String msg, double flex) => SizedBox(
         width: double.infinity,
         child: Container(
           padding: const EdgeInsets.only(top: 16, bottom: 24),
@@ -60,15 +60,26 @@ class AppWidgets {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16),
-                child: Column(
+                child: Row(
                   children: <Widget>[
-                    Text(
-                      msg,
-                      style: TextStyle(
-                        fontSize: Dimens.TEXT_SIZE_11,
-                        color: AppColors.primaryGrey,
+                    Expanded(
+                      flex: (5 * (1 - flex)).toInt(),
+                      child: Container(),
+                    ),
+                    Expanded(
+                      flex: (10 * flex).toInt(),
+                      child: Text(
+                        msg,
+                        style: TextStyle(
+                          fontSize: Dimens.TEXT_SIZE_11,
+                          color: AppColors.primaryGrey,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
+                    ),
+                    Expanded(
+                      flex: (5 * (1 - flex)).toInt(),
+                      child: Container(),
                     ),
                   ],
                 ),
@@ -86,7 +97,11 @@ class AppWidgets {
   }
 
   static Widget getTextHeader(String title) => Padding(
-        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 8,),
+        padding: const EdgeInsets.only(
+          left: 16,
+          top: 16,
+          bottom: 8,
+        ),
         child: Text(
           title.toUpperCase(),
           style: Themes.getTextStyle(

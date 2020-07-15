@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.all(12),
         child: Column(
           children: <Widget>[
-            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg),
+            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg, 1),
             Row(
               children: <Widget>[
                 Expanded(
