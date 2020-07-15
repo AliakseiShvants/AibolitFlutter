@@ -1,6 +1,7 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'data.dart';
 
@@ -35,15 +36,15 @@ class Util {
     return result;
   }
 
-  static double getLogoOpacity(Visit visit) {
-    return Data.programToDoctors[visit.owner.program].contains(visit.doctor)
-        ? 1
-        : 0;
-  }
+  static double getLogoOpacity(Visit visit) =>
+      Data.programToDoctors[visit.owner.program].contains(visit.doctor) ? 1 : 0;
 
-  static double getLogoOpacityByClinic(Clinic clinic) {
-    return Data.programCenters.contains(clinic)
-        ? 1
-        : 0;
+  static double getLogoOpacityByClinic(Clinic clinic) =>
+      Data.programCenters.contains(clinic) ? 1 : 0;
+
+  static openBrowser(String url) async {
+    if (await canLaunch(url)) {
+      return await launch(url);
+    }
   }
 }

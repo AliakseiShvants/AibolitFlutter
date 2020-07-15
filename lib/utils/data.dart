@@ -3,6 +3,7 @@ import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
+import 'package:AibolitFlutter/entity/setting_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:flutter/cupertino.dart';
@@ -203,5 +204,13 @@ class Data {
     City(4, 'Гродно'),
     City(5, 'Минск'),
     City(6, 'Могилев'),
+  ];
+
+  static List<SettingItem> settingItems = [
+    SettingItem('О проекте', 'https://aibolit.md/mobile'),
+    SettingItem('Пользовательское соглашение', 'https://aibolit.md/polzovatelskoe-soglashenie'),
+    SettingItem('Политика конфиденциальности', 'https://aibolit.md/politika-konfidencialnosti'),
+    SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true),
+    SettingItem('Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
   ];
 }
