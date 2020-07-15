@@ -14,6 +14,7 @@ class InfoItem extends StatelessWidget {
   final FontWeight fontWeight;
   final bool isTrailing;
   final Function callback;
+  final String url;
 
   InfoItem(
     this.text, {
@@ -26,6 +27,7 @@ class InfoItem extends StatelessWidget {
     this.fontWeight = FontWeight.normal,
     this.isTrailing = true,
     this.callback,
+    this.url,
   });
 
   @override
