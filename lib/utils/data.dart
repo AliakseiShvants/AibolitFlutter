@@ -1,26 +1,27 @@
 import 'package:AibolitFlutter/entity/city.dart';
-import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/clinic.dart';
+import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/entity/setting_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
-import 'package:flutter/cupertino.dart';
 
 class Data {
   static final stubAsset = 'assets/img/user_avatar.png';
 
   static Program program1 = Program(
-      logo: 'assets/img/epam_logo.png',
-      title: 'EPAM Health Care',
-      company: 'ЭПАМ Системз',
-      program: 'EPAM Взрослые (Гродно)');
+    logo: 'assets/img/epam_logo.png',
+    title: 'EPAM Health Care',
+    company: 'ЭПАМ Системз',
+    program: 'EPAM Взрослые (Гродно)',
+  );
   static Program program2 = Program(
-      logo: 'assets/img/epam_logo.png',
-      title: 'EPAM Health Care',
-      company: 'ЭПАМ Системз',
-      program: 'EPAM Дети (Гродно)');
+    logo: 'assets/img/epam_logo.png',
+    title: 'EPAM Health Care',
+    company: 'ЭПАМ Системз',
+    program: 'EPAM Дети (Гродно)',
+  );
 
   static Clinic center1 = Clinic(
     'assets/img/clinic/zamk.jpg',
@@ -49,6 +50,7 @@ class Data {
     program: program1,
     avatar: 'assets/img/shvants.jpg',
     city: cities[3],
+    family: [user2],
   );
 
   static User user1 = User(
@@ -61,6 +63,7 @@ class Data {
     program: program1,
     avatar: 'assets/img/shvants.jpg',
     city: cities[3],
+    family: [user2],
   );
   static User user2 = User(
     firstName: 'Надежда',
@@ -72,6 +75,7 @@ class Data {
     program: program2,
     avatar: 'assets/img/nadzeya.jpg',
     city: cities[3],
+    family: [],
   );
 
   static Doctor doctor1 = Doctor(
@@ -208,9 +212,12 @@ class Data {
 
   static List<SettingItem> settingItems = [
     SettingItem('О проекте', 'https://aibolit.md/mobile'),
-    SettingItem('Пользовательское соглашение', 'https://aibolit.md/polzovatelskoe-soglashenie'),
-    SettingItem('Политика конфиденциальности', 'https://aibolit.md/politika-konfidencialnosti'),
+    SettingItem('Пользовательское соглашение',
+        'https://aibolit.md/polzovatelskoe-soglashenie'),
+    SettingItem('Политика конфиденциальности',
+        'https://aibolit.md/politika-konfidencialnosti'),
     SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true),
-    SettingItem('Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
+    SettingItem(
+        'Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
   ];
 }

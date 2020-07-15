@@ -9,7 +9,8 @@ import 'package:intl/intl.dart';
 
 class AccountScreen extends StatelessWidget {
   final String _appBarTitle = 'Учетная запись';
-  static String _birthDay = DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
+  static String _birthDay =
+      DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
 
   final Widget _accountHeader = Container(
     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -57,7 +58,10 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _accountHeader,
-              InfoItem('Моя семья'),
+              GestureDetector(
+                child: InfoItem('Моя семья'),
+                onTap: () => Navigator.pushNamed(context, '/family'),
+              ),
               InfoItem('Документы'),
               InfoItem(
                 'Мой аккаунт',

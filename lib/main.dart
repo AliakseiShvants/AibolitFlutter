@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/widget/appbar/account/family_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -17,10 +18,10 @@ class AibolitApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: Themes.appTheme,
-//      initialRoute: '/',
       routes: {
         '/account' : (context) => AccountScreen(),
         '/login' : (context) => LoginScreen(),
+        '/family' : (context) => FamilyScreen(),
       },
       home: MainContainer(),
     );

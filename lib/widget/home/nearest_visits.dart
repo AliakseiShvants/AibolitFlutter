@@ -16,12 +16,11 @@ class NearestVisits extends StatelessWidget {
       children: <Widget>[
         AppWidgets.getTextHeader('Ближайшие визиты'),
 //        AppWidgets.getText('Просмотр ближайших визитов будет доступен сразу после авторизации'),
-        ..._getNearestVisits(),
+        ..._getNearestVisits(_visits),
       ],
     );
   }
 
-  List<NearestVisit> _getNearestVisits() => List.generate(_visits.length, (index) {
-    return NearestVisit(_visits[index]);
-  });
+  List<NearestVisit> _getNearestVisits(List<Visit> list) =>
+      List.generate(list.length, (index) => NearestVisit(list[index]));
 }
