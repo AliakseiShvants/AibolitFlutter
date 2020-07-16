@@ -1,7 +1,5 @@
 import 'package:AibolitFlutter/utils/borders.dart';
-import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class FamilyAddAction extends StatelessWidget {
@@ -22,8 +20,6 @@ class FamilyAddAction extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Text(
           _title,
-          style: Themes.getTextStyle(
-          ),
         ),
       ),
     );

@@ -1,4 +1,5 @@
-import 'package:AibolitFlutter/widget/appbar/account/family_screen.dart';
+import 'file:///C:/Users/Aliaksei_Shvants/projects/AibolitFlutter/lib/widget/appbar/account/family/family_screen.dart';
+import 'package:AibolitFlutter/widget/appbar/account/program/program_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +22,8 @@ class AibolitApp extends StatelessWidget {
       routes: {
         '/account' : (context) => AccountScreen(),
         '/login' : (context) => LoginScreen(),
-        '/family' : (context) => FamilyScreen(),
+        '/account/family' : (context) => FamilyScreen(),
+        '/account/program' : (context) => ProgramScreen(),
       },
       home: MainContainer(),
     );

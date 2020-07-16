@@ -60,7 +60,7 @@ class AccountScreen extends StatelessWidget {
               _accountHeader,
               GestureDetector(
                 child: InfoItem('Моя семья'),
-                onTap: () => Navigator.pushNamed(context, '/family'),
+                onTap: () => Navigator.pushNamed(context, '/account/family'),
               ),
               InfoItem('Документы'),
               InfoItem(
@@ -72,17 +72,20 @@ class AccountScreen extends StatelessWidget {
                 isTrailing: false,
               ),
               ..._getAccountInfo(),
-              InfoItem(
-                'Программы',
-                color: AppColors.grey200,
-                fontSize: Dimens.TEXT_SIZE_12,
-                isCapitalize: true,
-                fontWeight: FontWeight.bold,
-                isTrailing: false,
-              ),
-              InfoItem(
-                Data.user1.program.title,
-                logo: Data.user1.program.logo,
+            InfoItem(
+              'Программы',
+              color: AppColors.grey200,
+              fontSize: Dimens.TEXT_SIZE_12,
+              isCapitalize: true,
+              fontWeight: FontWeight.bold,
+              isTrailing: false,
+            ),
+              GestureDetector(
+                child: InfoItem(
+                  Data.user1.program.title,
+                  logo: Data.user1.program.logo,
+                ),
+                onTap: () => Navigator.pushNamed(context, '/account/program'),
               ),
               InfoItem(
                 'Другое',

@@ -27,12 +27,15 @@ class AppWidgets {
     SettingsScreen()
   ];
 
-  static getAppBar(BuildContext context, String title) => AppBar(
+  static getAppBar(BuildContext context, String title,
+          {List<Widget> actions}) =>
+      AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(title),
+        actions: actions,
       );
 
   static final Widget aibolitImg = SizedBox(
@@ -96,11 +99,17 @@ class AppWidgets {
     );
   }
 
-  static Widget getTextHeader(String title) => Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          top: 16,
-          bottom: 8,
+  static Widget getTextHeader(
+    String title, {
+    double left = 16,
+    double top = 16,
+    double bottom = 8,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
         ),
         child: Text(
           title.toUpperCase(),
@@ -112,8 +121,16 @@ class AppWidgets {
         ),
       );
 
-  static Widget getText(String title) => Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+  static Widget getText(
+    String title, {
+    double horizontal = 24,
+    double vertical = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontal,
+          vertical: vertical,
+        ),
         child: Text(
           title,
           style: TextStyle(

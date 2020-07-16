@@ -3,12 +3,12 @@ import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
-import 'package:AibolitFlutter/widget/appbar/account/family_add_action.dart';
-import 'package:AibolitFlutter/widget/appbar/account/family_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+
+import 'family_add_action.dart';
+import 'family_item.dart';
 
 class FamilyScreen extends StatefulWidget {
   @override

@@ -216,7 +216,7 @@ class Data {
         'https://aibolit.md/polzovatelskoe-soglashenie'),
     SettingItem('Политика конфиденциальности',
         'https://aibolit.md/politika-konfidencialnosti'),
-    SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true),
+    SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true,),
     SettingItem(
         'Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
   ];
