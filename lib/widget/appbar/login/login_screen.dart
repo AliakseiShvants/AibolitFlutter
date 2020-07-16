@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.all(12),
         child: Column(
           children: <Widget>[
-            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg),
+            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg, 1),
             Row(
               children: <Widget>[
                 Expanded(
@@ -71,7 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(top: 16),
               child: SizedBox(
                 width: double.infinity,
-                child: FlatButton(
+                child: MaterialButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16,),
                   disabledColor: AppColors.grey500,
                   color:  AppColors.green,
                   child: Text(

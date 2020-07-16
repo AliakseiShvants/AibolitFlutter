@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/widget/visitcard/visit_card.dart';
@@ -17,7 +18,11 @@ class VisitHistory extends StatelessWidget {
               child: AppWidgets.getTextHeader('История посещений'),
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 16, top: 16, bottom: 8),
+              padding: const EdgeInsets.only(
+                right: 16,
+                top: 16,
+                bottom: 8,
+              ),
               child: Transform.rotate(
                   angle: 3.14 / 2,
                   child: Icon(
@@ -27,12 +32,11 @@ class VisitHistory extends StatelessWidget {
             ),
           ],
         ),
-        ..._getAllVisits(),
+        ..._getAllVisits(Data.visits),
       ],
     );
   }
 
-  List<VisitCard> _getAllVisits() => List.generate(Data.visits.length, (index) {
-        return VisitCard(Data.visits[index]);
-      });
+  List<VisitCard> _getAllVisits(List<Visit> list) => List.generate(
+      list.length, (index) => VisitCard(list[index]));
 }

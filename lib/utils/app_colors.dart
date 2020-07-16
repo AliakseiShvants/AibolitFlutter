@@ -9,4 +9,7 @@ class AppColors {
   static Color grey400 = Colors.grey.shade400;
   static Color grey500 = Colors.grey.shade500;
   static Color green = Color(0xff009688);
+
+  static Color indigo50 = Color(0xFFE8EAF6);
+  static Color indigo200 = Color(0xFF9FA8DA);
 }

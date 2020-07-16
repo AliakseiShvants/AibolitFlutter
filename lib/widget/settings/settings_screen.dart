@@ -60,7 +60,7 @@ class SettingsScreen extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg),
+            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg, .6),
             ..._getSettingItems(),
             Container(
               child: _settingsFooter,

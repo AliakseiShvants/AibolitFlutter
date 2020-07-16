@@ -1,4 +1,5 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
+import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,8 +16,7 @@ class Util {
 
   static List<Visit> getFutureVisits() {
     var list = Data.visits;
-    list.retainWhere(
-        (element) => element.owner == Data.owner && isFuture(element.date));
+    list.retainWhere((element) => isFuture(element.date));
 
     return list;
   }
@@ -46,5 +46,15 @@ class Util {
     if (await canLaunch(url)) {
       return await launch(url);
     }
+  }
+
+  static String getFullName(User user) {
+    var middle = user.middleName != null ? user.middleName : '';
+
+    return '${user.lastName} ${user.firstName} $middle';
+  }
+
+  static String getBirthDate(DateTime date) {
+    return DateFormat('dd-MM-yyyy').format(date);
   }
 }

@@ -3,13 +3,15 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/widget/container/info_item.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
 class AccountScreen extends StatelessWidget {
   final String _appBarTitle = 'Учетная запись';
-  static String _birthDay = DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
+  static String _birthDay =
+      DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
 
   final Widget _accountHeader = Container(
     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -57,7 +59,10 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _accountHeader,
-              InfoItem('Моя семья'),
+              GestureDetector(
+                child: InfoItem('Моя семья'),
+                onTap: () => Navigator.pushNamed(context, '/account/family'),
+              ),
               InfoItem('Документы'),
               InfoItem(
                 'Мой аккаунт',
@@ -76,9 +81,12 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItem(
-                Data.user1.program.title,
-                logo: Data.user1.program.logo,
+              GestureDetector(
+                child: InfoItem(
+                  Data.user1.program.title,
+                  logo: Data.user1.program.logo,
+                ),
+                onTap: () => Navigator.pushNamed(context, '/account/program'),
               ),
               InfoItem(
                 'Другое',
@@ -88,7 +96,11 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItem('Напоминание о визитах'),
+              GestureDetector(
+                child: InfoItem('Напоминание о визитах'),
+                onTap: () =>
+                    Navigator.pushNamed(context, '/account/notification'),
+              ),
               InfoItem(
                 'Выйти',
                 textColor: Colors.red.shade800,
