@@ -71,7 +71,8 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(top: 16),
               child: SizedBox(
                 width: double.infinity,
-                child: FlatButton(
+                child: MaterialButton(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16,),
                   disabledColor: AppColors.grey500,
                   color:  AppColors.green,
                   child: Text(

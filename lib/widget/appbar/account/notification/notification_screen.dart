@@ -89,6 +89,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 fontSize: Dimens.TEXT_SIZE_13,
                               ),
                             ),
+                            onPressed: () => Navigator.pop(context),
                           ),
                         ),
                       ),
@@ -97,7 +98,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: MaterialButton(
-                            disabledColor: AppColors.green,
+                            color: AppColors.green,
                             child: Text(
                               'Сохранить'.toUpperCase(),
                               style: TextStyle(
@@ -105,6 +106,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 fontSize: Dimens.TEXT_SIZE_11,
                               ),
                             ),
+                            onPressed: () => Navigator.pop(context),
                           ),
                         ),
                       ),
