@@ -2,7 +2,10 @@ import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/themes.dart';
+import 'package:AibolitFlutter/widget/appbar/account/family_add_action.dart';
 import 'package:AibolitFlutter/widget/appbar/account/family_item.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -30,7 +33,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
               future: forceReload ? _reload() : null,
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 } else {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -50,6 +55,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton(
+            heroTag: 'btn1',
             mini: true,
             child: Icon(
               MaterialCommunityIcons.reload,
@@ -61,12 +67,42 @@ class _FamilyScreenState extends State<FamilyScreen> {
             }),
           ),
           FloatingActionButton(
+            heroTag: 'btn2',
             mini: true,
             child: Icon(
               Icons.add,
               color: Colors.white,
             ),
             backgroundColor: AppColors.green,
+            onPressed: () => showModalBottomSheet(
+              context: context,
+              builder: (context) => Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            'Добавление родственника',
+                            textAlign: TextAlign.center,
+                            style: Themes.getTextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        GestureDetector(
+                          child: Icon(Icons.clear),
+                          onTap: () => Navigator.pop(context),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ..._getActions(Data.addFamilyActions),
+                ],
+              ),
+            ),
           ),
         ],
       ),
@@ -79,4 +115,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
   Future<void> _reload() async {
     await Future.delayed(Duration(seconds: 3));
   }
+
+  List<FamilyAddAction> _getActions(List<String> list) => List.generate(
+        list.length,
+        (index) => FamilyAddAction(list[index]),
+      );
 }

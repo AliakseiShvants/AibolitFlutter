@@ -220,4 +220,11 @@ class Data {
     SettingItem(
         'Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
   ];
+
+  static List<String> addFamilyActions = [
+    'Добавить ребенка',
+    'Поделиться предложением',
+    'Мой код для предложения к семье',
+    'Ввести код своего супруга(и)',
+  ];
 }
