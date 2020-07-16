@@ -1,4 +1,5 @@
 import 'file:///C:/Users/Aliaksei_Shvants/projects/AibolitFlutter/lib/widget/appbar/account/family/family_screen.dart';
+import 'package:AibolitFlutter/widget/appbar/account/notification/notification_screen.dart';
 import 'package:AibolitFlutter/widget/appbar/account/program/program_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,7 @@ class AibolitApp extends StatelessWidget {
         '/login' : (context) => LoginScreen(),
         '/account/family' : (context) => FamilyScreen(),
         '/account/program' : (context) => ProgramScreen(),
+        '/account/notification' : (context) => NotificationScreen(),
       },
       home: MainContainer(),
     );

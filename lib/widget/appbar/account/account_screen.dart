@@ -3,6 +3,7 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/widget/container/info_item.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -72,14 +73,14 @@ class AccountScreen extends StatelessWidget {
                 isTrailing: false,
               ),
               ..._getAccountInfo(),
-            InfoItem(
-              'Программы',
-              color: AppColors.grey200,
-              fontSize: Dimens.TEXT_SIZE_12,
-              isCapitalize: true,
-              fontWeight: FontWeight.bold,
-              isTrailing: false,
-            ),
+              InfoItem(
+                'Программы',
+                color: AppColors.grey200,
+                fontSize: Dimens.TEXT_SIZE_12,
+                isCapitalize: true,
+                fontWeight: FontWeight.bold,
+                isTrailing: false,
+              ),
               GestureDetector(
                 child: InfoItem(
                   Data.user1.program.title,
@@ -95,7 +96,11 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItem('Напоминание о визитах'),
+              GestureDetector(
+                child: InfoItem('Напоминание о визитах'),
+                onTap: () =>
+                    Navigator.pushNamed(context, '/account/notification'),
+              ),
               InfoItem(
                 'Выйти',
                 textColor: Colors.red.shade800,
