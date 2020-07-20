@@ -1,6 +1,9 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
+import 'package:AibolitFlutter/utils/themes.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -40,7 +43,7 @@ class Util {
       Data.programToDoctors[visit.owner.program].contains(visit.doctor) ? 1 : 0;
 
   static double getLogoOpacityByClinic(Clinic clinic) =>
-      Data.programCenters.contains(clinic) ? 1 : 0;
+      Data.epamClinics.contains(clinic) ? 1 : 0;
 
   static openBrowser(String url) async {
     if (await canLaunch(url)) {
@@ -57,4 +60,6 @@ class Util {
   static String getBirthDate(DateTime date) {
     return DateFormat('dd-MM-yyyy').format(date);
   }
+
+
 }

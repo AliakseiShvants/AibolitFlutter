@@ -15,7 +15,7 @@ class VisitHistory extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Expanded(
-              child: AppWidgets.getTextHeader('История посещений'),
+              child: AppWidgets.getText('История посещений'),
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -24,11 +24,12 @@ class VisitHistory extends StatelessWidget {
                 bottom: 8,
               ),
               child: Transform.rotate(
-                  angle: 3.14 / 2,
-                  child: Icon(
-                    SimpleLineIcons.equalizer,
-                    color: Colors.black54,
-                  )),
+                angle: 3.14 / 2,
+                child: Icon(
+                  SimpleLineIcons.equalizer,
+                  color: Colors.black54,
+                ),
+              ),
             ),
           ],
         ),
@@ -37,6 +38,6 @@ class VisitHistory extends StatelessWidget {
     );
   }
 
-  List<VisitCard> _getAllVisits(List<Visit> list) => List.generate(
-      list.length, (index) => VisitCard(list[index]));
+  List<VisitCard> _getAllVisits(List<Visit> list) =>
+      List.generate(list.length, (index) => VisitCard(list[index]));
 }

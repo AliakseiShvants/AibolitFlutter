@@ -43,7 +43,7 @@ class ProgramScreen extends StatelessWidget {
                         bottom: Borders.primaryGreyBorderSide,
                       ),
                     ),
-                    child: AppWidgets.getTextHeader(
+                    child: AppWidgets.getText(
                       'основная информация',
                       left: 8,
                       top: 0,
@@ -63,7 +63,9 @@ class ProgramScreen extends StatelessWidget {
                             flex: 4,
                             child: AppWidgets.getText(
                               'Компания:',
-                              horizontal: 0,
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
                             ),
                           ),
                           Expanded(
@@ -99,7 +101,9 @@ class ProgramScreen extends StatelessWidget {
                             flex: 4,
                             child: AppWidgets.getText(
                               'Программа:',
-                              horizontal: 0,
+                              left: 0,
+                              top: 0,
+                              bottom: 0,
                             ),
                           ),
                           Expanded(
@@ -117,8 +121,9 @@ class ProgramScreen extends StatelessWidget {
                   ),
                   AppWidgets.getText(
                     'Перейдите по ссылке, чтобы ознакомиться с вашей программой',
-                    horizontal: 8,
-                    vertical: 16,
+                    left: 8,
+                    top: 16,
+                    bottom: 16,
                   ),
                   GestureDetector(
                     child: Padding(

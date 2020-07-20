@@ -13,7 +13,7 @@ class PopularRequests extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          AppWidgets.getTextHeader('Популярные запросы'),
+          AppWidgets.getText('Популярные запросы'),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Wrap(
