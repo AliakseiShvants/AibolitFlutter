@@ -29,16 +29,40 @@ class ClinicItem extends StatelessWidget {
         ),
         child: Container(
           decoration: AppWidgets.getColorBorder(
-            borderColor: _isColoredBorder(_clinic) ? AppColors.green : AppColors.grey400,
+            borderColor:
+                _isColoredBorder(_clinic) ? AppColors.green : AppColors.grey400,
             isRight: true,
           ),
-          child: Row(
+          child:
+//          ListTile(
+//            leading: AppWidgets.bookmarkLogo(_clinic, padding: 0,),
+//            title: AppWidgets.getText(
+//              _clinic.title,
+//              left: 8,
+//              top: 8,
+//              right: 8,
+//              fontSize: Dimens.TEXT_SIZE_12,
+//              fontWeight: FontWeight.bold,
+//              maxLines: 2,
+//              isExpanded: true,
+//              isUpperCase: false,
+//            ),
+//            subtitle: AppWidgets.getText(
+//              '${_clinic.town} ${_clinic.address}',
+//              left: 8,
+//              top: 0,
+//              fontSize: Dimens.TEXT_SIZE_11,
+//              isUpperCase: false,
+//            ),
+//            isThreeLine: true,
+//
+//          ),
+              Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               AppWidgets.bookmarkLogo(_clinic),
               Column(
-                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   AppWidgets.getText(
@@ -57,7 +81,6 @@ class ClinicItem extends StatelessWidget {
                     left: 8,
                     top: 0,
                     fontSize: Dimens.TEXT_SIZE_11,
-
                     isUpperCase: false,
                   ),
                   Row(

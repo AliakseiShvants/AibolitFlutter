@@ -97,8 +97,8 @@ class AppWidgets {
     );
   }
 
-  static Widget bookmarkLogo(Clinic clinic) => Padding(
-        padding: const EdgeInsets.all(12.0),
+  static Widget bookmarkLogo(Clinic clinic, {double padding = 12}) => Padding(
+        padding: EdgeInsets.all(padding),
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[
