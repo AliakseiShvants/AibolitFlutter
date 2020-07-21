@@ -14,26 +14,8 @@ class BookmarkItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget logo = Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Stack(
-        alignment: Alignment.bottomCenter,
-        children: <Widget>[
-          AppWidgets.getCircleAvatar(
-            28,
-            _clinic.logo,
-          ),
-          Opacity(
-            opacity: Util.getLogoOpacityByClinic(_clinic),
-            child: Image(
-              image: AppWidgets.programLogo,
-            ),
-          ),
-        ],
-      ),
-    );
-
     return Card(
+      elevation: 5,
       child: SizedBox(
         height: 124,
         width: 106,
@@ -42,7 +24,7 @@ class BookmarkItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              logo,
+              AppWidgets.bookmarkLogo(_clinic),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Text(

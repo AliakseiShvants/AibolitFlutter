@@ -31,7 +31,9 @@ class VisitCard extends StatelessWidget {
           ),
         ),
         child: Container(
-          decoration: AppWidgets.getTodayBorder(_visit.date),
+          decoration: Util.isFuture(_visit.date)
+              ? AppWidgets.getColorBorder(borderColor: AppColors.PRIMARY_COLOR)
+              : null,
           child: Padding(
             padding: const EdgeInsets.only(
               top: 16.0,
@@ -79,17 +81,22 @@ class VisitCard extends StatelessWidget {
                             Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 2, bottom: 2,),
+                        padding: const EdgeInsets.only(
+                          top: 2,
+                          bottom: 2,
+                        ),
                         child: Text(
                           '${_visit.doctor.specialityLong}',
                           style: Themes.getTextStyle(
-                              fontSize: Dimens.TEXT_SIZE_11,),
+                            fontSize: Dimens.TEXT_SIZE_11,
+                          ),
                         ),
                       ),
                       Text(
                         '${_visit.center.title}',
-                        style:
-                            Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11,),
+                        style: Themes.getTextStyle(
+                          fontSize: Dimens.TEXT_SIZE_11,
+                        ),
                       ),
                     ],
                   ),

@@ -1,18 +1,16 @@
-import 'package:AibolitFlutter/entity/visit.dart';
-import 'package:AibolitFlutter/utils/preferences.dart';
-import 'package:AibolitFlutter/utils/strings.dart';
+import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/clinics/clinics_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../widget/visitcard/visit_card_screen.dart';
 import '../widget/home/home_screen.dart';
-import '../widget/medcenters/medical_center_screen.dart';
-import '../widget/pills/medicament_screen.dart';
+import '../widget/pills/pills_screen.dart';
 import '../widget/settings/settings_screen.dart';
+import '../widget/visitcard/visit_card_screen.dart';
 import 'app_colors.dart';
-import 'data.dart';
+import 'borders.dart';
 import 'dimens.dart';
 
 class AppWidgets {
@@ -21,8 +19,8 @@ class AppWidgets {
 
   static final List<Widget> bottomNavWidgets = [
     HomeScreen(),
-    MedicalCenterScreen(),
-    MedicamentScreen(),
+    ClinicsScreen(),
+    PillsScreen(),
     VisitCardScreen(),
     SettingsScreen()
   ];
@@ -99,57 +97,230 @@ class AppWidgets {
     );
   }
 
-  static Widget getTextHeader(
-    String title, {
-    double left = 16,
-    double top = 16,
-    double bottom = 8,
-  }) =>
-      Padding(
-        padding: EdgeInsets.only(
-          left: left,
-          top: top,
-          bottom: bottom,
-        ),
-        child: Text(
-          title.toUpperCase(),
-          style: Themes.getTextStyle(
-            fontSize: Dimens.TEXT_SIZE_11,
-            fontWeight: FontWeight.bold,
-            color: Colors.black54,
-          ),
+  static Widget bookmarkLogo(Clinic clinic, {double padding = 12}) => Padding(
+        padding: EdgeInsets.all(padding),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: AppWidgets.getCircleAvatar(
+                28,
+                clinic.logo,
+              ),
+            ),
+            Opacity(
+              opacity: Util.getLogoOpacityByClinic(clinic),
+              child: Image(
+                image: AppWidgets.programLogo,
+              ),
+            ),
+          ],
         ),
       );
 
   static Widget getText(
     String title, {
-    double horizontal = 24,
-    double vertical = 0,
-  }) =>
-      Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: horizontal,
-          vertical: vertical,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
+    double right = 0,
+    fontSize: Dimens.TEXT_SIZE_12,
+    fontWeight: FontWeight.normal,
+    fontColor: Colors.black87,
+    int maxLines = 1,
+    TextOverflow overflow = TextOverflow.fade,
+    TextAlign textAlign = TextAlign.start,
+    bool isUpperCase = false,
+    bool isExpanded = false,
+  }) {
+    final child = Padding(
+      padding: EdgeInsets.only(
+        left: left,
+        top: top,
+        bottom: bottom,
+        right: right,
+      ),
+      child: Text(
+        isUpperCase ? title.toUpperCase() : title,
+        maxLines: maxLines,
+        overflow: overflow,
+        textAlign: textAlign,
+        style: Themes.getTextStyle(
+          fontSize: fontSize,
+          fontWeight: fontWeight,
+          color: fontColor,
         ),
-        child: Text(
-          title,
-          style: TextStyle(
-            fontSize: Dimens.TEXT_SIZE_12,
-            color: Colors.grey.shade600,
+      ),
+    );
+
+    return child;
+  }
+
+  static BoxDecoration getColorBorder({
+    Color color = Colors.white,
+    bool isRight = false,
+    Color borderColor = AppColors.PRIMARY_COLOR,
+  }) {
+    Border border;
+    BorderSide borderSide;
+
+    if (borderColor != null) {
+      borderSide = BorderSide(color: AppColors.grey300);
+      border = isRight
+          ? Border(
+              right: BorderSide(
+                color: borderColor,
+                width: 4,
+              ),
+              left: borderSide,
+              bottom: borderSide,
+              top: borderSide,
+            )
+          : Border(
+              left: BorderSide(
+                color: borderColor,
+                width: 4,
+              ),
+              right: borderSide,
+              bottom: borderSide,
+              top: borderSide,
+            );
+    } else {
+      border = Border.all(color: AppColors.grey300);
+    }
+
+    return BoxDecoration(
+      border: border,
+      color: color,
+    );
+  }
+
+  static InputBorder textFieldBorder = OutlineInputBorder(
+    borderSide: BorderSide(color: AppColors.grey300),
+  );
+
+  static Widget getActionsModal({
+    @required BuildContext context,
+    @required String title,
+    @required int currentIndex,
+    @required List<String> list,
+    bool isClose = false,
+    Function callback,
+  }) =>
+      AppWidgets.getModalBody(
+        context: context,
+        title: title,
+        isClose: isClose,
+        actions: List.generate(
+          list.length,
+              (index) => Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border(
+                top: Borders.primaryGreyBorderSide,
+              ),
+            ),
+            child: RadioListTile(
+              key: Key('$index'),
+              dense: true,
+              selected: index == 0,
+              value: index,
+              groupValue: currentIndex,
+              title: AppWidgets.getText(
+                list[index],
+                fontColor: Colors.black,
+                fontSize: Dimens.TEXT_SIZE_14,
+              ),
+              onChanged: (value) {
+                if (callback != null) {
+                  callback(value);
+                }
+              },
+            ),
           ),
         ),
       );
 
-  static BoxDecoration getTodayBorder(DateTime date) {
-    return Util.isFuture(date)
-        ? BoxDecoration(
-            border: Border(
-              left: BorderSide(
-                color: AppColors.PRIMARY_COLOR,
-                width: 4,
-              ),
+  static Widget getModalBody({
+    @required BuildContext context,
+    @required String title,
+    @required List<dynamic> actions,
+    bool isClear = false,
+    bool isClose = false,
+  }) =>
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: Themes.getTextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                if (isClear)
+                  GestureDetector(
+                    child: Icon(Icons.clear),
+                    onTap: () => Navigator.pop(context),
+                  ),
+              ],
             ),
-          )
-        : null;
-  }
+          ),
+          ...actions,
+          if (isClose)
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: Borders.primaryGreyBorderSide,
+                ),
+              ),
+              child: MaterialButton(
+                onPressed: () => Navigator.pop(context),
+                child: AppWidgets.getText(
+                  'Закрыть',
+                  isUpperCase: true,
+                  fontColor: AppColors.PRIMARY_COLOR,
+                  fontSize: Dimens.TEXT_SIZE_13,
+                ),
+              ),
+            )
+        ],
+      );
+
+  static Widget getModalItem(String title) => Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border(
+            top: Borders.primaryGreyBorderSide,
+          ),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            title,
+          ),
+        ),
+      );
+
+  static Widget getModalRadioItem(String title, bool isSelected) => Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          border: Border(
+            top: Borders.primaryGreyBorderSide,
+          ),
+        ),
+        child: RadioListTile(
+          selected: true,
+          value: title,
+          title: Text(title),
+        ),
+      );
 }

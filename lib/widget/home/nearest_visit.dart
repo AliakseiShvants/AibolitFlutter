@@ -1,5 +1,6 @@
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
+import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
@@ -17,6 +18,7 @@ class NearestVisit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
       color: Colors.white,
       child: ClipPath(
         clipper: ShapeBorderClipper(
@@ -25,7 +27,9 @@ class NearestVisit extends StatelessWidget {
           ),
         ),
         child: Container(
-          decoration: AppWidgets.getTodayBorder(_visit.date),
+          decoration:  Util.isFuture(_visit.date)
+              ? AppWidgets.getColorBorder(borderColor: AppColors.PRIMARY_COLOR)
+              : null,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

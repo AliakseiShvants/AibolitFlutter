@@ -1,5 +1,5 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
-import 'package:AibolitFlutter/widget/visitcard/bookmarkItem.dart';
+import 'package:AibolitFlutter/widget/visitcard/bookmark_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -16,7 +16,7 @@ class VisitCardBookmarks extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        AppWidgets.getTextHeader('Закладки'),
+        AppWidgets.getText('Закладки'),
         if (_clinics.length > 0)
           Scrollbar(
             child: SingleChildScrollView(

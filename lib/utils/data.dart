@@ -23,18 +23,35 @@ class Data {
     program: 'EPAM Дети (Гродно)',
   );
 
-  static Clinic center1 = Clinic(
-    'assets/img/clinic/zamk.jpg',
-    'МЦ "Лодэ" на Замковой',
-    'Гродно, ул. Замковая, д. 4',
+  static List<Program> epamPrograms = [program1, program2,];
+
+  static Clinic clinic1 = Clinic(
+    logo: 'assets/img/clinic/zamk.jpg',
+    title: 'МЦ "Лодэ" на Замковой',
+    town: 'Гродно',
+    address: 'ул. Замковая, д. 4',
   );
-  static Clinic center2 = Clinic(
-    'assets/img/clinic/poli.jpg',
-    'МЦ "Лодэ" на Полиграфистов',
-    'Гродно, ул. Полиграфистов, д. 2',
+  static Clinic clinic2 = Clinic(
+    logo: 'assets/img/clinic/poli.jpg',
+    title: 'МЦ "Лодэ" на Полиграфистов',
+    town: 'Гродно',
+    address: 'ул. Полиграфистов, д. 2',
   );
-  static List<Clinic> centers = [center1, center2];
-  static List<Clinic> programCenters = [center1, center2];
+  static Clinic clinic3 = Clinic(
+    logo: 'assets/img/hospitalwithoutphoto.png',
+    title: 'УЗ Гродненский областной клинический перинатальный центр',
+    town: 'Гродно',
+    address: 'ул. Горького, д. 77',
+  );
+  static Clinic clinic4 = Clinic(
+    logo: 'assets/img/hospitalwithoutphoto.png',
+    title: 'МЦ "МедХаус"',
+    town: 'Гродно',
+    address: 'ул. Брикеля, 25/2-2 этаж',
+  );
+  static List<Clinic> clinicBookmarks = [];
+  static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4,];
+  static List<Clinic> epamClinics = [clinic1, clinic2];
 
   static User guest = User(
     avatar: stubAsset,
@@ -84,7 +101,7 @@ class Data {
     middleName: 'Валентиновна',
     specialityLong: 'врач-стоматолог-терапевт',
     speciality: 'врач-стоматолог',
-    centers: [center1],
+    centers: [clinic1],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor2 = Doctor(
@@ -93,7 +110,7 @@ class Data {
     middleName: 'Андреевна',
     speciality: 'рентген-лаборант',
     specialityLong: 'рентген-лаборант',
-    centers: [center1],
+    centers: [clinic1],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor3 = Doctor(
@@ -102,7 +119,7 @@ class Data {
     middleName: 'Сергеевна',
     speciality: 'врач-оториноларинолог',
     specialityLong: 'врач-оториноларинолог',
-    centers: [center2],
+    centers: [clinic2],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
 
@@ -114,7 +131,7 @@ class Data {
   static Visit visit = Visit(
     owner: user1,
     doctor: doctor1,
-    center: center1,
+    center: clinic1,
     date: DateTime.now().add(Duration(hours: 1)),
   );
 
@@ -122,62 +139,62 @@ class Data {
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 7, 17, 16),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 2)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor2,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor1,
     ),
     Data.visit,
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 25, 15, 30),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 24, 12),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 10, 13),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 9, 9, 30),
-      Data.center1,
+      Data.clinic1,
       Data.doctor2,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 4, 3, 16, 35),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
   ];

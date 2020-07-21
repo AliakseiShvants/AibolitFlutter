@@ -13,6 +13,7 @@ class Themes {
   static final ThemeData appTheme = ThemeData(
     appBarTheme: AppBarTheme(
       textTheme: appBarTextTheme,
+      elevation: 0,
     ),
     fontFamily: Strings.RALEWAY,
     primaryColor: AppColors.PRIMARY_COLOR,

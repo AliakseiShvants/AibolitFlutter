@@ -15,7 +15,7 @@ class VisitCardScreen extends StatelessWidget {
           padding: EdgeInsets.all(8),
           child: Column(
             children: <Widget>[
-              VisitCardBookmarks(Data.centers + Data.centers),
+              VisitCardBookmarks(Data.clinicBookmarks),
               VisitHistory(),
             ],
           ),
