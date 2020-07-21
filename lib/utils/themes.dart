@@ -13,11 +13,16 @@ class Themes {
   static final ThemeData appTheme = ThemeData(
     appBarTheme: AppBarTheme(
       textTheme: appBarTextTheme,
+      elevation: 0,
     ),
     fontFamily: Strings.RALEWAY,
     primaryColor: AppColors.PRIMARY_COLOR,
     textTheme: mainTextTheme,
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    buttonTheme: ButtonThemeData(
+      buttonColor: Color(0xff009688),
+      disabledColor: AppColors.grey400,
+    ),
   );
 
   static final TextTheme mainTextTheme = ThemeData.light().textTheme.copyWith(
@@ -34,4 +39,12 @@ class Themes {
           color: Colors.white,
         ),
       );
+
+  static TextStyle getTextStyle({double fontSize, FontWeight fontWeight, Color color}) {
+    return TextStyle(
+      fontSize: fontSize != null ? fontSize : Dimens.TEXT_SIZE_12,
+      fontWeight: fontWeight != null ? fontWeight : FontWeight.normal,
+      color: color != null ? color : Colors.black,
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -9,28 +10,12 @@ import '../../utils/borders.dart';
 import '../../utils/dimens.dart';
 import '../../utils/strings.dart';
 
-class Location extends StatefulWidget {
-  @override
-  _LocationState createState() => _LocationState();
-}
+class Location extends StatelessWidget {
+  final int _locationIndex;
+  final List<City> _cities;
+  final Function _locationCallback;
 
-class _LocationState extends State<Location> {
-  int _locationIndex = 0;
-  final List<City> _cities = [
-    City(1, 'Брест'),
-    City(2, 'Витебск'),
-    City(3, 'Гомель'),
-    City(4, 'Гродно'),
-    City(5, 'Минск'),
-    City(6, 'Могилев'),
-  ];
-
-  @override
-  void initState() {
-    _initLocation();
-
-    super.initState();
-  }
+  Location(this._locationIndex, this._cities, this._locationCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +46,7 @@ class _LocationState extends State<Location> {
             ),
             iconSize: 0,
             iconEnabledColor: AppColors.PRIMARY_COLOR,
-            onChanged: (value) => _setLocation(_cities.indexOf(value)),
+            onChanged: (value) => _locationCallback(_cities.indexOf(value)),
           ),
         ),
         Expanded(
@@ -74,20 +59,6 @@ class _LocationState extends State<Location> {
         )
       ],
     );
-  }
-
-  void _initLocation() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _locationIndex = prefs.getInt(Strings.LOCATION_INDEX) ?? 0;
-  }
-
-  void _setLocation(int index) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(Strings.LOCATION_INDEX, index);
-
-    setState(() {
-      _locationIndex = index;
-    });
   }
 
   List<DropdownMenuItem<City>> _getLocations() {

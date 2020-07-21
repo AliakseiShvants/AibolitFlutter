@@ -1,5 +1,6 @@
 
 class Dimens {
+  static const double TEXT_SIZE_9 = 9;
   static const double TEXT_SIZE_10 = 10;
   static const double TEXT_SIZE_11 = 11;
   static const double TEXT_SIZE_12 = 12;
