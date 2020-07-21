@@ -121,15 +121,16 @@ class AppWidgets {
 
   static Widget getText(
     String title, {
-    double left = 16,
-    double top = 16,
-    double bottom = 8,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
     double right = 0,
     fontSize: Dimens.TEXT_SIZE_12,
     fontWeight: FontWeight.normal,
     fontColor: Colors.black87,
     int maxLines = 1,
     TextOverflow overflow = TextOverflow.fade,
+    TextAlign textAlign = TextAlign.start,
     bool isUpperCase = false,
     bool isExpanded = false,
   }) {
@@ -144,6 +145,7 @@ class AppWidgets {
         isUpperCase ? title.toUpperCase() : title,
         maxLines: maxLines,
         overflow: overflow,
+        textAlign: textAlign,
         style: Themes.getTextStyle(
           fontSize: fontSize,
           fontWeight: fontWeight,
@@ -198,11 +200,12 @@ class AppWidgets {
     borderSide: BorderSide(color: AppColors.grey300),
   );
 
-  static Widget getModalBody(
-    BuildContext context,
-    String title,
-    List<dynamic> actions, {
+  static Widget getModalBody({
+    @required BuildContext context,
+    @required String title,
+    @required List<dynamic> actions,
     bool isClear = false,
+    bool isClose = false,
   }) =>
       Column(
         mainAxisSize: MainAxisSize.min,
@@ -229,6 +232,24 @@ class AppWidgets {
             ),
           ),
           ...actions,
+          if (isClose)
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border(
+                  top: Borders.primaryGreyBorderSide,
+                ),
+              ),
+              child: MaterialButton(
+                onPressed: () => Navigator.pop(context),
+                child: AppWidgets.getText(
+                  'Закрыть',
+                  isUpperCase: true,
+                  fontColor: AppColors.PRIMARY_COLOR,
+                  fontSize: Dimens.TEXT_SIZE_13,
+                ),
+              ),
+            )
         ],
       );
 

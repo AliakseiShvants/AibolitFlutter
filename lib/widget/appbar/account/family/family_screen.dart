@@ -76,9 +76,9 @@ class _FamilyScreenState extends State<FamilyScreen> {
             onPressed: () => showModalBottomSheet(
               context: context,
               builder: (context) => AppWidgets.getModalBody(
-                context,
-                'Добавление родственника',
-                _getActions(Data.addFamilyActions),
+                context: context,
+                title: 'Добавление родственника',
+                actions: _getActions(Data.addFamilyActions),
                 isClear: true,
               ),
             ),

@@ -16,11 +16,7 @@ class ClinicItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        right: 12,
-        left: 12,
-        bottom: 8,
-      ),
+      padding: const EdgeInsets.only(bottom: 4),
       child: ClipPath(
         clipper: ShapeBorderClipper(
           shape: RoundedRectangleBorder(
@@ -33,31 +29,7 @@ class ClinicItem extends StatelessWidget {
                 _isColoredBorder(_clinic) ? AppColors.green : AppColors.grey400,
             isRight: true,
           ),
-          child:
-//          ListTile(
-//            leading: AppWidgets.bookmarkLogo(_clinic, padding: 0,),
-//            title: AppWidgets.getText(
-//              _clinic.title,
-//              left: 8,
-//              top: 8,
-//              right: 8,
-//              fontSize: Dimens.TEXT_SIZE_12,
-//              fontWeight: FontWeight.bold,
-//              maxLines: 2,
-//              isExpanded: true,
-//              isUpperCase: false,
-//            ),
-//            subtitle: AppWidgets.getText(
-//              '${_clinic.town} ${_clinic.address}',
-//              left: 8,
-//              top: 0,
-//              fontSize: Dimens.TEXT_SIZE_11,
-//              isUpperCase: false,
-//            ),
-//            isThreeLine: true,
-//
-//          ),
-              Row(
+          child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -79,28 +51,31 @@ class ClinicItem extends StatelessWidget {
                   AppWidgets.getText(
                     '${_clinic.town} ${_clinic.address}',
                     left: 8,
-                    top: 0,
+                    top: 8,
                     fontSize: Dimens.TEXT_SIZE_11,
                     isUpperCase: false,
                   ),
-                  Row(
-                    children: <Widget>[
-                      _getIconText(
-                        Icons.access_time,
-                        AppColors.PRIMARY_COLOR,
-                        '8:00 - 20:00',
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 32,
-                      ),
-                      _getIconText(
-                        MaterialIcons.chat,
-                        AppColors.green,
-                        'Нет отзывов',
-                        size: 20,
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Row(
+                      children: <Widget>[
+                        _getIconText(
+                          Icons.access_time,
+                          AppColors.PRIMARY_COLOR,
+                          '8:00 - 20:00',
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 32,
+                        ),
+                        _getIconText(
+                          MaterialIcons.chat,
+                          AppColors.green,
+                          'Нет отзывов',
+                          size: 20,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -117,15 +92,17 @@ class ClinicItem extends StatelessWidget {
           {double size = 24}) =>
       Row(
         children: <Widget>[
-          Icon(
-            iconData,
-            size: size,
-            color: color,
+          Padding(
+            padding: const EdgeInsets.only(left: 8),
+            child: Icon(
+              iconData,
+              size: size,
+              color: color,
+            ),
           ),
           AppWidgets.getText(
             text,
             left: 8,
-            top: 8,
             fontSize: Dimens.TEXT_SIZE_11,
           ),
         ],
