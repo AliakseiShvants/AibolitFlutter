@@ -200,6 +200,48 @@ class AppWidgets {
     borderSide: BorderSide(color: AppColors.grey300),
   );
 
+  static Widget getActionsModal({
+    @required BuildContext context,
+    @required String title,
+    @required int currentIndex,
+    @required List<String> list,
+    bool isClose = false,
+    Function callback,
+  }) =>
+      AppWidgets.getModalBody(
+        context: context,
+        title: title,
+        isClose: isClose,
+        actions: List.generate(
+          list.length,
+              (index) => Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              border: Border(
+                top: Borders.primaryGreyBorderSide,
+              ),
+            ),
+            child: RadioListTile(
+              key: Key('$index'),
+              dense: true,
+              selected: index == 0,
+              value: index,
+              groupValue: currentIndex,
+              title: AppWidgets.getText(
+                list[index],
+                fontColor: Colors.black,
+                fontSize: Dimens.TEXT_SIZE_14,
+              ),
+              onChanged: (value) {
+                if (callback != null) {
+                  callback(value);
+                }
+              },
+            ),
+          ),
+        ),
+      );
+
   static Widget getModalBody({
     @required BuildContext context,
     @required String title,
