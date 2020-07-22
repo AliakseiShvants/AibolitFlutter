@@ -8,9 +8,17 @@ import 'package:AibolitFlutter/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
+import 'package:intl/intl.dart';
 
 class NearestVisit extends StatelessWidget {
   final Visit _visit;
+  final List<String> list = [
+    'Показать на карте',
+    'Добавить в календарь',
+    'Перенести дату/время визита',
+    'Переназначить посетителя',
+    'Отменить визит',
+  ];
 
   NearestVisit(this._visit);
 
@@ -79,6 +87,24 @@ class NearestVisit extends StatelessWidget {
                             ),
                           ),
                           GestureDetector(
+                            onTap: () => showModalBottomSheet(
+                              context: context,
+                              builder: (context) => AppWidgets.getModalBody(
+                                context: context,
+                                title: 'Визит: ${_visit.doctor.speciality}',
+                                subtitles: [
+                                  _visit.center.title,
+                                  '${_visit.center.town} ${_visit.center.address}',
+                                  DateFormat('dd MMMM, HH:mm').format(_visit.date),
+                                ],
+                                isClear: true,
+                                actions: List.generate(
+                                  list.length,
+                                  (index) =>
+                                      AppWidgets.getModalItem(list[index]),
+                                ),
+                              ),
+                            ),
                             child: Icon(
                               Feather.more_vertical,
                             ),
@@ -87,11 +113,13 @@ class NearestVisit extends StatelessWidget {
                       ),
                     ),
                     AppWidgets.getText(
-                        title:
-                            '${_visit.doctor.lastName} ${_visit.doctor.firstName} ${_visit.doctor.middleName}aaaaaaaff',
-                        fontSize: Dimens.TEXT_SIZE_11,
-                        right: 16,
-                        overflow: TextOverflow.ellipsis,),
+                      title:
+                          '${_visit.doctor.lastName} ${_visit.doctor.firstName} ${_visit.doctor.middleName}',
+                      fontSize: Dimens.TEXT_SIZE_11,
+                      right: 16,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                     AppWidgets.getText(
                       title: '${_visit.doctor.speciality}',
                       fontSize: Dimens.TEXT_SIZE_11,
