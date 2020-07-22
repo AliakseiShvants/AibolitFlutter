@@ -41,14 +41,18 @@ class _MainContainerState extends State<MainContainer> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        title: Location(_locationIndex, Data.cities, _setLocation,),
+        title: Location(
+          _locationIndex,
+          Data.cities,
+          _setLocation,
+        ),
         actions: <Widget>[
           LoginAction(
-             _user,
-             _isLoggedIn,
-             true,
+            _user,
+            _isLoggedIn,
+            true,
             _login,
-             _logout,
+            _logout,
           ),
         ],
       ),

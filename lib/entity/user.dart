@@ -1,8 +1,6 @@
-import 'package:AibolitFlutter/entity/visit.dart';
-import 'package:flutter/widgets.dart';
-
 import 'city.dart';
 import 'program.dart';
+import 'visit.dart';
 
 class User {
   final String firstName;
@@ -15,6 +13,7 @@ class User {
   final String avatar;
   final City city;
   final List<Visit> visits;
+  final List<User> family;
 
   User({
     this.firstName,
@@ -27,6 +26,7 @@ class User {
     this.avatar,
     this.city,
     this.visits,
+    this.family,
   });
 
   @override
@@ -37,9 +37,6 @@ class User {
         this.birthDay == (other as User).birthDay &&
         this.phoneNumber == (other as User).phoneNumber &&
         this.email == (other as User).email &&
-        this.program == (other as User).program &&
-        this.avatar == (other as User).avatar &&
-        this.city == (other as User).city &&
-        this.visits == (other as User).visits;
+        this.program == (other as User).program;
   }
 }

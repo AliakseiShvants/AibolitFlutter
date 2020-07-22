@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
@@ -9,7 +10,10 @@ import 'package:intl/intl.dart';
 
 class AccountScreen extends StatelessWidget {
   final String _appBarTitle = 'Учетная запись';
-  static String _birthDay = DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
+  final User user = Data.owner;
+
+  static String _birthDay =
+      DateFormat('dd MMMM yyyy').format(Data.user1.birthDay);
 
   final Widget _accountHeader = Container(
     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -26,19 +30,16 @@ class AccountScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  '${Data.user1.lastName} ${Data.user1.firstName} ${Data.user1.middleName}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: Dimens.TEXT_SIZE_14,
-                  ),
+                AppWidgets.getText(
+                  title:
+                      '${Data.user1.lastName} ${Data.user1.firstName} ${Data.user1.middleName}',
+                  fontWeight: FontWeight.bold,
+                  fontSize: Dimens.TEXT_SIZE_14,
                 ),
                 SizedBox(height: 16),
-                Text(
-                  '$_birthDay',
-                  style: TextStyle(
-                    fontSize: Dimens.TEXT_SIZE_13,
-                  ),
+                AppWidgets.getText(
+                  title: '$_birthDay',
+                  fontSize: Dimens.TEXT_SIZE_13,
                 ),
               ],
             ),
@@ -57,7 +58,10 @@ class AccountScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               _accountHeader,
-              InfoItem('Моя семья'),
+              GestureDetector(
+                child: InfoItem('Моя семья'),
+                onTap: () => Navigator.pushNamed(context, '/account/family'),
+              ),
               InfoItem('Документы'),
               InfoItem(
                 'Мой аккаунт',
@@ -67,7 +71,7 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              ..._getAccountInfo(),
+              ..._getAccountInfo(context),
               InfoItem(
                 'Программы',
                 color: AppColors.grey200,
@@ -76,9 +80,12 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItem(
-                Data.user1.program.title,
-                logo: Data.user1.program.logo,
+              GestureDetector(
+                child: InfoItem(
+                  Data.user1.program.title,
+                  logo: Data.user1.program.logo,
+                ),
+                onTap: () => Navigator.pushNamed(context, '/account/program'),
               ),
               InfoItem(
                 'Другое',
@@ -88,7 +95,11 @@ class AccountScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 isTrailing: false,
               ),
-              InfoItem('Напоминание о визитах'),
+              GestureDetector(
+                child: InfoItem('Напоминание о визитах'),
+                onTap: () =>
+                    Navigator.pushNamed(context, '/account/notification'),
+              ),
               InfoItem(
                 'Выйти',
                 textColor: Colors.red.shade800,
@@ -101,7 +112,7 @@ class AccountScreen extends StatelessWidget {
     );
   }
 
-  List<Widget> _getAccountInfo() {
+  List<Widget> _getAccountInfo(BuildContext context) {
     final phone = Data.user1.phoneNumber;
     final fontSize = Dimens.TEXT_SIZE_13;
     final String phoneLine = '+${phone.substring(0, 3)} '
@@ -119,6 +130,55 @@ class AccountScreen extends StatelessWidget {
         Data.user1.email,
         fontSize: fontSize,
         hint: 'Личный e-mail:',
+        callback: () => showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (context) => SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 24,
+                right: 24,
+                left: 24,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AppWidgets.getText(
+                    title: 'Ваш личный e-mail',
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimens.TEXT_SIZE_14,
+                  ),
+                  AppWidgets.getText(
+                    title:
+                        'Личный e-mail нужен, чтобы иметь возможность восстановить доступ к своему аккаунту при смене телефонного номера или мобильного устройства.',
+                    top: 24,
+                    fontSize: Dimens.TEXT_SIZE_13,
+                  ),
+                  AppWidgets.getText(
+                    title:
+                        'Введите свой актуальный e-mail в поле ниже и нажмите "сохранить".',
+                    top: 24,
+                    fontSize: Dimens.TEXT_SIZE_13,
+                  ),
+                  AppWidgets.getInputField(
+                    context: context,
+                    top: 32,
+                    hint: user.email,
+                    controller: null,
+                  ),
+                  AppWidgets.getControlButtonsRow(
+                    context: context,
+                    top: 8,
+                    bottom: 8,
+                    primary: 'Сохранить',
+                    secondary: 'Отменить',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       ),
     ];
   }

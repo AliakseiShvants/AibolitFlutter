@@ -1,32 +1,57 @@
 import 'package:AibolitFlutter/entity/city.dart';
+import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
-import 'package:AibolitFlutter/entity/med_center.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
+import 'package:AibolitFlutter/entity/setting_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
-import 'package:flutter/cupertino.dart';
 
 class Data {
-  static final stubImg = AssetImage('assets/img/user_avatar.png');
   static final stubAsset = 'assets/img/user_avatar.png';
 
   static Program program1 = Program(
-      logo: 'assets/img/epam_logo.png',
-      title: 'EPAM Health Care',
-      company: 'ЭПАМ Системз',
-      program: 'EPAM Взрослые (Гродно)');
+    logo: 'assets/img/epam_logo.png',
+    title: 'EPAM Health Care',
+    company: 'ЭПАМ Системз',
+    program: 'EPAM Взрослые (Гродно)',
+  );
   static Program program2 = Program(
-      logo: 'assets/img/epam_logo.png',
-      title: 'EPAM Health Care',
-      company: 'ЭПАМ Системз',
-      program: 'EPAM Дети (Гродно)');
+    logo: 'assets/img/epam_logo.png',
+    title: 'EPAM Health Care',
+    company: 'ЭПАМ Системз',
+    program: 'EPAM Дети (Гродно)',
+  );
 
-  static MedCenter center1 =
-      MedCenter('МЦ "Лодэ" на Замковой', 'Гродно, ул. Замковая, д. 4');
-  static MedCenter center2 = MedCenter(
-      'МЦ "Лодэ" на Полиграфистов', 'Гродно, ул. Полиграфистов, д. 2');
-  static List<MedCenter> centers = [center1, center2];
+  static List<Program> epamPrograms = [program1, program2,];
+
+  static Clinic clinic1 = Clinic(
+    logo: 'assets/img/clinic/zamk.jpg',
+    title: 'МЦ "Лодэ" на Замковой',
+    town: 'Гродно',
+    address: 'ул. Замковая, д. 4',
+  );
+  static Clinic clinic2 = Clinic(
+    logo: 'assets/img/clinic/poli.jpg',
+    title: 'МЦ "Лодэ" на Полиграфистов',
+    town: 'Гродно',
+    address: 'ул. Полиграфистов, д. 2',
+  );
+  static Clinic clinic3 = Clinic(
+    logo: 'assets/img/hospitalwithoutphoto.png',
+    title: 'УЗ Гродненский областной клинический перинатальный центр',
+    town: 'Гродно',
+    address: 'ул. Горького, д. 77',
+  );
+  static Clinic clinic4 = Clinic(
+    logo: 'assets/img/hospitalwithoutphoto.png',
+    title: 'МЦ "МедХаус"',
+    town: 'Гродно',
+    address: 'ул. Брикеля, 25/2-2 этаж',
+  );
+  static List<Clinic> clinicBookmarks = [];
+  static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4,];
+  static List<Clinic> epamClinics = [clinic1, clinic2];
 
   static User guest = User(
     avatar: stubAsset,
@@ -42,6 +67,7 @@ class Data {
     program: program1,
     avatar: 'assets/img/shvants.jpg',
     city: cities[3],
+    family: [user2],
   );
 
   static User user1 = User(
@@ -54,6 +80,7 @@ class Data {
     program: program1,
     avatar: 'assets/img/shvants.jpg',
     city: cities[3],
+    family: [user2],
   );
   static User user2 = User(
     firstName: 'Надежда',
@@ -65,6 +92,7 @@ class Data {
     program: program2,
     avatar: 'assets/img/nadzeya.jpg',
     city: cities[3],
+    family: [],
   );
 
   static Doctor doctor1 = Doctor(
@@ -73,7 +101,7 @@ class Data {
     middleName: 'Валентиновна',
     specialityLong: 'врач-стоматолог-терапевт',
     speciality: 'врач-стоматолог',
-    centers: [center1],
+    centers: [clinic1],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor2 = Doctor(
@@ -82,7 +110,7 @@ class Data {
     middleName: 'Андреевна',
     speciality: 'рентген-лаборант',
     specialityLong: 'рентген-лаборант',
-    centers: [center1],
+    centers: [clinic1],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor3 = Doctor(
@@ -91,7 +119,7 @@ class Data {
     middleName: 'Сергеевна',
     speciality: 'врач-оториноларинолог',
     specialityLong: 'врач-оториноларинолог',
-    centers: [center2],
+    centers: [clinic2],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
 
@@ -103,7 +131,7 @@ class Data {
   static Visit visit = Visit(
     owner: user1,
     doctor: doctor1,
-    center: center1,
+    center: clinic1,
     date: DateTime.now().add(Duration(hours: 1)),
   );
 
@@ -111,68 +139,68 @@ class Data {
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 7, 17, 16),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 2)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor2,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
     Data.getVisitWithDate(
       Data.user2,
       DateTime.now().add(Duration(hours: 1)),
-      Data.center2,
+      Data.clinic2,
       Data.doctor1,
     ),
     Data.visit,
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 25, 15, 30),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 24, 12),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 10, 13),
-      Data.center1,
+      Data.clinic1,
       Data.doctor1,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 6, 9, 9, 30),
-      Data.center1,
+      Data.clinic1,
       Data.doctor2,
     ),
     Data.getVisitWithDate(
       Data.user1,
       DateTime(2020, 4, 3, 16, 35),
-      Data.center2,
+      Data.clinic2,
       Data.doctor3,
     ),
   ];
 
   static getVisitWithDate(
-          User owner, DateTime date, MedCenter center, Doctor doctor) =>
+          User owner, DateTime date, Clinic center, Doctor doctor) =>
       Visit(
         owner: owner,
         doctor: doctor,
@@ -198,4 +226,31 @@ class Data {
     City(5, 'Минск'),
     City(6, 'Могилев'),
   ];
+
+  static List<SettingItem> settingItems = [
+    SettingItem('О проекте', 'https://aibolit.md/mobile'),
+    SettingItem('Пользовательское соглашение',
+        'https://aibolit.md/polzovatelskoe-soglashenie'),
+    SettingItem('Политика конфиденциальности',
+        'https://aibolit.md/politika-konfidencialnosti'),
+    SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true,),
+    SettingItem(
+        'Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
+  ];
+
+  static List<String> addFamilyActions = [
+    'Добавить ребенка',
+    'Поделиться предложением',
+    'Мой код для предложения к семье',
+    'Ввести код своего супруга(и)',
+  ];
+  static Map<String, bool> notifications = {
+    'За 30 минут' : false,
+    'За 1 час' : false,
+    'За 2 часа' : false,
+    'За 4 часа' : false,
+    'За 1 день, в 10:00 утра' : false,
+    'За 1 день, в 20:00 вечера' : false,
+  };
+
 }

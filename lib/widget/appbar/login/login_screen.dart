@@ -1,7 +1,5 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/preferences.dart';
-import 'package:AibolitFlutter/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
@@ -32,11 +30,24 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  Widget _loginWidget({Function callback}) => Padding(
-        padding: EdgeInsets.all(12),
+  Widget _loginWidget({
+    @required BuildContext context,
+    @required Function callback,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          top: 12,
+          left: 12,
+          right: 12,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Column(
           children: <Widget>[
-            AppWidgets.getHeaderWithLogo(_headerTitle, _headerMsg),
+            AppWidgets.getHeaderWithLogo(
+              _headerTitle,
+              _headerMsg,
+              1,
+            ),
             Row(
               children: <Widget>[
                 Expanded(
@@ -46,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       fillColor: Colors.white,
                       border: OutlineInputBorder(),
-                      hintText: _phonePrefixController.text
+                      hintText: _phonePrefixController.text,
                     ),
                     keyboardType: TextInputType.phone,
                   ),
@@ -67,21 +78,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: FlatButton(
-                  disabledColor: AppColors.grey500,
-                  color:  AppColors.green,
-                  child: Text(
-                    'Продолжить'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: _isLoginButtonEnabled ? callback : null,
-                ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: double.infinity),
+              child: AppWidgets.getMaterialButton(
+                context: null,
+                top: 16,
+                title: 'Продолжить',
+                disabledColor: AppColors.grey500,
+                color: AppColors.green,
+                callback: _isLoginButtonEnabled ? callback : null,
               ),
             ),
           ],
@@ -90,31 +95,40 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _phoneNumberController.addListener(() {_validate();});
+    _phoneNumberController.addListener(() {
+      _validate();
+    });
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.grey200,
       appBar: AppWidgets.getAppBar(context, _appBarTitle),
       body: SafeArea(
-        child: FutureBuilder<void>(
-          future: _isLoginEnable ? _login(context) : null,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  _loginWidget(),
-                  Container(
-                    color: AppColors.primaryGrey.withOpacity(0.8),
-                  ),
-                  CircularProgressIndicator(),
-                ],
-              );
-            } else {
-              return _loginWidget(callback: _enableLogin);
-            }
-          },
+        child: SingleChildScrollView(
+          child: FutureBuilder<void>(
+            future: _isLoginEnable ? _login(context) : null,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    _loginWidget(
+                      context: context,
+                      callback: null,
+                    ),
+                    Container(
+                      color: AppColors.primaryGrey.withOpacity(0.8),
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                );
+              } else {
+                return _loginWidget(
+                  context: context,
+                  callback: _enableLogin,
+                );
+              }
+            },
+          ),
         ),
       ),
     );

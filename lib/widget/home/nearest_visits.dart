@@ -1,5 +1,6 @@
 import 'package:AibolitFlutter/entity/visit.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
+import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/widget/home/nearest_visit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,14 +15,22 @@ class NearestVisits extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        AppWidgets.getTextHeader('Ближайшие визиты'),
-//        AppWidgets.getText('Просмотр ближайших визитов будет доступен сразу после авторизации'),
-        ..._getNearestVisits(),
+        AppWidgets.getText(
+          title: 'Ближайшие визиты',
+          top: 24,
+          left: 16,
+          bottom: 8,
+          isUpperCase: true,
+          fontSize: Dimens.TEXT_SIZE_10,
+          fontWeight: FontWeight.bold,
+          fontColor: Colors.black87,
+        ),
+//        AppWidgets.getText(title: 'Просмотр ближайших визитов будет доступен сразу после авторизации'),
+        ..._getNearestVisits(_visits),
       ],
     );
   }
 
-  List<NearestVisit> _getNearestVisits() => List.generate(_visits.length, (index) {
-    return NearestVisit(_visits[index]);
-  });
+  List<NearestVisit> _getNearestVisits(List<Visit> list) =>
+      List.generate(list.length, (index) => NearestVisit(list[index]));
 }
