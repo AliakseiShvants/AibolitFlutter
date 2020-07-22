@@ -1,4 +1,3 @@
-import 'package:AibolitFlutter/entity/drug.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
@@ -133,41 +132,50 @@ class AccountScreen extends StatelessWidget {
         hint: 'Личный e-mail:',
         callback: () => showModalBottomSheet(
           context: context,
-          builder: (context) => Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                AppWidgets.getText(
-                  title: 'Ваш личный e-mail',
-                  fontWeight: FontWeight.bold,
-                  fontSize: Dimens.TEXT_SIZE_14,
-                ),
-                AppWidgets.getText(
-                  title:
-                      'Личный e-mail нужен, чтобы иметь возможность восстановить доступ к своему аккаунту при смене телефонного номера или мобильного устройства.',
-                  top: 24,
-                  fontSize: Dimens.TEXT_SIZE_13,
-                ),
-                AppWidgets.getText(
-                  title:
-                      'Введите свой актуальный e-mail в поле ниже и нажмите "сохранить".',
-                  top: 24,
-                  fontSize: Dimens.TEXT_SIZE_13,
-                ),
-                AppWidgets.getInputField(
-                  context: context,
-                  top: 32,
-                  hint: user.email,
-                  controller: null,
-                ),
-                AppWidgets.getControlButtonsRow(
-                  context: context,
-                  top: 8,
-                  primary: 'Сохранить',
-                  secondary: 'Отменить',
-                ),
-              ],
+          isScrollControlled: true,
+          builder: (context) => SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 24,
+                right: 24,
+                left: 24,
+                bottom: MediaQuery.of(context).viewInsets.bottom,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  AppWidgets.getText(
+                    title: 'Ваш личный e-mail',
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimens.TEXT_SIZE_14,
+                  ),
+                  AppWidgets.getText(
+                    title:
+                        'Личный e-mail нужен, чтобы иметь возможность восстановить доступ к своему аккаунту при смене телефонного номера или мобильного устройства.',
+                    top: 24,
+                    fontSize: Dimens.TEXT_SIZE_13,
+                  ),
+                  AppWidgets.getText(
+                    title:
+                        'Введите свой актуальный e-mail в поле ниже и нажмите "сохранить".',
+                    top: 24,
+                    fontSize: Dimens.TEXT_SIZE_13,
+                  ),
+                  AppWidgets.getInputField(
+                    context: context,
+                    top: 32,
+                    hint: user.email,
+                    controller: null,
+                  ),
+                  AppWidgets.getControlButtonsRow(
+                    context: context,
+                    top: 8,
+                    bottom: 8,
+                    primary: 'Сохранить',
+                    secondary: 'Отменить',
+                  ),
+                ],
+              ),
             ),
           ),
         ),

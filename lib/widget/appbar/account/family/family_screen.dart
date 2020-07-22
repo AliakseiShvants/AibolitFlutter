@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import 'family_add_action.dart';
 import 'family_item.dart';
 
 class FamilyScreen extends StatefulWidget {
@@ -105,7 +104,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
     await Future.delayed(Duration(seconds: 3));
   }
 
-  List<FamilyAddAction> _getActions(List<String> list) => List.generate(
+  List<Widget> _getActions(List<String> list) => List.generate(
         list.length,
         (index) => AppWidgets.getModalItem(list[index]),
       );

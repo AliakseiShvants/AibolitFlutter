@@ -247,7 +247,7 @@ class AppWidgets {
   static Widget getModalBody({
     @required BuildContext context,
     @required String title,
-    @required List<dynamic> actions,
+    @required List<Widget> actions,
     bool isClear = false,
     bool isClose = false,
   }) =>
@@ -431,6 +431,9 @@ class AppWidgets {
   static Widget getMaterialButton({
     @required BuildContext context,
     @required String title,
+    @required Function callback,
+    @required Color disabledColor,
+    @required Color color,
     double left = 0,
     double top = 0,
     double bottom = 0,
@@ -444,13 +447,14 @@ class AppWidgets {
           right: right,
         ),
         child: MaterialButton(
-          color: AppColors.green,
+          color: color,
+          disabledColor: disabledColor,
           child: AppWidgets.getText(
             title: title.toUpperCase(),
             fontSize: Dimens.TEXT_SIZE_13,
             fontColor: Colors.white,
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: callback,
         ),
       );
 }
