@@ -30,14 +30,11 @@ class FamilyItem extends StatelessWidget {
           24,
           _user.avatar,
         ),
-        title: Text(
-          Util.getFullName(_user),
-          style: Themes.getTextStyle(
-            fontSize: Dimens.TEXT_SIZE_14,
-            color: Colors.black87,
-          ),
+        title: AppWidgets.getText(
+          title: Util.getFullName(_user),
+          fontSize: Dimens.TEXT_SIZE_14,
+          fontColor: Colors.black87,
           overflow: TextOverflow.fade,
-          softWrap: false,
         ),
         subtitle: Text(
           'Ребёнок, ' + Util.getBirthDate(_user.birthDay),

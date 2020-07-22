@@ -75,42 +75,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       top: Borders.primaryGreyBorderSide,
                     ),
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: FlatButton(
-                            child: Text(
-                              'Отменить'.toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: Dimens.TEXT_SIZE_13,
-                              ),
-                            ),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: MaterialButton(
-                            color: AppColors.green,
-                            child: Text(
-                              'Сохранить'.toUpperCase(),
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Dimens.TEXT_SIZE_11,
-                              ),
-                            ),
-                            onPressed: () => Navigator.pop(context),
-                          ),
-                        ),
-                      ),
-                    ],
+                  child: AppWidgets.getControlButtonsRow(
+                    context: context,
+                    top: 8,
+                    bottom: 8,
+                    right: 8,
+                    left: 8,
+                    primary: 'Сохранить',
+                    secondary: 'Отменить',
                   ),
                 ),
               ),
