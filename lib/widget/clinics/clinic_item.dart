@@ -34,30 +34,30 @@ class ClinicItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               AppWidgets.bookmarkLogo(_clinic),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  AppWidgets.getText(
-                    _clinic.title,
-                    left: 8,
-                    top: 8,
-                    right: 8,
-                    fontSize: Dimens.TEXT_SIZE_12,
-                    fontWeight: FontWeight.bold,
-                    maxLines: 2,
-                    isExpanded: true,
-                    isUpperCase: false,
-                  ),
-                  AppWidgets.getText(
-                    '${_clinic.town} ${_clinic.address}',
-                    left: 8,
-                    top: 8,
-                    fontSize: Dimens.TEXT_SIZE_11,
-                    isUpperCase: false,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Row(
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8,
+                  vertical: 16,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    AppWidgets.getText(
+                      title: _clinic.title,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Dimens.TEXT_SIZE_13,
+                      maxLines: 2,
+                      isExpanded: true,
+                      isUpperCase: false,
+                    ),
+                    AppWidgets.getText(
+                      title: '${_clinic.town} ${_clinic.address}',
+                      fontSize: Dimens.TEXT_SIZE_11,
+                      top: 8,
+                      bottom: 8,
+                      isUpperCase: false,
+                    ),
+                    Row(
                       children: <Widget>[
                         _getIconText(
                           Icons.access_time,
@@ -76,8 +76,8 @@ class ClinicItem extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
@@ -92,16 +92,13 @@ class ClinicItem extends StatelessWidget {
           {double size = 24}) =>
       Row(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(left: 8),
-            child: Icon(
-              iconData,
-              size: size,
-              color: color,
-            ),
+          Icon(
+            iconData,
+            size: size,
+            color: color,
           ),
           AppWidgets.getText(
-            text,
+            title: text,
             left: 8,
             fontSize: Dimens.TEXT_SIZE_11,
           ),

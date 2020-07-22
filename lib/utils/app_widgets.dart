@@ -119,8 +119,8 @@ class AppWidgets {
         ),
       );
 
-  static Widget getText(
-    String title, {
+  static Widget getText({
+    String title,
     double left = 0,
     double top = 0,
     double bottom = 0,
@@ -128,11 +128,12 @@ class AppWidgets {
     fontSize: Dimens.TEXT_SIZE_12,
     fontWeight: FontWeight.normal,
     fontColor: Colors.black87,
-    int maxLines = 1,
+    int maxLines = 10,
     TextOverflow overflow = TextOverflow.fade,
     TextAlign textAlign = TextAlign.start,
     bool isUpperCase = false,
     bool isExpanded = false,
+    softWrap: true,
   }) {
     final child = Padding(
       padding: EdgeInsets.only(
@@ -151,6 +152,7 @@ class AppWidgets {
           fontWeight: fontWeight,
           color: fontColor,
         ),
+        softWrap: softWrap,
       ),
     );
 
@@ -214,7 +216,7 @@ class AppWidgets {
         isClose: isClose,
         actions: List.generate(
           list.length,
-              (index) => Container(
+          (index) => Container(
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border(
@@ -228,7 +230,7 @@ class AppWidgets {
               value: index,
               groupValue: currentIndex,
               title: AppWidgets.getText(
-                list[index],
+                title: list[index],
                 fontColor: Colors.black,
                 fontSize: Dimens.TEXT_SIZE_14,
               ),
@@ -285,7 +287,7 @@ class AppWidgets {
               child: MaterialButton(
                 onPressed: () => Navigator.pop(context),
                 child: AppWidgets.getText(
-                  'Закрыть',
+                  title: 'Закрыть',
                   isUpperCase: true,
                   fontColor: AppColors.PRIMARY_COLOR,
                   fontSize: Dimens.TEXT_SIZE_13,
@@ -321,6 +323,134 @@ class AppWidgets {
           selected: true,
           value: title,
           title: Text(title),
+        ),
+      );
+
+  static Widget getInputField({
+    @required BuildContext context,
+    @required TextEditingController controller,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
+    double right = 0,
+    Color borderColor,
+    Icon prefixIcon,
+    String hint,
+    TextInputType keyboardType = TextInputType.text,
+    Function callback,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: Container(
+          color: Colors.white,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              primaryColor: borderColor,
+            ),
+            child: TextField(
+              cursorColor: AppColors.green,
+              controller: controller,
+              decoration: InputDecoration(
+                prefixIcon: prefixIcon,
+                isDense: true,
+                focusedBorder: AppWidgets.textFieldBorder,
+                enabledBorder: AppWidgets.textFieldBorder,
+                hintText: hint,
+              ),
+              keyboardType: keyboardType,
+            ),
+          ),
+        ),
+      );
+
+  static Widget getControlButtonsRow({
+    @required BuildContext context,
+    @required String primary,
+    @required String secondary,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
+    double right = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: AppWidgets.getFlatButton(
+                context: context,
+                title: secondary,
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: AppWidgets.getMaterialButton(
+                context: context,
+                title: primary,
+              ),
+            ),
+          ],
+        ),
+      );
+
+  static Widget getFlatButton({
+    @required BuildContext context,
+    @required String title,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
+    double right = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: FlatButton(
+          child: AppWidgets.getText(
+            title: title.toUpperCase(),
+            fontSize: Dimens.TEXT_SIZE_13,
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+      );
+
+  static Widget getMaterialButton({
+    @required BuildContext context,
+    @required String title,
+    double left = 0,
+    double top = 0,
+    double bottom = 0,
+    double right = 0,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: MaterialButton(
+          color: AppColors.green,
+          child: AppWidgets.getText(
+            title: title.toUpperCase(),
+            fontSize: Dimens.TEXT_SIZE_13,
+            fontColor: Colors.white,
+          ),
+          onPressed: () => Navigator.pop(context),
         ),
       );
 }

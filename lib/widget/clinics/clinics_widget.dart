@@ -52,7 +52,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
             children: <Widget>[
               Expanded(
                 child: AppWidgets.getText(
-                  _getPluralClinicsCount(list.length),
+                  title: _getPluralClinicsCount(list.length),
                   left: 8,
                   isUpperCase: true,
                   fontSize: Dimens.TEXT_SIZE_10,
@@ -116,7 +116,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
                 image: AssetImage('assets/img/clinic/clinic_stub.jpg'),
               ),
               AppWidgets.getText(
-                'У вас в закладках пока нет медцентров',
+                title: 'У вас в закладках пока нет медцентров',
                 top: 32,
                 bottom: 16,
                 fontWeight: FontWeight.bold,
@@ -126,7 +126,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Center(
                   child: AppWidgets.getText(
-                    'Добавляйте в закладки медцентры, которые вам понравились. Так их всегда будет легко найти.',
+                    title: 'Добавляйте в закладки медцентры, которые вам понравились. Так их всегда будет легко найти.',
                     left: 0,
                     textAlign: TextAlign.center,
                     maxLines: 2,

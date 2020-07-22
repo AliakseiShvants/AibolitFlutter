@@ -44,7 +44,7 @@ class ProgramScreen extends StatelessWidget {
                       ),
                     ),
                     child: AppWidgets.getText(
-                      'основная информация',
+                      title: 'основная информация',
                       left: 8,
                       top: 0,
                     ),
@@ -62,7 +62,7 @@ class ProgramScreen extends StatelessWidget {
                           Expanded(
                             flex: 4,
                             child: AppWidgets.getText(
-                              'Компания:',
+                              title: 'Компания:',
                               left: 0,
                               top: 0,
                               bottom: 0,
@@ -100,7 +100,7 @@ class ProgramScreen extends StatelessWidget {
                           Expanded(
                             flex: 4,
                             child: AppWidgets.getText(
-                              'Программа:',
+                              title: 'Программа:',
                               left: 0,
                               top: 0,
                               bottom: 0,
@@ -120,7 +120,7 @@ class ProgramScreen extends StatelessWidget {
                     ),
                   ),
                   AppWidgets.getText(
-                    'Перейдите по ссылке, чтобы ознакомиться с вашей программой',
+                    title: 'Перейдите по ссылке, чтобы ознакомиться с вашей программой',
                     left: 8,
                     top: 16,
                     bottom: 16,

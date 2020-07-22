@@ -15,7 +15,7 @@ class PopularRequests extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           AppWidgets.getText(
-            'Популярные запросы',
+            title: 'Популярные запросы',
             left: 16,
             top: 24,
             bottom: 8,
