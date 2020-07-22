@@ -9,6 +9,7 @@ import 'utils/themes.dart';
 import 'widget/appbar/account/account_screen.dart';
 import 'widget/appbar/login/login_screen.dart';
 import 'widget/container/main_container.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,12 @@ class AibolitApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: Themes.appTheme,
+      home: MainContainer(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       routes: {
         '/account': (context) => AccountScreen(),
         '/login': (context) => LoginScreen(),
@@ -31,7 +37,11 @@ class AibolitApp extends StatelessWidget {
         '/account/program': (context) => ProgramScreen(),
         '/account/notification': (context) => NotificationScreen(),
       },
-      home: MainContainer(),
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('ru', 'RU'),
+      ],
+      theme: Themes.appTheme,
     );
   }
 }

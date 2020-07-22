@@ -248,31 +248,48 @@ class AppWidgets {
     @required BuildContext context,
     @required String title,
     @required List<Widget> actions,
+    List<String> subtitles,
     bool isClear = false,
     bool isClose = false,
   }) =>
       Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: Themes.getTextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+          if (isClear)
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 12,
+                  right: 12,
                 ),
-                if (isClear)
-                  GestureDetector(
-                    child: Icon(Icons.clear),
-                    onTap: () => Navigator.pop(context),
+                child: GestureDetector(
+                  child: Icon(Icons.clear),
+                  onTap: () => Navigator.pop(context),
+                ),
+              ),
+            ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  AppWidgets.getText(
+                    title: title,
+                    bottom: 16,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimens.TEXT_SIZE_13,
                   ),
-              ],
+                  if (subtitles != null)
+                    ...List.generate(
+                      subtitles.length,
+                      (index) => AppWidgets.getText(
+                        title: subtitles[index],
+                        fontSize: Dimens.TEXT_SIZE_11,
+                      ),
+                    ),
+                ],
+              ),
             ),
           ),
           ...actions,
@@ -306,8 +323,9 @@ class AppWidgets {
         ),
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Text(
-            title,
+          child: AppWidgets.getText(
+            title: title,
+            fontSize: Dimens.TEXT_SIZE_11,
           ),
         ),
       );
