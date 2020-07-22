@@ -16,7 +16,7 @@ class NearestVisits extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         AppWidgets.getText(
-          'Ближайшие визиты',
+          title: 'Ближайшие визиты',
           top: 24,
           left: 16,
           bottom: 8,
@@ -25,7 +25,7 @@ class NearestVisits extends StatelessWidget {
           fontWeight: FontWeight.bold,
           fontColor: Colors.black87,
         ),
-//        AppWidgets.getText('Просмотр ближайших визитов будет доступен сразу после авторизации'),
+//        AppWidgets.getText(title: 'Просмотр ближайших визитов будет доступен сразу после авторизации'),
         ..._getNearestVisits(_visits),
       ],
     );

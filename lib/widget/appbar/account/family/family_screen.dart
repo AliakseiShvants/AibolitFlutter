@@ -2,11 +2,11 @@ import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import 'family_add_action.dart';
 import 'family_item.dart';
 
 class FamilyScreen extends StatefulWidget {
@@ -41,7 +41,16 @@ class _FamilyScreenState extends State<FamilyScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        AppWidgets.getText(_appBarTitle),
+                        AppWidgets.getText(
+                          title: _appBarTitle,
+                          top: 8,
+                          left: 16,
+                          bottom: 12,
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimens.TEXT_SIZE_11,
+                          fontColor: Colors.black54,
+                          isUpperCase: true,
+                        ),
                         ..._getFamily(family),
                       ],
                     ),
@@ -95,7 +104,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
     await Future.delayed(Duration(seconds: 3));
   }
 
-  List<FamilyAddAction> _getActions(List<String> list) => List.generate(
+  List<Widget> _getActions(List<String> list) => List.generate(
         list.length,
         (index) => AppWidgets.getModalItem(list[index]),
       );

@@ -20,7 +20,7 @@ class _PillsScreenState extends State<PillsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    drugController.addListener(() { });
+    drugController.addListener(() {});
 
     return Column(
       children: <Widget>[
@@ -33,33 +33,16 @@ class _PillsScreenState extends State<PillsScreen> {
               ),
             ),
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              color: Colors.white,
-              child: Theme(
-                data: Theme.of(context).copyWith(
-                  primaryColor: AppColors.grey500,
-                ),
-                child: TextField(
-                  cursorColor: AppColors.green,
-                  controller: drugController,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: AppColors.grey500,
-                      size: 28,
-                    ),
-                    isDense: true,
-                    focusedBorder: AppWidgets.textFieldBorder,
-                    enabledBorder: AppWidgets.textFieldBorder,
-                    hintText: 'Поиск (по полному названию)...',
-                  ),
-                  keyboardType: TextInputType.text,
-                  onTap: null,
-                ),
-              ),
+          child: AppWidgets.getInputField(
+            context: context,
+            borderColor: AppColors.grey500,
+            prefixIcon: Icon(
+              Icons.search,
+              color: AppColors.grey500,
+              size: 28,
             ),
+            hint: 'Поиск (по полному названию)...',
+            controller: null,
           ),
         ),
       ],

@@ -30,8 +30,17 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  Widget _loginWidget({Function callback}) => Padding(
-        padding: EdgeInsets.all(12),
+  Widget _loginWidget({
+    @required BuildContext context,
+    @required Function callback,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          top: 12,
+          left: 12,
+          right: 12,
+          bottom: MediaQuery.of(context).viewInsets.bottom,
+        ),
         child: Column(
           children: <Widget>[
             AppWidgets.getHeaderWithLogo(
@@ -69,25 +78,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: MaterialButton(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 16,
-                  ),
-                  disabledColor: AppColors.grey500,
-                  color: AppColors.green,
-                  child: Text(
-                    'Продолжить'.toUpperCase(),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: _isLoginButtonEnabled ? callback : null,
-                ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: double.infinity),
+              child: AppWidgets.getMaterialButton(
+                context: null,
+                top: 16,
+                title: 'Продолжить',
+                disabledColor: AppColors.grey500,
+                color: AppColors.green,
+                callback: _isLoginButtonEnabled ? callback : null,
               ),
             ),
           ],
@@ -101,28 +100,35 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.grey200,
       appBar: AppWidgets.getAppBar(context, _appBarTitle),
       body: SafeArea(
-        child: FutureBuilder<void>(
-          future: _isLoginEnable ? _login(context) : null,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  _loginWidget(),
-                  Container(
-                    color: AppColors.primaryGrey.withOpacity(0.8),
-                  ),
-                  CircularProgressIndicator(),
-                ],
-              );
-            } else {
-              return _loginWidget(callback: _enableLogin);
-            }
-          },
+        child: SingleChildScrollView(
+          child: FutureBuilder<void>(
+            future: _isLoginEnable ? _login(context) : null,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    _loginWidget(
+                      context: context,
+                      callback: null,
+                    ),
+                    Container(
+                      color: AppColors.primaryGrey.withOpacity(0.8),
+                    ),
+                    CircularProgressIndicator(),
+                  ],
+                );
+              } else {
+                return _loginWidget(
+                  context: context,
+                  callback: _enableLogin,
+                );
+              }
+            },
+          ),
         ),
       ),
     );

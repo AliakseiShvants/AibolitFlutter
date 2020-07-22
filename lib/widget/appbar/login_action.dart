@@ -15,11 +15,11 @@ class LoginAction extends StatefulWidget {
   final Function _logoutCallback;
 
   LoginAction(
-      this._user,
-      this._isLoggedIn,
-      this._isNeedToRefresh,
-      this._loginCallback,
-      this._logoutCallback,
+    this._user,
+    this._isLoggedIn,
+    this._isNeedToRefresh,
+    this._loginCallback,
+    this._logoutCallback,
   );
 
   @override
@@ -37,57 +37,57 @@ class _LoginActionState extends State<LoginAction> {
     } else {
       return widget._user == Data.guest
           ? MaterialButton(
-        child: Text(
-          Strings.LOGIN,
-          style: const TextStyle(color: Colors.white),
-        ),
-        onPressed: widget._loginCallback,
-      )
+              child: Text(
+                Strings.LOGIN,
+                style: const TextStyle(color: Colors.white),
+              ),
+              onPressed: widget._loginCallback,
+            )
           : FutureBuilder<bool>(
-        future: widget._isNeedToRefresh ? _needToRefresh() : null,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          var child;
-          var callback;
+              future: widget._isNeedToRefresh ? _needToRefresh() : null,
+              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+                var child;
+                var callback;
 
-          switch (snapshot.connectionState) {
-            case ConnectionState.none:
-              {
-                child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
-                callback = null;
+                switch (snapshot.connectionState) {
+                  case ConnectionState.none:
+                    {
+                      child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
+                      callback = null;
 
-                break;
-              }
-            case ConnectionState.waiting:
-              {
-                child = Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    AppWidgets.getCircleAvatar(16, Data.stubAsset),
-                    CircularProgressIndicator(
-                      valueColor:
-                      AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                  ],
+                      break;
+                    }
+                  case ConnectionState.waiting:
+                    {
+                      child = Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          AppWidgets.getCircleAvatar(16, Data.stubAsset),
+                          CircularProgressIndicator(
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.white),
+                          ),
+                        ],
+                      );
+                      callback = null;
+
+                      break;
+                    }
+                  case ConnectionState.done:
+                    {
+                      child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
+                      callback = widget._logoutCallback;
+
+                      break;
+                    }
+                }
+
+                return MaterialButton(
+                  child: child,
+                  onPressed: callback,
                 );
-                callback = null;
-
-                break;
-              }
-            case ConnectionState.done:
-              {
-                child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
-                callback = widget._logoutCallback;
-
-                break;
-              }
-          }
-
-          return MaterialButton(
-            child: child,
-            onPressed: callback,
-          );
-        },
-      );
+              },
+            );
     }
   }
 
