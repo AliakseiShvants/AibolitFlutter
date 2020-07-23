@@ -15,71 +15,86 @@ class ClinicItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
-      child: ClipPath(
-        clipper: ShapeBorderClipper(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2),
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(
+        context,
+        '/clinic',
+        arguments: <String, Clinic>{
+          'clinic': _clinic,
+        },
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 4),
+        child: ClipPath(
+          clipper: ShapeBorderClipper(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(2),
+            ),
           ),
-        ),
-        child: Container(
-          decoration: AppWidgets.getColorBorder(
-            borderColor:
-                _isColoredBorder(_clinic) ? AppColors.green : AppColors.grey400,
-            isRight: true,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              AppWidgets.bookmarkLogo(_clinic),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
-                  vertical: 16,
+          child: Container(
+            decoration: AppWidgets.getColorBorder(
+              borderColor: _isColoredBorder(_clinic)
+                  ? AppColors.green
+                  : AppColors.grey400,
+              isRight: true,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AppWidgets.getCircleAvatarWithLogo(
+                  clinic: _clinic,
+                  avatarRadius: 28,
+                  padding: 12,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    AppWidgets.getText(
-                      title: _clinic.title,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimens.TEXT_SIZE_13,
-                      maxLines: 2,
-                      isExpanded: true,
-                      isUpperCase: false,
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 16,
                     ),
-                    AppWidgets.getText(
-                      title: '${_clinic.town} ${_clinic.address}',
-                      fontSize: Dimens.TEXT_SIZE_11,
-                      top: 8,
-                      bottom: 8,
-                      isUpperCase: false,
-                    ),
-                    Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        _getIconText(
-                          Icons.access_time,
-                          AppColors.PRIMARY_COLOR,
-                          '8:00 - 20:00',
-                          size: 20,
+                        AppWidgets.getText(
+                          title: _clinic.title,
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimens.TEXT_SIZE_13,
+                          maxLines: 2,
+                          isExpanded: true,
+                          isUpperCase: false,
                         ),
-                        SizedBox(
-                          width: 32,
+                        AppWidgets.getText(
+                          title: '${_clinic.town} ${_clinic.address}',
+                          fontSize: Dimens.TEXT_SIZE_11,
+                          top: 8,
+                          bottom: 8,
+                          isUpperCase: false,
                         ),
-                        _getIconText(
-                          MaterialIcons.chat,
-                          AppColors.green,
-                          'Нет отзывов',
-                          size: 20,
+                        Row(
+                          children: <Widget>[
+                            _getIconText(
+                              Icons.access_time,
+                              AppColors.PRIMARY_COLOR,
+                              '8:00 - 20:00',
+                              size: 20,
+                            ),
+                            SizedBox(
+                              width: 32,
+                            ),
+                            _getIconText(
+                              MaterialIcons.chat,
+                              AppColors.green,
+                              'Нет отзывов',
+                              size: 20,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

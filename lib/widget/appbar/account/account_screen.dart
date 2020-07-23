@@ -52,17 +52,20 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppWidgets.getAppBar(context, _appBarTitle),
+      appBar: AppWidgets.getAppBar(
+        context: context,
+        title: _appBarTitle,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               _accountHeader,
               GestureDetector(
-                child: InfoItem('Моя семья'),
-                onTap: () => Navigator.pushNamed(context, '/account/family'),
+                child: InfoItem('Моя семья',),
+                onTap: () => Navigator.pushNamed(context, '/account/family',),
               ),
-              InfoItem('Документы'),
+              InfoItem('Документы',),
               InfoItem(
                 'Мой аккаунт',
                 color: AppColors.grey200,

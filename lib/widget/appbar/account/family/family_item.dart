@@ -27,8 +27,8 @@ class FamilyItem extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
         leading: AppWidgets.getCircleAvatar(
-          24,
-          _user.avatar,
+          radius: 24,
+          asset: _user.avatar,
         ),
         title: AppWidgets.getText(
           title: Util.getFullName(_user),

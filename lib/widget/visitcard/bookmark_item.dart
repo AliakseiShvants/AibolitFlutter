@@ -3,7 +3,6 @@ import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
-import 'package:AibolitFlutter/utils/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -24,7 +23,10 @@ class BookmarkItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              AppWidgets.bookmarkLogo(_clinic),
+              AppWidgets.getCircleAvatarWithLogo(
+                clinic: _clinic,
+                avatarRadius: 28,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Text(

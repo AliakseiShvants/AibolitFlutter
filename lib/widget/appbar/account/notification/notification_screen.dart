@@ -21,7 +21,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppWidgets.getAppBar(context, _appBarTitle),
+      appBar: AppWidgets.getAppBar(
+        context: context,
+        title: _appBarTitle,
+      ),
       body: SafeArea(
         child: Container(
           height: double.infinity,

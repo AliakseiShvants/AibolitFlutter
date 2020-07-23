@@ -11,5 +11,18 @@ class Clinic {
   @JsonKey(name: 'TOWN_NAME')
   final String town;
 
-  Clinic({this.logo, this.title, this.address, this.town});
+  @JsonKey(name: 'GEO_X')
+  final String x;
+
+  @JsonKey(name: 'GEO_Y')
+  final String y;
+
+  Clinic({
+    this.logo,
+    this.title,
+    this.address,
+    this.town,
+    this.x,
+    this.y,
+  });
 }

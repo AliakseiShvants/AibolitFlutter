@@ -24,7 +24,10 @@ class _FamilyScreenState extends State<FamilyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppWidgets.getAppBar(context, _appBarTitle),
+      appBar: AppWidgets.getAppBar(
+        context: context,
+        title: _appBarTitle,
+      ),
       body: SafeArea(
         child: Container(
           color: AppColors.grey200,

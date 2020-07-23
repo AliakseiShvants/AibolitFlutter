@@ -51,8 +51,8 @@ class NearestVisit extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       AppWidgets.getCircleAvatar(
-                        24,
-                        _visit.owner.avatar,
+                        radius: 24,
+                        asset: _visit.owner.avatar,
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 4),
@@ -95,7 +95,8 @@ class NearestVisit extends StatelessWidget {
                                 subtitles: [
                                   _visit.center.title,
                                   '${_visit.center.town} ${_visit.center.address}',
-                                  DateFormat('dd MMMM, HH:mm').format(_visit.date),
+                                  DateFormat('dd MMMM, HH:mm')
+                                      .format(_visit.date),
                                 ],
                                 isClear: true,
                                 actions: List.generate(

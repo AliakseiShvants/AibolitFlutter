@@ -25,8 +25,11 @@ class AppWidgets {
     SettingsScreen()
   ];
 
-  static getAppBar(BuildContext context, String title,
-          {List<Widget> actions}) =>
+  static getAppBar({
+    @required BuildContext context,
+    @required String title,
+    List<Widget> actions,
+  }) =>
       AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
@@ -47,7 +50,10 @@ class AppWidgets {
   static getHeaderWithLogo(String title, String msg, double flex) => SizedBox(
         width: double.infinity,
         child: Container(
-          padding: const EdgeInsets.only(top: 16, bottom: 24),
+          padding: const EdgeInsets.only(
+            top: 16,
+            bottom: 24,
+          ),
           color: AppColors.grey200,
           child: Column(
             children: <Widget>[
@@ -90,14 +96,71 @@ class AppWidgets {
         ),
       );
 
-  static Widget getCircleAvatar(double radius, String asset) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundImage: AssetImage(asset),
+  static Widget getCircleAvatar({
+    @required double radius,
+    String asset,
+    Widget child,
+    Function callback,
+  }) {
+    return GestureDetector(
+      onTap: callback,
+      child: CircleAvatar(
+        radius: radius,
+        backgroundImage: asset != null ? AssetImage(asset) : AppWidgets.stubImg,
+        child: child,
+      ),
     );
   }
 
-  static Widget bookmarkLogo(Clinic clinic, {double padding = 12}) => Padding(
+  static Widget getText({
+    @required String title,
+    double bottom = 0,
+    TextDecoration decoration = TextDecoration.none,
+    fontColor: Colors.black87,
+    fontSize: Dimens.TEXT_SIZE_12,
+    fontWeight: FontWeight.normal,
+    bool isExpanded = false,
+    bool isUpperCase = false,
+    double left = 0,
+    double top = 0,
+    int maxLines = 10,
+    TextOverflow overflow = TextOverflow.ellipsis,
+    double right = 0,
+    softWrap: true,
+    TextAlign textAlign = TextAlign.start,
+    Function callback,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: GestureDetector(
+          onTap: callback,
+          child: Text(
+            isUpperCase ? title.toUpperCase() : title,
+            maxLines: maxLines,
+            overflow: overflow,
+            textAlign: textAlign,
+            style: Themes.getTextStyle(
+              color: fontColor,
+              decoration: decoration,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
+            softWrap: softWrap,
+          ),
+        ),
+      );
+
+  static Widget getCircleAvatarWithLogo({
+    @required Clinic clinic,
+    double avatarRadius,
+    double padding = 0,
+  }) =>
+      Padding(
         padding: EdgeInsets.all(padding),
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -105,59 +168,17 @@ class AppWidgets {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: AppWidgets.getCircleAvatar(
-                28,
-                clinic.logo,
+                radius: avatarRadius,
+                asset: clinic.logo,
               ),
             ),
             Opacity(
               opacity: Util.getLogoOpacityByClinic(clinic),
-              child: Image(
-                image: AppWidgets.programLogo,
-              ),
+              child: Image(image: AppWidgets.programLogo),
             ),
           ],
         ),
       );
-
-  static Widget getText({
-    String title,
-    double left = 0,
-    double top = 0,
-    double bottom = 0,
-    double right = 0,
-    fontSize: Dimens.TEXT_SIZE_12,
-    fontWeight: FontWeight.normal,
-    fontColor: Colors.black87,
-    int maxLines = 10,
-    TextOverflow overflow = TextOverflow.fade,
-    TextAlign textAlign = TextAlign.start,
-    bool isUpperCase = false,
-    bool isExpanded = false,
-    softWrap: true,
-  }) {
-    final child = Padding(
-      padding: EdgeInsets.only(
-        left: left,
-        top: top,
-        bottom: bottom,
-        right: right,
-      ),
-      child: Text(
-        isUpperCase ? title.toUpperCase() : title,
-        maxLines: maxLines,
-        overflow: overflow,
-        textAlign: textAlign,
-        style: Themes.getTextStyle(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: fontColor,
-        ),
-        softWrap: softWrap,
-      ),
-    );
-
-    return child;
-  }
 
   static BoxDecoration getColorBorder({
     Color color = Colors.white,
@@ -425,10 +446,18 @@ class AppWidgets {
   static Widget getFlatButton({
     @required BuildContext context,
     @required String title,
-    double left = 0,
-    double top = 0,
+    @required Color color,
+    @required Color disabledColor,
+    @required Function callback,
     double bottom = 0,
+    bool isUpperCase = true,
+    FontWeight fontWeight = FontWeight.normal,
+    double left = 0,
+
+
     double right = 0,
+    ShapeBorder shape,
+    double top = 0,
   }) =>
       Padding(
         padding: EdgeInsets.only(
@@ -438,11 +467,15 @@ class AppWidgets {
           right: right,
         ),
         child: FlatButton(
+          color: color,
+          disabledColor: disabledColor,
+          shape: shape,
           child: AppWidgets.getText(
-            title: title.toUpperCase(),
+            title: isUpperCase? title.toUpperCase() : title,
             fontSize: Dimens.TEXT_SIZE_13,
+            fontWeight: fontWeight,
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: callback,
         ),
       );
 
@@ -473,6 +506,31 @@ class AppWidgets {
             fontColor: Colors.white,
           ),
           onPressed: callback,
+        ),
+      );
+
+  static Widget getClickableIcon({
+    @required IconData data,
+    @required Function callback,
+    double top = 0,
+    double right = 0,
+    double bottom = 0,
+    double left = 0,
+    Color iconColor = Colors.black54,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          right: right,
+          bottom: bottom,
+        ),
+        child: GestureDetector(
+          child: Icon(
+            data,
+            color: iconColor,
+          ),
+          onTap: callback,
         ),
       );
 }

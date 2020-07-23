@@ -58,7 +58,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
                   fontSize: Dimens.TEXT_SIZE_10,
                 ),
               ),
-              _getClickableIcon(
+              AppWidgets.getClickableIcon(
                 data: iconData,
                 callback: _reverseBookmark,
                 iconColor: _isBookmarkEnabled
@@ -90,7 +90,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
                   ),
                 ),
               ),
-              _getClickableIcon(
+              AppWidgets.getClickableIcon(
                 data: Icons.sort,
                 callback: () => showModalBottomSheet(
                   context: context,
@@ -146,19 +146,6 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
     list.length,
         (index) => ClinicItem(list[index]),
   );
-
-  Widget _getClickableIcon({
-    IconData data,
-    Function callback,
-    Color iconColor = Colors.black54,
-  }) =>
-      GestureDetector(
-        child: Icon(
-          data,
-          color: iconColor,
-        ),
-        onTap: callback,
-      );
 
   void _reverseBookmark() {
     setState(() {

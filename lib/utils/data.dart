@@ -30,26 +30,34 @@ class Data {
     title: 'МЦ "Лодэ" на Замковой',
     town: 'Гродно',
     address: 'ул. Замковая, д. 4',
+    x: "53.6774916",
+    y: '23.8273426',
   );
   static Clinic clinic2 = Clinic(
     logo: 'assets/img/clinic/poli.jpg',
     title: 'МЦ "Лодэ" на Полиграфистов',
     town: 'Гродно',
     address: 'ул. Полиграфистов, д. 2',
+    x: "53.6747074",
+    y: '23.8399295',
   );
   static Clinic clinic3 = Clinic(
     logo: 'assets/img/hospitalwithoutphoto.png',
-    title: 'УЗ Гродненский областной клинический перинатальный центр',
+    title: 'УЗ "Гродненский областной клинический перинатальный центр"',
     town: 'Гродно',
     address: 'ул. Горького, д. 77',
+    x: "23.8212550000",
+    y: '53.6973020000',
   );
   static Clinic clinic4 = Clinic(
     logo: 'assets/img/hospitalwithoutphoto.png',
     title: 'МЦ "МедХаус"',
     town: 'Гродно',
     address: 'ул. Брикеля, 25/2-2 этаж',
+    x: "23.8212550000",
+    y: '53.6973020000',
   );
-  static List<Clinic> clinicBookmarks = [];
+  static List<Clinic> clinicBookmarks = [clinic1];
   static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4,];
   static List<Clinic> epamClinics = [clinic1, clinic2];
 
