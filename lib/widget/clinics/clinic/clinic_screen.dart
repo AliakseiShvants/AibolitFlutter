@@ -47,10 +47,10 @@ class _ClinicScreenState extends State<ClinicScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              OnlineBunner(),
+              OnlineBunner(isOnline: _clinic.isOnline,),
               ClinicHeader(
                 clinic: _clinic,
-              )
+              ),
             ],
           ),
         ),

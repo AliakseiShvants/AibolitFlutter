@@ -1,23 +1,27 @@
+import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:flutter/widgets.dart';
 
 class OnlineBunner extends StatelessWidget {
-  final String title = 'Эта клиника поддерживает онлайн-запись';
+  final bool isOnline;
+
+  OnlineBunner({Key key, this.isOnline = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.green100,
-        border: Border(
-          bottom: BorderSide(color: AppColors.green),
-        )
+          color: isOnline ? AppColors.green100 : AppColors.grey200,
+          border: Border(
+            bottom: BorderSide(
+              color: isOnline ? AppColors.green : AppColors.grey400,),
+          )
       ),
       child: Center(
         child: AppWidgets.getText(
-          title: title,
+          title: _getTitle(isOnline),
           fontColor: AppColors.primaryGrey,
           top: 12,
           bottom: 12,
@@ -25,4 +29,9 @@ class OnlineBunner extends StatelessWidget {
       ),
     );
   }
+
+  String _getTitle(bool isOnline) =>
+      isOnline
+          ? 'Эта клиника поддерживает онлайн-запись'
+          : 'Эта клиника не поддерживает онлайн-запись';
 }

@@ -30,6 +30,7 @@ class Data {
     title: 'МЦ "Лодэ" на Замковой',
     town: 'Гродно',
     address: 'ул. Замковая, д. 4',
+    isOnline: true,
     x: "53.6774916",
     y: '23.8273426',
   );
@@ -38,6 +39,7 @@ class Data {
     title: 'МЦ "Лодэ" на Полиграфистов',
     town: 'Гродно',
     address: 'ул. Полиграфистов, д. 2',
+    isOnline: true,
     x: "53.6747074",
     y: '23.8399295',
   );
@@ -46,16 +48,16 @@ class Data {
     title: 'УЗ "Гродненский областной клинический перинатальный центр"',
     town: 'Гродно',
     address: 'ул. Горького, д. 77',
-    x: "23.8212550000",
-    y: '53.6973020000',
+    x: "53.7002635",
+    y: '23.81894',
   );
   static Clinic clinic4 = Clinic(
     logo: 'assets/img/hospitalwithoutphoto.png',
     title: 'МЦ "МедХаус"',
     town: 'Гродно',
     address: 'ул. Брикеля, 25/2-2 этаж',
-    x: "23.8212550000",
-    y: '53.6973020000',
+    x: "53.6971877",
+    y: '23.8515593',
   );
   static List<Clinic> clinicBookmarks = [clinic1];
   static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4,];

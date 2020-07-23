@@ -17,6 +17,8 @@ class Clinic {
   @JsonKey(name: 'GEO_Y')
   final String y;
 
+  final bool isOnline;
+
   Clinic({
     this.logo,
     this.title,
@@ -24,5 +26,6 @@ class Clinic {
     this.town,
     this.x,
     this.y,
+    this.isOnline = false,
   });
 }
