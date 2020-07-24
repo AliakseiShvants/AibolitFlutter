@@ -1,20 +1,18 @@
-import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ProgramWidget extends StatefulWidget {
+class ProgramModal extends StatefulWidget {
 
   @override
-  _ProgramWidgetState createState() => _ProgramWidgetState();
+  _ProgramModalState createState() => _ProgramModalState();
 }
 
-class _ProgramWidgetState extends State<ProgramWidget> {
+class _ProgramModalState extends State<ProgramModal> {
   final List<Program> _programs = Data.epamPrograms;
 
   int _programIndex = 0;

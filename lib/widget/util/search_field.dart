@@ -3,8 +3,12 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class SearchClinic extends StatelessWidget {
+class SearchField extends StatelessWidget {
+  final String hintText;
+
   var clinicController = TextEditingController();
+
+  SearchField({Key key, this.hintText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +30,7 @@ class SearchClinic extends StatelessWidget {
             isDense: true,
             focusedBorder: AppWidgets.textFieldBorder,
             enabledBorder: AppWidgets.textFieldBorder,
-            hintText: 'Поиск медцентра ...',
+            hintText: hintText,
           ),
           keyboardType: TextInputType.text,
           onTap: null,

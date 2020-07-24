@@ -9,9 +9,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class ClinicItem extends StatelessWidget {
-  final Clinic _clinic;
+  final Clinic clinic;
 
-  const ClinicItem(this._clinic);
+  const ClinicItem({this.clinic});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,9 @@ class ClinicItem extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
         context,
         '/clinic',
-        arguments: <String, Clinic>{
-          'clinic': _clinic,
+        arguments: <String, dynamic>{
+          'clinic': clinic,
+          'title' : 'Медцентр',
         },
       ),
       child: Padding(
@@ -33,7 +34,7 @@ class ClinicItem extends StatelessWidget {
           ),
           child: Container(
             decoration: AppWidgets.getColorBorder(
-              borderColor: _isColoredBorder(_clinic)
+              borderColor: _isColoredBorder(clinic)
                   ? AppColors.green
                   : AppColors.grey400,
               isRight: true,
@@ -42,7 +43,7 @@ class ClinicItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 AppWidgets.getCircleAvatarWithLogo(
-                  clinic: _clinic,
+                  clinic: clinic,
                   avatarRadius: 28,
                   padding: 12,
                 ),
@@ -56,16 +57,16 @@ class ClinicItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         AppWidgets.getText(
-                          title: _clinic.title,
+                          title: clinic.title,
                           fontWeight: FontWeight.bold,
-                          fontSize: Dimens.TEXT_SIZE_13,
+                          fontSize: Dimens.TEXT_SIZE_15,
                           maxLines: 2,
+                          softWrap: false,
                           isExpanded: true,
                           isUpperCase: false,
                         ),
                         AppWidgets.getText(
-                          title: '${_clinic.town} ${_clinic.address}',
-                          fontSize: Dimens.TEXT_SIZE_11,
+                          title: '${clinic.town} ${clinic.address}',
                           top: 8,
                           bottom: 8,
                           isUpperCase: false,
@@ -115,7 +116,6 @@ class ClinicItem extends StatelessWidget {
           AppWidgets.getText(
             title: text,
             left: 8,
-            fontSize: Dimens.TEXT_SIZE_11,
           ),
         ],
       );

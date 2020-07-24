@@ -144,7 +144,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
 
   List<ClinicItem> _getClinics(List<Clinic> list) => List.generate(
     list.length,
-        (index) => ClinicItem(list[index]),
+        (index) => ClinicItem(clinic: list[index]),
   );
 
   void _reverseBookmark() {

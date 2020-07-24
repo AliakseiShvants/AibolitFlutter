@@ -59,8 +59,16 @@ class Data {
     x: "53.6971877",
     y: '23.8515593',
   );
+  static Clinic clinic5 = Clinic(
+    logo: 'assets/img/hospitalwithoutphoto.png',
+    title: 'УЗ "Гродненский областной эндокринологический диспансер"',
+    town: 'Гродно',
+    address: 'ул. Болдина, 11',
+    x: "53.6971877",
+    y: '23.8515593',
+  );
   static List<Clinic> clinicBookmarks = [clinic1];
-  static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4,];
+  static List<Clinic> clinics = [clinic1, clinic2, clinic3, clinic4, clinic5];
   static List<Clinic> epamClinics = [clinic1, clinic2];
 
   static User guest = User(
@@ -108,7 +116,7 @@ class Data {
   static Doctor doctor1 = Doctor(
     firstName: 'Юлия',
     lastName: 'Савицкая',
-    middleName: 'Валентиновна',
+    middleName: 'Валентиновна-Валентиновна',
     specialityLong: 'врач-стоматолог-терапевт',
     speciality: 'врач-стоматолог',
     centers: [clinic1],

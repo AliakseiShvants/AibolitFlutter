@@ -6,22 +6,23 @@ import 'package:AibolitFlutter/widget/clinics/clinic/clinic_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'online_bunner.dart';
+import '../clinics/clinic/online_bunner.dart';
 
-class ClinicScreen extends StatefulWidget {
+class SingleItemScreen extends StatefulWidget {
+
   @override
-  _ClinicScreenState createState() => _ClinicScreenState();
+  _SingleItemScreenState createState() => _SingleItemScreenState();
 }
 
-class _ClinicScreenState extends State<ClinicScreen> {
-  static String _appBarTitle = 'Медцентр';
-
+class _SingleItemScreenState extends State<SingleItemScreen> {
   Clinic _clinic;
+  String _appBarTitle;
 
   @override
   Widget build(BuildContext context) {
     final Map args = ModalRoute.of(context).settings.arguments as Map;
     _clinic = args != null ? args['clinic'] : null;
+    _appBarTitle = args != null ? args['title'] : '';
 
     return Scaffold(
       appBar: AppWidgets.getAppBar(
@@ -47,7 +48,9 @@ class _ClinicScreenState extends State<ClinicScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              OnlineBunner(isOnline: _clinic.isOnline,),
+              OnlineBunner(
+                isOnline: _clinic.isOnline,
+              ),
               ClinicHeader(
                 clinic: _clinic,
               ),

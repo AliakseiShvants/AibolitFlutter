@@ -5,6 +5,7 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:assorted_layout_widgets/assorted_layout_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -34,9 +35,8 @@ class NearestVisit extends StatelessWidget {
           ),
         ),
         child: Container(
-          decoration: Util.isFuture(_visit.date)
-              ? AppWidgets.getColorBorder(borderColor: AppColors.PRIMARY_COLOR)
-              : null,
+          decoration:
+              AppWidgets.getColorBorder(borderColor: AppColors.PRIMARY_COLOR),
           child: Row(
             children: <Widget>[
               Padding(
@@ -58,7 +58,6 @@ class NearestVisit extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 4),
                         child: AppWidgets.getText(
                           title: _getVisitOwnerName(_visit.owner),
-                          fontSize: Dimens.TEXT_SIZE_11,
                         ),
                       ),
                     ],
@@ -66,15 +65,16 @@ class NearestVisit extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 16,
-                        right: 16,
-                      ),
-                      child: Row(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 16,
+                    right: 16,
+                    bottom: 16,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
                         children: <Widget>[
                           Expanded(
                             child: AppWidgets.getText(
@@ -83,7 +83,7 @@ class NearestVisit extends StatelessWidget {
                                 _visit.doctor.speciality,
                               ),
                               fontWeight: FontWeight.bold,
-                              fontSize: Dimens.TEXT_SIZE_14,
+                              fontSize: Dimens.TEXT_SIZE_15,
                             ),
                           ),
                           GestureDetector(
@@ -112,22 +112,18 @@ class NearestVisit extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                    AppWidgets.getText(
-                      title:
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8, right: 12,),
+                        child: TextOneLine(
                           '${_visit.doctor.lastName} ${_visit.doctor.firstName} ${_visit.doctor.middleName}',
-                      fontSize: Dimens.TEXT_SIZE_11,
-                      right: 16,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    AppWidgets.getText(
-                      title: '${_visit.doctor.speciality}',
-                      fontSize: Dimens.TEXT_SIZE_11,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: Row(
+                          style: TextStyle(fontSize: Dimens.TEXT_SIZE_11),
+                        ),
+                      ),
+                      AppWidgets.getText(
+                        title: '${_visit.doctor.speciality}',
+                        fontSize: Dimens.TEXT_SIZE_11,
+                      ),
+                      Row(
                         children: <Widget>[
                           Expanded(
                             child: AppWidgets.getText(
@@ -136,7 +132,6 @@ class NearestVisit extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.only(right: 16),
                             alignment: Alignment.centerRight,
                             child: Opacity(
                               opacity: Util.getLogoOpacity(_visit),
@@ -147,8 +142,8 @@ class NearestVisit extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

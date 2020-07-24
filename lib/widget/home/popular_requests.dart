@@ -20,7 +20,7 @@ class PopularRequests extends StatelessWidget {
             top: 24,
             bottom: 8,
             isUpperCase: true,
-            fontSize: Dimens.TEXT_SIZE_10,
+            fontSize: Dimens.TEXT_SIZE_11,
             fontWeight: FontWeight.bold,
             fontColor: Colors.black87,
           ),

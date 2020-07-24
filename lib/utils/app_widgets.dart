@@ -126,7 +126,7 @@ class AppWidgets {
     int maxLines = 10,
     TextOverflow overflow = TextOverflow.ellipsis,
     double right = 0,
-    softWrap: true,
+    softWrap = true,
     TextAlign textAlign = TextAlign.start,
     Function callback,
   }) =>

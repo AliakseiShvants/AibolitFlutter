@@ -1,7 +1,7 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/widget/clinics/clinics_widget.dart';
-import 'package:AibolitFlutter/widget/clinics/program_widget.dart';
-import 'package:AibolitFlutter/widget/clinics/search_clinic.dart';
+import 'package:AibolitFlutter/widget/util/program_modal.dart';
+import 'package:AibolitFlutter/widget/util/search_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,7 +15,7 @@ class ClinicsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              ProgramWidget(),
+              ProgramModal(),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 12,
@@ -24,7 +24,9 @@ class ClinicsScreen extends StatelessWidget {
                 ),
                 child: Column(
                   children: <Widget>[
-                    SearchClinic(),
+                    SearchField(
+                      hintText: 'Поиск медцентра ...',
+                    ),
                     ClinicsWidget(),
                   ],
                 ),
