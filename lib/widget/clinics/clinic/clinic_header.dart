@@ -83,7 +83,7 @@ class ClinicHeader extends StatelessWidget {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: AppWidgets.getMaterialButton(
               context: context,
-              title: 'выбрать врача',
+              title: clinic.isOnline ? 'выбрать врача' : 'записаться в медцентр',
               callback: null,
               disabledColor: AppColors.green,
               color: AppColors.green,

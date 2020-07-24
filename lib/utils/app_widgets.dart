@@ -410,7 +410,13 @@ class AppWidgets {
   static Widget getControlButtonsRow({
     @required BuildContext context,
     @required String primary,
+    @required Function primaryCallback,
+    @required Color primaryColor,
+    Color primaryDisabledColor,
     @required String secondary,
+    @required Function secondaryCallback,
+    @required Color secondaryColor,
+    Color secondaryDisabledColor,
     double left = 0,
     double top = 0,
     double bottom = 0,
@@ -430,6 +436,9 @@ class AppWidgets {
               child: AppWidgets.getFlatButton(
                 context: context,
                 title: secondary,
+                color: secondaryColor,
+                disabledColor: secondaryDisabledColor != null ? secondaryDisabledColor : secondaryColor,
+                callback: secondaryCallback,
               ),
             ),
             Expanded(
@@ -437,6 +446,9 @@ class AppWidgets {
               child: AppWidgets.getMaterialButton(
                 context: context,
                 title: primary,
+                color: primaryColor,
+                disabledColor: primaryDisabledColor != null ? primaryDisabledColor : primaryColor,
+                callback: primaryCallback,
               ),
             ),
           ],
