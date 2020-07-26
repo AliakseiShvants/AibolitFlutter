@@ -13,6 +13,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.all(12),
       color: Colors.white,
       child: Theme(
         data: Theme.of(context).copyWith(

@@ -32,8 +32,7 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
   ];
 
   bool _isBookmarkEnabled = false;
-  int _typeIndex = 0;
-  int _sortIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,70 +42,6 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
 
     return Column(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 16,
-            bottom: 8,
-          ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: AppWidgets.getText(
-                  title: _getPluralClinicsCount(list.length),
-                  left: 8,
-                  isUpperCase: true,
-                  fontSize: Dimens.TEXT_SIZE_10,
-                ),
-              ),
-              AppWidgets.getClickableIcon(
-                data: iconData,
-                callback: _reverseBookmark,
-                iconColor: _isBookmarkEnabled
-                    ? AppColors.PRIMARY_COLOR
-                    : Colors.black54,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                child: GestureDetector(
-                  onTap: () => showModalBottomSheet(
-                    context: context,
-                    builder: (context) => AppWidgets.getActionsModal(
-                      context: context,
-                      title: 'Тип медцентра',
-                      currentIndex: _typeIndex,
-                      list: _clinicTypes,
-                      isClose: true,
-                      callback: _chooseType,
-                    ),
-                  ),
-                  child: Transform.rotate(
-                    angle: 3.14 / 2,
-                    child: Icon(
-                      SimpleLineIcons.equalizer,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ),
-              ),
-              AppWidgets.getClickableIcon(
-                data: Icons.sort,
-                callback: () => showModalBottomSheet(
-                  context: context,
-                  builder: (context) => AppWidgets.getActionsModal(
-                    context: context,
-                    title: 'Сортировать список медцентров',
-                    currentIndex: _sortIndex,
-                    list: _sortParameters,
-                    isClose: true,
-                    callback: _chooseSortParameter,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
         if (list.length == 0)
           Column(
             children: <Widget>[
@@ -147,41 +82,9 @@ class _ClinicsWidgetState extends State<ClinicsWidget> {
         (index) => ClinicItem(clinic: list[index]),
   );
 
-  void _reverseBookmark() {
-    setState(() {
-      _isBookmarkEnabled = !_isBookmarkEnabled;
-    });
-  }
 
-  String _getPluralClinicsCount(int count) {
-    String result;
 
-    if (count == 0) {
-      result = 'нет медцентров';
-    } else if (count == 1) {
-      result = '$count медцентр';
-    } else if (count > 4) {
-      result = '$count медцентров';
-    } else {
-      result = '$count медцентра';
-    }
 
-    return result;
-  }
 
-  void _chooseType(int index) {
-    setState(() {
-      _typeIndex = index;
-    });
 
-    Navigator.pop(context);
-  }
-
-  void _chooseSortParameter(int index) {
-    setState(() {
-      _sortIndex = index;
-    });
-
-    Navigator.pop(context);
-  }
 }

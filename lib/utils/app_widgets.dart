@@ -1,7 +1,7 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
 import 'package:AibolitFlutter/utils/util.dart';
-import 'package:AibolitFlutter/widget/clinics/clinics_screen.dart';
+import 'package:AibolitFlutter/widget/clinics/clinic_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,7 +19,7 @@ class AppWidgets {
 
   static final List<Widget> bottomNavWidgets = [
     HomeScreen(),
-    ClinicsScreen(),
+    ClinicSearchScreen(),
     PillsScreen(),
     VisitCardScreen(),
     SettingsScreen()
@@ -307,6 +307,7 @@ class AppWidgets {
                 ),
               ),
             ),
+          if (!isClear) SizedBox(height: 16,),
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Center(
@@ -316,7 +317,7 @@ class AppWidgets {
                     title: title,
                     bottom: 16,
                     fontWeight: FontWeight.bold,
-                    fontSize: Dimens.TEXT_SIZE_13,
+                    fontSize: Dimens.TEXT_SIZE_14,
                   ),
                   if (subtitles != null)
                     ...List.generate(
