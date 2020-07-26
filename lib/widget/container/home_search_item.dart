@@ -1,6 +1,6 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
-import 'package:AibolitFlutter/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,10 +15,12 @@ class HomeSearchItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Flexible(
+      flex: 3,
       child: AspectRatio(
         aspectRatio: 4 / 3,
         child: Container(
+          padding: const EdgeInsets.all(8.0),
           decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(
@@ -30,16 +32,11 @@ class HomeSearchItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(_assetPath),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
-                child: Text(
-                  _title,
-                  style: Themes.getTextStyle(
-                    fontSize: Dimens.TEXT_SIZE_13,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
+              AppWidgets.getText(
+                title: _title,
+                fontSize: Dimens.TEXT_SIZE_13,
+                fontWeight: FontWeight.bold,
+                top: 8.0,
               ),
             ],
           ),

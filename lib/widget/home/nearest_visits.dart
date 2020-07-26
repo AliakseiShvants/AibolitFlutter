@@ -42,6 +42,8 @@ class NearestVisits extends StatelessWidget {
     );
   }
 
-  List<NearestVisit> _getNearestVisits(List<Visit> list) =>
-      List.generate(list.length, (index) => NearestVisit(list[index]));
+  List<Widget> _getNearestVisits(List<Visit> list) => List.generate(
+        list.length,
+        (index) => NearestVisit(list[index]),
+      );
 }

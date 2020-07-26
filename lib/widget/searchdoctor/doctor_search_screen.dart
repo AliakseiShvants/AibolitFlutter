@@ -17,6 +17,30 @@ class SearchDoctorScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               ProgramModal(),
+              SizedBox(
+                width: 200,
+                height: 100,
+                child: Container(
+                  margin: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.black)
+                  ),
+                  child: Row(
+                    children: [Container(
+//                      color: Colors.red,
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.horizontal(
+                left: Radius.circular(10),
+              ),
+            ),
+                        width: 10,
+                    )],
+                  ),
+                ),
+              ),
             ],
           ),
         ),

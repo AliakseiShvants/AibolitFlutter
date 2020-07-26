@@ -180,6 +180,23 @@ class AppWidgets {
         ),
       );
 
+  static Widget getColoredContainer({
+    @required Color color,
+    bool isLeft = true,
+    double radius = 4,
+    double width = 4,
+  }) =>
+      Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.horizontal(
+            left: isLeft ? Radius.circular(radius) : Radius.zero,
+            right: !isLeft ? Radius.circular(radius) : Radius.zero,
+          ),
+        ),
+        width: width,
+      );
+
   static BoxDecoration getColorBorder({
     Color color = Colors.white,
     bool isRight = false,
@@ -437,7 +454,9 @@ class AppWidgets {
                 context: context,
                 title: secondary,
                 color: secondaryColor,
-                disabledColor: secondaryDisabledColor != null ? secondaryDisabledColor : secondaryColor,
+                disabledColor: secondaryDisabledColor != null
+                    ? secondaryDisabledColor
+                    : secondaryColor,
                 callback: secondaryCallback,
               ),
             ),
@@ -447,7 +466,9 @@ class AppWidgets {
                 context: context,
                 title: primary,
                 color: primaryColor,
-                disabledColor: primaryDisabledColor != null ? primaryDisabledColor : primaryColor,
+                disabledColor: primaryDisabledColor != null
+                    ? primaryDisabledColor
+                    : primaryColor,
                 callback: primaryCallback,
               ),
             ),
@@ -465,8 +486,6 @@ class AppWidgets {
     bool isUpperCase = true,
     FontWeight fontWeight = FontWeight.normal,
     double left = 0,
-
-
     double right = 0,
     ShapeBorder shape,
     double top = 0,
@@ -483,7 +502,7 @@ class AppWidgets {
           disabledColor: disabledColor,
           shape: shape,
           child: AppWidgets.getText(
-            title: isUpperCase? title.toUpperCase() : title,
+            title: isUpperCase ? title.toUpperCase() : title,
             fontSize: Dimens.TEXT_SIZE_13,
             fontWeight: fontWeight,
           ),

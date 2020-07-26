@@ -84,7 +84,7 @@ class ClinicHeader extends StatelessWidget {
             child: AppWidgets.getMaterialButton(
               context: context,
               title: clinic.isOnline ? 'выбрать врача' : 'записаться в медцентр',
-              callback: null,
+              callback: () => Navigator.pushNamed(context, '/search/doctor'),
               disabledColor: AppColors.green,
               color: AppColors.green,
             ),

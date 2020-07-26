@@ -21,7 +21,7 @@ class ClinicItem extends StatelessWidget {
         '/clinic',
         arguments: <String, dynamic>{
           'clinic': clinic,
-          'title' : 'Медцентр',
+          'title': 'Медцентр',
         },
       ),
       child: Padding(

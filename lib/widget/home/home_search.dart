@@ -5,15 +5,14 @@ import '../container/home_search_item.dart';
 class HomeSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final SizedBox emptyBox = SizedBox(width: 8);
-
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         HomeSearchItem(
           'Поиск врача',
           'assets/img/searchdoctor.png',
         ),
-        emptyBox,
+        Spacer(),
         HomeSearchItem(
           'Поиск услуги',
           'assets/img/microscope.png',

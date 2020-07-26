@@ -22,123 +22,130 @@ class VisitCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      child: ClipPath(
-        clipper: ShapeBorderClipper(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(2),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(4),
+      child: Container(
+        height: 142,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(4),
         ),
-        child: Container(
-          decoration: Util.isFuture(_visit.date)
-              ? AppWidgets.getColorBorder(borderColor: AppColors.PRIMARY_COLOR)
-              : null,
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 16.0,
-              right: 16,
-              left: 16,
-              bottom: 8,
+        child: Row(
+          children: [
+            AppWidgets.getColoredContainer(
+              color: AppColors.PRIMARY_COLOR,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Row(
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 16.0,
+                  right: 16,
+                  left: 16,
+                  bottom: 8,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Expanded(
-                      child: Text(
-                        Util.getVisitTitle(
-                            _visit.date, _visit.doctor.speciality),
-                        style: Themes.getTextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: Dimens.TEXT_SIZE_13,
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Text(
+                            Util.getVisitTitle(
+                              _visit.date,
+                              _visit.doctor.speciality,
+                            ),
+                            style: Themes.getTextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimens.TEXT_SIZE_14,
+                            ),
+                          ),
+                        ),
+                        Util.isFuture(_visit.date)
+                            ? GestureDetector(
+                                child: Icon(
+                                  Feather.more_vertical,
+                                ),
+                              )
+                            : GestureDetector(
+                                child: Icon(
+                                  EvilIcons.trash,
+                                ),
+                                onTap: null,
+                              ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            '${_visit.doctor.lastName} ${_visit.doctor.firstName} ${_visit.doctor.middleName}',
+                            style: Themes.getTextStyle(
+                              fontSize: Dimens.TEXT_SIZE_11,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 2,
+                              bottom: 2,
+                            ),
+                            child: Text(
+                              '${_visit.doctor.specialityLong}',
+                              style: Themes.getTextStyle(
+                                fontSize: Dimens.TEXT_SIZE_11,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '${_visit.center.title}',
+                            style: Themes.getTextStyle(
+                              fontSize: Dimens.TEXT_SIZE_11,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerRight,
+                      child: Opacity(
+                        opacity: Util.getLogoOpacity(_visit),
+                        child: Image(
+                          image: AssetImage(_visit.owner.program.logo),
                         ),
                       ),
                     ),
-                    Util.isFuture(_visit.date)
-                        ? GestureDetector(
-                            child: Icon(
-                              Feather.more_vertical,
+                    Row(
+                      children: <Widget>[
+                        CircleAvatar(
+                          backgroundImage: AssetImage(_visit.owner.avatar),
+                          radius: 12,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              _getVisitOwnerName(_visit.owner),
+                              style: Themes.getTextStyle(
+                                fontSize: Dimens.TEXT_SIZE_11,
+                              ),
                             ),
-                          )
-                        : GestureDetector(
-                            child: Icon(
-                              EvilIcons.trash,
-                            ),
-                            onTap: null,
                           ),
+                        ),
+                        if (!Util.isFuture(_visit.date))
+                          Text(
+                            DateFormat('dd MMMM HH:mm').format(_visit.date),
+                            style: Themes.getTextStyle(
+                              fontSize: Dimens.TEXT_SIZE_11,
+                            ),
+                          ),
+                      ],
+                    ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        '${_visit.doctor.lastName} ${_visit.doctor.firstName} ${_visit.doctor.middleName}',
-                        style:
-                            Themes.getTextStyle(fontSize: Dimens.TEXT_SIZE_11),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 2,
-                          bottom: 2,
-                        ),
-                        child: Text(
-                          '${_visit.doctor.specialityLong}',
-                          style: Themes.getTextStyle(
-                            fontSize: Dimens.TEXT_SIZE_11,
-                          ),
-                        ),
-                      ),
-                      Text(
-                        '${_visit.center.title}',
-                        style: Themes.getTextStyle(
-                          fontSize: Dimens.TEXT_SIZE_11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Opacity(
-                    opacity: Util.getLogoOpacity(_visit),
-                    child: Image(
-                      image: AssetImage(_visit.owner.program.logo),
-                    ),
-                  ),
-                ),
-                Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage(_visit.owner.avatar),
-                      radius: 12,
-                    ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
-                        child: Text(
-                          _getVisitOwnerName(_visit.owner),
-                          style: Themes.getTextStyle(
-                            fontSize: Dimens.TEXT_SIZE_11,
-                          ),
-                        ),
-                      ),
-                    ),
-                    if (!Util.isFuture(_visit.date))
-                      Text(
-                        DateFormat('dd MMMM HH:mm').format(_visit.date),
-                        style: Themes.getTextStyle(
-                          fontSize: Dimens.TEXT_SIZE_11,
-                        ),
-                      ),
-                  ],
-                ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
