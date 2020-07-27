@@ -11,6 +11,7 @@ import 'utils/themes.dart';
 import 'widget/appbar/account/account_screen.dart';
 import 'widget/appbar/account/family/family_screen.dart';
 import 'widget/appbar/login/login_screen.dart';
+import 'widget/clinics/clinic/clinic_item_screen.dart';
 import 'widget/container/main_container.dart';
 
 void main() {
@@ -37,7 +38,7 @@ class AibolitApp extends StatelessWidget {
         '/account/family': (context) => FamilyScreen(),
         '/account/notification': (context) => NotificationScreen(),
         '/account/program': (context) => ProgramScreen(),
-        '/clinic': (context) => ClinicSearchScreen(),
+        '/clinic': (context) => ClinicItemScreen(),
         '/login': (context) => LoginScreen(),
         '/search/doctor' : (context) => SearchDoctorScreen(),
       },

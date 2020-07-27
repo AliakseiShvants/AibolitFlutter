@@ -8,6 +8,8 @@ import 'package:AibolitFlutter/widget/util/search/search_result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'clinic_item.dart';
+
 class ClinicSearchScreen extends StatefulWidget {
   @override
   _ClinicSearchScreenState createState() => _ClinicSearchScreenState();
@@ -39,7 +41,8 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
     final list = _isBookmarkEnabled ? _bookmarkClinics : _clinics;
     final iconData =
         _isBookmarkEnabled ? Icons.bookmark : Icons.bookmark_border;
-    final bookmarkColor = _isBookmarkEnabled ? AppColors.PRIMARY_COLOR : Colors.black54;
+    final bookmarkColor =
+        _isBookmarkEnabled ? AppColors.PRIMARY_COLOR : Colors.black54;
 
     return Container(
       height: double.infinity,
@@ -66,8 +69,9 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
                 sortOptions: _sortOptions,
                 sortCallback: _sort,
               ),
-              SearchResult(),
-//              ClinicsWidget(),
+              SearchResult(
+                list: _getClinics(list),
+              ),
             ],
           ),
         ),
@@ -112,4 +116,9 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
 
     Navigator.pop(context);
   }
+
+  List<ClinicItem> _getClinics(List<Clinic> list) => List.generate(
+        list.length,
+        (index) => ClinicItem(clinic: list[index]),
+      );
 }

@@ -28,4 +28,11 @@ class Clinic {
     this.y,
     this.isOnline = false,
   });
+
+  @override
+  bool operator ==(Object other) {
+    return this.title == (other as Clinic).title &&
+        this.address == (other as Clinic).address &&
+        this.town == (other as Clinic).town;
+  }
 }
