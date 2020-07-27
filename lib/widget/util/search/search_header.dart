@@ -1,4 +1,3 @@
-import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
@@ -7,10 +6,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:map_launcher/map_launcher.dart';
 
-class ClinicHeader extends StatelessWidget {
-  final Clinic clinic;
+class SearchHeader extends StatelessWidget {
+  final String avatar;
+  final String itemTitle;
+  final String buttonTitle;
+  final double programOpacity;
+  final String location;
+  final String link;
+  final Function buttonCallback;
+  final Coords coords;
 
-  const ClinicHeader({Key key, this.clinic}) : super(key: key);
+  const SearchHeader({
+    Key key,
+    this.avatar,
+    this.programOpacity,
+    this.itemTitle,
+    this.location,
+    this.link,
+    this.buttonTitle,
+    this.buttonCallback,
+    this.coords,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +42,9 @@ class ClinicHeader extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               AppWidgets.getCircleAvatarWithLogo(
-                clinic: clinic,
                 avatarRadius: 40,
+                avatar: avatar,
+                programOpacity: programOpacity,
               ),
               Flexible(
                 child: Padding(
@@ -39,12 +56,12 @@ class ClinicHeader extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       AppWidgets.getText(
-                        title: clinic.title,
+                        title: itemTitle,
                         fontWeight: FontWeight.bold,
                         fontSize: Dimens.TEXT_SIZE_14,
                       ),
                       AppWidgets.getText(
-                        title: '${clinic.town}, ${clinic.address}',
+                        title: location,
                         top: 16,
                       ),
                       Padding(
@@ -57,7 +74,7 @@ class ClinicHeader extends StatelessWidget {
                               size: 20,
                             ),
                             AppWidgets.getText(
-                              title: "Посмотреть на карте",
+                              title: link,
                               decoration: TextDecoration.underline,
                               fontColor: AppColors.PRIMARY_COLOR,
                               fontSize: Dimens.TEXT_SIZE_12,
@@ -83,8 +100,8 @@ class ClinicHeader extends StatelessWidget {
             constraints: BoxConstraints(minWidth: double.infinity),
             child: AppWidgets.getMaterialButton(
               context: context,
-              title: clinic.isOnline ? 'выбрать врача' : 'записаться в медцентр',
-              callback: () => Navigator.pushNamed(context, '/search/doctor'),
+              title: buttonTitle,
+              callback: buttonCallback,
               disabledColor: AppColors.green,
               color: AppColors.green,
             ),
@@ -101,29 +118,28 @@ class ClinicHeader extends StatelessWidget {
       showModalBottomSheet(
         backgroundColor: Colors.white,
         context: context,
-        builder: (BuildContext context) =>
-            Padding(
-              padding: EdgeInsets.all(24),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
+        builder: (BuildContext context) => Padding(
+          padding: EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              AppWidgets.getText(
+                title: 'Открыть с помощью приложения:',
+                fontWeight: FontWeight.bold,
+                fontSize: Dimens.TEXT_SIZE_14,
+                bottom: 24,
+              ),
+              Wrap(
                 children: <Widget>[
-                  AppWidgets.getText(
-                    title: 'Открыть с помощью приложения:',
-                    fontWeight: FontWeight.bold,
-                    fontSize: Dimens.TEXT_SIZE_14,
-                    bottom: 24,
-                  ),
-                  Wrap(
-                    children: <Widget>[
-                      ..._getMaps(
-                        context: context,
-                        availableMaps: availableMaps,
-                      ),
-                    ],
+                  ..._getMaps(
+                    context: context,
+                    availableMaps: availableMaps,
                   ),
                 ],
               ),
-            ),
+            ],
+          ),
+        ),
       );
     } catch (e) {
       print(e);
@@ -134,12 +150,9 @@ class ClinicHeader extends StatelessWidget {
     BuildContext context,
     List<AvailableMap> availableMaps,
   }) {
-    final title = clinic.title;
-    final coords = Coords(double.tryParse(clinic.x), double.tryParse(clinic.y));
-
     return List.generate(
       availableMaps.length,
-          (index) {
+      (index) {
         final map = availableMaps[index];
 
         return Column(
@@ -149,7 +162,10 @@ class ClinicHeader extends StatelessWidget {
               radius: 20,
               callback: () {
                 map.showMarker(
-                  coords: coords, title: title, description: title,);
+                  coords: coords,
+                  title: itemTitle,
+                  description: itemTitle,
+                );
                 Navigator.pop(context);
               },
               child: Image(
@@ -161,8 +177,7 @@ class ClinicHeader extends StatelessWidget {
               top: 8,
             ),
             ConstrainedBox(
-              constraints:
-              BoxConstraints(minWidth: double.infinity),
+              constraints: BoxConstraints(minWidth: double.infinity),
               child: AppWidgets.getFlatButton(
                 context: context,
                 title: 'Отмена',

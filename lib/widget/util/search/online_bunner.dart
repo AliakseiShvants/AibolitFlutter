@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 class OnlineBunner extends StatelessWidget {
   final bool isOnline;
 
-  OnlineBunner({Key key, this.isOnline = false}) : super(key: key);
+  OnlineBunner({Key key, this.isOnline}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

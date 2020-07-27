@@ -3,6 +3,7 @@ import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
+import 'package:AibolitFlutter/utils/util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -43,9 +44,10 @@ class ClinicItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 AppWidgets.getCircleAvatarWithLogo(
-                  clinic: clinic,
+                  avatar: clinic.logo,
                   avatarRadius: 28,
                   padding: 12,
+                  programOpacity: Util.getLogoOpacityByClinic(clinic)
                 ),
                 Flexible(
                   child: Padding(

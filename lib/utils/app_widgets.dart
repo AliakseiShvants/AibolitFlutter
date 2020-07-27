@@ -156,9 +156,10 @@ class AppWidgets {
       );
 
   static Widget getCircleAvatarWithLogo({
-    @required Clinic clinic,
     double avatarRadius,
+    String avatar,
     double padding = 0,
+    double programOpacity = 0,
   }) =>
       Padding(
         padding: EdgeInsets.all(padding),
@@ -169,11 +170,11 @@ class AppWidgets {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: AppWidgets.getCircleAvatar(
                 radius: avatarRadius,
-                asset: clinic.logo,
+                asset: avatar,
               ),
             ),
             Opacity(
-              opacity: Util.getLogoOpacityByClinic(clinic),
+              opacity: programOpacity,
               child: Image(image: AppWidgets.programLogo),
             ),
           ],

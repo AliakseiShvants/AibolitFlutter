@@ -1,7 +1,9 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/util/single_item_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class ClinicItemScreen extends StatefulWidget {
   @override
@@ -27,6 +29,25 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
       appBarTitle: _appBarTitle,
       iconData: _iconData,
       iconCallback: _pushBookmark,
+      isClinic: true,
+      isClinicOnline: _clinic.isOnline,
+      avatar: _clinic.logo,
+      programOpacity: Util.getLogoOpacityByClinic(_clinic),
+      itemTitle: _clinic.title,
+      location: '${_clinic.town}, ${_clinic.address}',
+      link: "Посмотреть на карте",
+      buttonTitle: _clinic.isOnline ? 'выбрать врача' : 'записаться в медцентр',
+      buttonCallback: () {
+        if (_clinic.isOnline) {
+          Navigator.pushNamed(context, '/search/doctor');
+        } else {
+          Navigator.pushNamed(context, '/book');
+        }
+      },
+      coords: Coords(
+        double.tryParse(_clinic.x),
+        double.tryParse(_clinic.y),
+      ),
     );
   }
 
