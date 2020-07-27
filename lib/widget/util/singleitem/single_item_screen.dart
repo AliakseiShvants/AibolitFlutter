@@ -1,12 +1,13 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/widget/util/search/online_bunner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:map_launcher/map_launcher.dart';
 
-import 'search/online_bunner.dart';
-import 'search/search_header.dart';
+import 'single_item_header.dart';
+import 'single_item_info.dart';
 
 class SingleItemScreen extends StatelessWidget {
   final String appBarTitle;
@@ -22,6 +23,10 @@ class SingleItemScreen extends StatelessWidget {
   final String link;
   final Function buttonCallback;
   final Coords coords;
+  final String timeTitle;
+  final String timeInfo;
+  final String feedbackTitle;
+  final String feedbackInfo;
 
   const SingleItemScreen({
     Key key,
@@ -38,6 +43,10 @@ class SingleItemScreen extends StatelessWidget {
     this.buttonTitle,
     this.buttonCallback,
     this.coords,
+    this.timeTitle,
+    this.timeInfo,
+    this.feedbackTitle,
+    this.feedbackInfo,
   }) : super(key: key);
 
   @override
@@ -70,7 +79,7 @@ class SingleItemScreen extends StatelessWidget {
                 OnlineBunner(
                   isOnline: isClinicOnline,
                 ),
-              SearchHeader(
+              SingleItemHeader(
                 avatar: avatar,
                 programOpacity: programOpacity,
                 itemTitle: itemTitle,
@@ -79,6 +88,12 @@ class SingleItemScreen extends StatelessWidget {
                 buttonTitle: buttonTitle,
                 buttonCallback: buttonCallback,
                 coords: coords,
+              ),
+              SingleItemInfo(
+                timeTitle: timeTitle,
+                timeInfo: timeInfo,
+                feedbackInfo: feedbackInfo,
+                feedbackTitle: feedbackTitle,
               ),
             ],
           ),

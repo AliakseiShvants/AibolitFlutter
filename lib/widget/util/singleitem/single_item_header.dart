@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:map_launcher/map_launcher.dart';
 
-class SearchHeader extends StatelessWidget {
+class SingleItemHeader extends StatelessWidget {
   final String avatar;
   final String itemTitle;
   final String buttonTitle;
@@ -16,7 +16,7 @@ class SearchHeader extends StatelessWidget {
   final Function buttonCallback;
   final Coords coords;
 
-  const SearchHeader({
+  const SingleItemHeader({
     Key key,
     this.avatar,
     this.programOpacity,

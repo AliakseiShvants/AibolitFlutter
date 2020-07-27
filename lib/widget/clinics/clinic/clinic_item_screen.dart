@@ -1,7 +1,7 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
-import 'package:AibolitFlutter/widget/util/single_item_screen.dart';
+import 'package:AibolitFlutter/widget/util/singleitem/single_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
 
@@ -48,6 +48,10 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
         double.tryParse(_clinic.x),
         double.tryParse(_clinic.y),
       ),
+      timeTitle: 'время работы',
+      timeInfo: '8:00 - 20:00',
+      feedbackTitle: 'отзывы',
+      feedbackInfo: 'Нет отзывов',
     );
   }
 
