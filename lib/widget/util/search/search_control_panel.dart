@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-class SearchControlPanel extends StatefulWidget {
+class SearchControlPanel extends StatelessWidget {
   final String title;
   final IconData iconData;
   final Color bookmarkIconColor;
@@ -35,11 +35,6 @@ class SearchControlPanel extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _SearchControlPanelState createState() => _SearchControlPanelState();
-}
-
-class _SearchControlPanelState extends State<SearchControlPanel> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(12),
@@ -47,16 +42,16 @@ class _SearchControlPanelState extends State<SearchControlPanel> {
         children: <Widget>[
           Expanded(
             child: AppWidgets.getText(
-              title: widget.title,
+              title: title,
               left: 8,
               isUpperCase: true,
               fontSize: Dimens.TEXT_SIZE_11,
             ),
           ),
           AppWidgets.getClickableIcon(
-            data: widget.iconData,
-            callback: widget.bookmarkCallback,
-            iconColor: widget.bookmarkIconColor,
+            data: iconData,
+            callback: bookmarkCallback,
+            iconColor: bookmarkIconColor,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
@@ -67,11 +62,11 @@ class _SearchControlPanelState extends State<SearchControlPanel> {
                 context: context,
                 builder: (context) => AppWidgets.getActionsModal(
                   context: context,
-                  title: widget.filterTitle,
-                  currentIndex: widget.filterIndex,
-                  list: widget.filterOptions,
+                  title: filterTitle,
+                  currentIndex: filterIndex,
+                  list: filterOptions,
                   isClose: true,
-                  callback: _filter,
+                  callback: filterCallback,
                 ),
               ),
               child: Transform.rotate(
@@ -89,32 +84,16 @@ class _SearchControlPanelState extends State<SearchControlPanel> {
               context: context,
               builder: (context) => AppWidgets.getActionsModal(
                 context: context,
-                title: widget.sortTitle,
-                currentIndex: widget.sortIndex,
-                list: widget.sortOptions,
+                title: sortTitle,
+                currentIndex: sortIndex,
+                list: sortOptions,
                 isClose: true,
-                callback: _sort,
+                callback: sortCallback,
               ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  void _filter(int index) {
-    setState(() {
-      widget.filterIndex = index;
-    });
-
-    Navigator.pop(context);
-  }
-
-  void _sort(int index) {
-    setState(() {
-      widget.sortIndex = index;
-    });
-
-    Navigator.pop(context);
   }
 }

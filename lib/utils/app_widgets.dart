@@ -274,7 +274,7 @@ class AppWidgets {
               ),
               onChanged: (value) {
                 if (callback != null) {
-                  callback(value);
+                  callback(context, value);
                 }
               },
             ),

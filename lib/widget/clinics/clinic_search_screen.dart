@@ -21,7 +21,7 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
 
   final String _sortTitle = 'Сортировать список медцентров';
   int _sortIndex = 0;
-  final List<String> _sortParameters = [
+  final List<String> _sortOptions = [
     "По количеству докторов",
     "По названию медцентра",
     "По количеству отзывов",
@@ -29,7 +29,7 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
 
   final String _filterTitle = 'Тип медцентра';
   int _filterIndex = 0;
-  final List<String> _filterTypes = [
+  final List<String> _filterOptions = [
     "Любой медцентр",
     "Медцентры программы",
   ];
@@ -57,6 +57,14 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
                 iconData: iconData,
                 bookmarkIconColor: bookmarkColor,
                 bookmarkCallback: _pushBookmark,
+                filterTitle: _filterTitle,
+                filterIndex: _filterIndex,
+                filterOptions: _filterOptions,
+                filterCallback: _filter,
+                sortTitle: _sortTitle,
+                sortIndex: _sortIndex,
+                sortOptions: _sortOptions,
+                sortCallback: _sort,
               ),
               SearchResult(),
 //              ClinicsWidget(),
@@ -87,5 +95,21 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
     setState(() {
       _isBookmarkEnabled = !_isBookmarkEnabled;
     });
+  }
+
+  void _filter(BuildContext context, int index) {
+    setState(() {
+      _filterIndex = index;
+    });
+
+    Navigator.pop(context);
+  }
+
+  void _sort(BuildContext context, int index) {
+    setState(() {
+      _sortIndex = index;
+    });
+
+    Navigator.pop(context);
   }
 }
