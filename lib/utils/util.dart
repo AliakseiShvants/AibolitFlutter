@@ -67,7 +67,7 @@ class Util {
     String title,
     int currentIndex,
     List<String> list,
-    bool isClose,
+    bool isClose = false,
     Function callback,
   }) =>
       showModalBottomSheet(

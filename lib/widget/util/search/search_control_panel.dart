@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,26 +7,18 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 class SearchControlPanel extends StatelessWidget {
   final String title;
-  final IconData iconData;
-  final Color bookmarkIconColor;
+  final bool isBookmarkEnabled;
   final Function bookmarkCallback;
   final Function filterCallback;
-  final String sortTitle;
-  int sortIndex;
-  final List<String> sortOptions;
   final Function sortCallback;
 
   SearchControlPanel({
     Key key,
     this.title,
-    this.iconData,
     this.bookmarkCallback,
-    this.bookmarkIconColor,
     this.sortCallback,
     this.filterCallback,
-    this.sortIndex,
-    this.sortOptions,
-    this.sortTitle,
+    this.isBookmarkEnabled,
   }) : super(key: key);
 
   @override
@@ -43,9 +36,10 @@ class SearchControlPanel extends StatelessWidget {
             ),
           ),
           AppWidgets.getClickableIcon(
-            data: iconData,
+            data: isBookmarkEnabled ? Icons.bookmark : Icons.bookmark_border,
+            iconColor:
+                isBookmarkEnabled ? AppColors.PRIMARY_COLOR : Colors.black54,
             callback: bookmarkCallback,
-            iconColor: bookmarkIconColor,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(

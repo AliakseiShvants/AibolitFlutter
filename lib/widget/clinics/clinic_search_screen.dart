@@ -1,6 +1,6 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
+import 'package:AibolitFlutter/entity/action.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
-import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/util/program_modal.dart';
@@ -25,6 +25,7 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
 
   final String _sortTitle = 'Сортировать список медцентров';
   int _sortIndex = 0;
+  int _programIndex = 0;
   final List<String> _sortOptions = [
     "По количеству докторов",
     "По названию медцентра",
@@ -41,10 +42,6 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
   @override
   Widget build(BuildContext context) {
     final list = _isBookmarkEnabled ? _bookmarkClinics : _clinics;
-    final iconData =
-        _isBookmarkEnabled ? Icons.bookmark : Icons.bookmark_border;
-    final bookmarkColor =
-        _isBookmarkEnabled ? AppColors.PRIMARY_COLOR : Colors.black54;
 
     return Container(
       height: double.infinity,
@@ -53,14 +50,17 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              ProgramModal(),
+              ProgramModal(
+                programs: Data.epamPrograms,
+                programIndex: _programIndex,
+                callback: _chooseProgram,
+              ),
               SearchField(
                 hintText: hintText,
               ),
               SearchControlPanel(
                 title: _getPluralClinicsCount(list.length),
-                iconData: iconData,
-                bookmarkIconColor: bookmarkColor,
+                isBookmarkEnabled: _isBookmarkEnabled,
                 bookmarkCallback: _pushBookmark,
                 filterCallback: () {
                   Util.showModalBottom(
@@ -72,9 +72,6 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
                     callback: _filter,
                   );
                 },
-                sortTitle: _sortTitle,
-                sortIndex: _sortIndex,
-                sortOptions: _sortOptions,
                 sortCallback: () {
                   Util.showModalBottom(
                     context: context,
@@ -138,4 +135,12 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
         list.length,
         (index) => ClinicItem(clinic: list[index]),
       );
+
+  void _chooseProgram(BuildContext context, int index) {
+    setState(() {
+      _programIndex = index;
+    });
+
+    Navigator.pop(context);
+  }
 }

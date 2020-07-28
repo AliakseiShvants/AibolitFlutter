@@ -3,10 +3,11 @@ import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
-import 'package:AibolitFlutter/widget/container/info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+
+import 'file:///C:/Users/Aliaksei_Shvants/projects/AibolitFlutter/lib/widget/util/info_item.dart';
 
 class AccountScreen extends StatelessWidget {
   final String _appBarTitle = 'Учетная запись';
@@ -62,12 +63,19 @@ class AccountScreen extends StatelessWidget {
             children: <Widget>[
               _accountHeader,
               GestureDetector(
-                child: InfoItem('Моя семья',),
-                onTap: () => Navigator.pushNamed(context, '/account/family',),
+                child: InfoItem(
+                  title: 'Моя семья',
+                ),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  '/account/family',
+                ),
               ),
-              InfoItem('Документы',),
               InfoItem(
-                'Мой аккаунт',
+                title: 'Документы',
+              ),
+              InfoItem(
+                title: 'Мой аккаунт',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
                 isCapitalize: true,
@@ -76,7 +84,7 @@ class AccountScreen extends StatelessWidget {
               ),
               ..._getAccountInfo(context),
               InfoItem(
-                'Программы',
+                title: 'Программы',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
                 isCapitalize: true,
@@ -85,13 +93,13 @@ class AccountScreen extends StatelessWidget {
               ),
               GestureDetector(
                 child: InfoItem(
-                  Data.user1.program.title,
+                  title: Data.user1.program.title,
                   logo: Data.user1.program.logo,
                 ),
                 onTap: () => Navigator.pushNamed(context, '/account/program'),
               ),
               InfoItem(
-                'Другое',
+                title: 'Другое',
                 color: AppColors.grey200,
                 fontSize: Dimens.TEXT_SIZE_12,
                 isCapitalize: true,
@@ -99,12 +107,12 @@ class AccountScreen extends StatelessWidget {
                 isTrailing: false,
               ),
               GestureDetector(
-                child: InfoItem('Напоминание о визитах'),
+                child: InfoItem(title: 'Напоминание о визитах'),
                 onTap: () =>
                     Navigator.pushNamed(context, '/account/notification'),
               ),
               InfoItem(
-                'Выйти',
+                title: 'Выйти',
                 textColor: Colors.red.shade800,
                 callback: () => _logout(context),
               ),
@@ -124,13 +132,13 @@ class AccountScreen extends StatelessWidget {
 
     return [
       InfoItem(
-        phoneLine,
+        title: phoneLine,
         fontSize: fontSize,
         hint: 'Телефон:',
         isTrailing: false,
       ),
       InfoItem(
-        Data.user1.email,
+        title: Data.user1.email,
         fontSize: fontSize,
         hint: 'Личный e-mail:',
         callback: () => showModalBottomSheet(

@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:map_launcher/map_launcher.dart';
 
+import '../bottom_nav_bar.dart';
 import 'single_item_header.dart';
 import 'single_item_info.dart';
 
 class SingleItemScreen extends StatelessWidget {
   final String appBarTitle;
-  final bool isClinic;
-  final bool isClinicOnline;
+  final bool isBanner;
+  final bool isOnline;
   final String avatar;
   final String itemTitle;
   final String buttonTitle;
@@ -27,14 +28,15 @@ class SingleItemScreen extends StatelessWidget {
   final String timeInfo;
   final String feedbackTitle;
   final String feedbackInfo;
+  final List<Widget> actions;
 
-  const SingleItemScreen({
+  SingleItemScreen({
     Key key,
     this.appBarTitle,
     this.iconData,
     this.iconCallback,
-    this.isClinic = false,
-    this.isClinicOnline = false,
+    this.isBanner = false,
+    this.isOnline = false,
     this.avatar,
     this.programOpacity,
     this.itemTitle,
@@ -47,6 +49,7 @@ class SingleItemScreen extends StatelessWidget {
     this.timeInfo,
     this.feedbackTitle,
     this.feedbackInfo,
+    this.actions,
   }) : super(key: key);
 
   @override
@@ -75,9 +78,9 @@ class SingleItemScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              if (isClinic)
+              if (isBanner)
                 OnlineBunner(
-                  isOnline: isClinicOnline,
+                  isOnline: isOnline,
                 ),
               SingleItemHeader(
                 avatar: avatar,
@@ -95,10 +98,12 @@ class SingleItemScreen extends StatelessWidget {
                 feedbackInfo: feedbackInfo,
                 feedbackTitle: feedbackTitle,
               ),
+              ...actions,
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

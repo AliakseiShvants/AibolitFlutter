@@ -12,7 +12,8 @@ import 'widget/appbar/account/account_screen.dart';
 import 'widget/appbar/account/family/family_screen.dart';
 import 'widget/appbar/login/login_screen.dart';
 import 'widget/clinics/clinic/clinic_item_screen.dart';
-import 'widget/container/main_container.dart';
+import 'widget/util/main_container.dart';
+import 'widget/searchdoctor/advanced_doctor_search_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +42,7 @@ class AibolitApp extends StatelessWidget {
         '/clinic': (context) => ClinicItemScreen(),
         '/login': (context) => LoginScreen(),
         '/search/doctor' : (context) => SearchDoctorScreen(),
+        '/search/doctor/advanced' : (context) => AdvancedSearchDoctorScreen(),
       },
       supportedLocales: [
         const Locale('en', ''),

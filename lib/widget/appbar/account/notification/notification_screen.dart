@@ -4,7 +4,7 @@ import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
-import 'package:AibolitFlutter/widget/container/info_item.dart';
+import 'file:///C:/Users/Aliaksei_Shvants/projects/AibolitFlutter/lib/widget/util/info_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -40,7 +40,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
                     ),
                     child: InfoItem(
-                      'Настройки напоминаний будут применяться по умолчанию ко всем вашим визитам',
+                      title: 'Настройки напоминаний будут применяться по умолчанию ко всем вашим визитам',
                       color: AppColors.indigo50,
                       fontSize: Dimens.TEXT_SIZE_12,
                       isTrailing: false,

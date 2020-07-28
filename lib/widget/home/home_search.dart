@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../container/home_search_item.dart';
+import '../util/home_search_item.dart';
 
 class HomeSearch extends StatelessWidget {
   @override

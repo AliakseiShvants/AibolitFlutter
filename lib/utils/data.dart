@@ -1,9 +1,9 @@
+import 'package:AibolitFlutter/entity/action.dart';
 import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
-import 'package:AibolitFlutter/entity/setting_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/entity/visit.dart';
 
@@ -23,7 +23,10 @@ class Data {
     program: 'EPAM Дети (Гродно)',
   );
 
-  static List<Program> epamPrograms = [program1, program2,];
+  static List<Program> epamPrograms = [
+    program1,
+    program2,
+  ];
 
   static Clinic clinic1 = Clinic(
     logo: 'assets/img/clinic/zamk.jpg',
@@ -248,15 +251,28 @@ class Data {
     City(6, 'Могилев'),
   ];
 
-  static List<SettingItem> settingItems = [
-    SettingItem('О проекте', 'https://aibolit.md/mobile'),
-    SettingItem('Пользовательское соглашение',
-        'https://aibolit.md/polzovatelskoe-soglashenie'),
-    SettingItem('Политика конфиденциальности',
-        'https://aibolit.md/politika-konfidencialnosti'),
-    SettingItem('Обратиться в поддержку', 'support@aibolit.md', isEmail: true,),
-    SettingItem(
-        'Предложения по улучшению Aibolit', 'https://aibolit.uservoice.com/'),
+  static List<ActionItem> settingActions = [
+    ActionItem(
+      title: 'О проекте',
+      url: 'https://aibolit.md/mobile',
+    ),
+    ActionItem(
+      title: 'Пользовательское соглашение',
+      url: 'https://aibolit.md/polzovatelskoe-soglashenie',
+    ),
+    ActionItem(
+      title: 'Политика конфиденциальности',
+      url: 'https://aibolit.md/politika-konfidencialnosti',
+    ),
+    ActionItem(
+      title: 'Обратиться в поддержку',
+      url: 'support@aibolit.md',
+      isEmail: true,
+    ),
+    ActionItem(
+      title: 'Предложения по улучшению Aibolit',
+      url: 'https://aibolit.uservoice.com/',
+    ),
   ];
 
   static List<String> addFamilyActions = [
@@ -266,12 +282,11 @@ class Data {
     'Ввести код своего супруга(и)',
   ];
   static Map<String, bool> notifications = {
-    'За 30 минут' : false,
-    'За 1 час' : false,
-    'За 2 часа' : false,
-    'За 4 часа' : false,
-    'За 1 день, в 10:00 утра' : false,
-    'За 1 день, в 20:00 вечера' : false,
+    'За 30 минут': false,
+    'За 1 час': false,
+    'За 2 часа': false,
+    'За 4 часа': false,
+    'За 1 день, в 10:00 утра': false,
+    'За 1 день, в 20:00 вечера': false,
   };
-
 }

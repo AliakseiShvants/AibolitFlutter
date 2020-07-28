@@ -2,13 +2,11 @@ import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:AibolitFlutter/utils/strings.dart';
+import 'package:AibolitFlutter/widget/util/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../utils/app_colors.dart';
-import '../../utils/app_icons.dart';
 import '../../utils/app_widgets.dart';
-import '../../utils/borders.dart';
 import '../appbar/location.dart';
 import '../appbar/login_action.dart';
 
@@ -38,60 +36,31 @@ class _MainContainerState extends State<MainContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: true,
-        title: Location(
-          _locationIndex,
-          Data.cities,
-          _setLocation,
-        ),
-        actions: <Widget>[
-          LoginAction(
-            _user,
-            _isLoggedIn,
-            true,
-            _login,
-            _logout,
+    return MainContainerInherited(
+      selectedItem: _selectedItem,
+      onMenuClickCallback: _onMenuItemClick,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: true,
+          title: Location(
+            _locationIndex,
+            Data.cities,
+            _setLocation,
           ),
-        ],
-      ),
-      body: SafeArea(
-        child: AppWidgets.bottomNavWidgets[_selectedItem],
-      ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border(
-            top: Borders.primaryGreyBorderSide,
-          ),
+          actions: <Widget>[
+            LoginAction(
+              _user,
+              _isLoggedIn,
+              true,
+              _login,
+              _logout,
+            ),
+          ],
         ),
-        child: BottomNavigationBar(
-          currentIndex: _selectedItem,
-          iconSize: 32,
-          items: List.generate(
-            AppIcons.bottomNavIcons.length,
-            (index) {
-              final String key = AppIcons.bottomNavIcons.keys.elementAt(index);
-              final Widget value =
-                  AppIcons.bottomNavIcons.values.elementAt(index);
-
-              return BottomNavigationBarItem(
-                icon: Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: value,
-                ),
-                title: Text(key),
-              );
-            },
-          ),
-          onTap: _onMenuItemClick,
-          selectedFontSize: 8,
-          selectedItemColor: AppColors.PRIMARY_COLOR,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          unselectedFontSize: 8,
-          unselectedItemColor: AppColors.primaryGrey,
+        body: SafeArea(
+          child: AppWidgets.bottomNavWidgets[_selectedItem],
         ),
+        bottomNavigationBar: BottomNavBar(),
       ),
     );
   }
@@ -137,5 +106,26 @@ class _MainContainerState extends State<MainContainer> {
     setState(() {
       _locationIndex = index;
     });
+  }
+}
+
+class MainContainerInherited extends InheritedWidget {
+  static MainContainerInherited of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<MainContainerInherited>();
+  }
+
+  final int selectedItem;
+  final Function onMenuClickCallback;
+  final Widget child;
+
+  MainContainerInherited({
+    this.selectedItem,
+    this.onMenuClickCallback,
+    this.child,
+  });
+
+  @override
+  bool updateShouldNotify(InheritedWidget oldWidget) {
+    return true;
   }
 }

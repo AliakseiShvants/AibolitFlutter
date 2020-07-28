@@ -1,6 +1,8 @@
+import 'package:AibolitFlutter/entity/action.dart';
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/util/info_item.dart';
 import 'package:AibolitFlutter/widget/util/singleitem/single_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
@@ -11,8 +13,22 @@ class ClinicItemScreen extends StatefulWidget {
 }
 
 class _ClinicItemScreenState extends State<ClinicItemScreen> {
-  Clinic _clinic;
+  final List<ActionItem> clinicActions = [
+    ActionItem(
+      title: 'Информация о медцентре',
+    ),
+    ActionItem(
+      title: 'Услуги медцентра',
+    ),
+    ActionItem(
+      title: 'Специалисты медцентра',
+    ),
+    ActionItem(
+      title: 'Отзывы о медцентре',
+    ),
+  ];
 
+  Clinic _clinic;
   bool _isBookmarked;
   String _appBarTitle;
   IconData _iconData;
@@ -29,8 +45,8 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
       appBarTitle: _appBarTitle,
       iconData: _iconData,
       iconCallback: _pushBookmark,
-      isClinic: true,
-      isClinicOnline: _clinic.isOnline,
+      isOnline: _clinic.isOnline,
+      isBanner: true,
       avatar: _clinic.logo,
       programOpacity: Util.getLogoOpacityByClinic(_clinic),
       itemTitle: _clinic.title,
@@ -52,6 +68,7 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
       timeInfo: '8:00 - 20:00',
       feedbackTitle: 'отзывы',
       feedbackInfo: 'Нет отзывов',
+      actions: _getClinicActions(list: clinicActions),
     );
   }
 
@@ -67,4 +84,14 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
       Data.clinicBookmarks.removeAt(index);
     }
   }
+
+  List<Widget> _getClinicActions({
+    List<ActionItem> list,
+  }) =>
+      List.generate(
+        list.length,
+        (index) => InfoItem(
+          title: list[index].title,
+        ),
+      );
 }

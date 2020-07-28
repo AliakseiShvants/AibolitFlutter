@@ -1,11 +1,12 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class InfoItem extends StatelessWidget {
   final String logo;
-  final String text;
+  final String title;
   final String hint;
   final Color textColor;
   final Color color;
@@ -16,8 +17,8 @@ class InfoItem extends StatelessWidget {
   final Function callback;
   final String url;
 
-  InfoItem(
-    this.text, {
+  InfoItem({
+    this.title,
     this.color = Colors.white,
     this.logo,
     this.hint,
@@ -68,13 +69,12 @@ class InfoItem extends StatelessWidget {
                 flex: 7,
                 child: Padding(
                   padding: const EdgeInsets.only(right: 16.0),
-                  child: Text(
-                    isCapitalize ? text.toUpperCase() : text,
-                    style: TextStyle(
-                      color: textColor,
-                      fontSize: fontSize,
-                      fontWeight: fontWeight,
-                    ),
+                  child: AppWidgets.getText(
+                    title: title,
+                    isUpperCase: isCapitalize,
+                    fontColor: textColor,
+                    fontSize: fontSize,
+                    fontWeight: fontWeight,
                   ),
                 ),
               ),
