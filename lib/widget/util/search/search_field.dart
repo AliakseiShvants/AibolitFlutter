@@ -5,10 +5,9 @@ import 'package:flutter/widgets.dart';
 
 class SearchField extends StatelessWidget {
   final String hintText;
+  final TextEditingController controller;
 
-  var clinicController = TextEditingController();
-
-  SearchField({Key key, this.hintText}) : super(key: key);
+  SearchField({Key key, this.hintText, this.controller,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class SearchField extends StatelessWidget {
         ),
         child: TextField(
           cursorColor: AppColors.green,
-          controller: clinicController,
+          controller: controller,
           decoration: InputDecoration(
             prefixIcon: Icon(
               Icons.search,

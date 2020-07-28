@@ -9,9 +9,6 @@ class SearchControlPanel extends StatelessWidget {
   final IconData iconData;
   final Color bookmarkIconColor;
   final Function bookmarkCallback;
-  final String filterTitle;
-  int filterIndex;
-  final List<String> filterOptions;
   final Function filterCallback;
   final String sortTitle;
   int sortIndex;
@@ -26,11 +23,8 @@ class SearchControlPanel extends StatelessWidget {
     this.bookmarkIconColor,
     this.sortCallback,
     this.filterCallback,
-    this.filterIndex,
-    this.filterOptions,
     this.sortIndex,
     this.sortOptions,
-    this.filterTitle,
     this.sortTitle,
   }) : super(key: key);
 
@@ -58,17 +52,7 @@ class SearchControlPanel extends StatelessWidget {
               horizontal: 16,
             ),
             child: GestureDetector(
-              onTap: () => showModalBottomSheet(
-                context: context,
-                builder: (context) => AppWidgets.getActionsModal(
-                  context: context,
-                  title: filterTitle,
-                  currentIndex: filterIndex,
-                  list: filterOptions,
-                  isClose: true,
-                  callback: filterCallback,
-                ),
-              ),
+              onTap: filterCallback,
               child: Transform.rotate(
                 angle: 3.14 / 2,
                 child: Icon(
@@ -80,17 +64,7 @@ class SearchControlPanel extends StatelessWidget {
           ),
           AppWidgets.getClickableIcon(
             data: Icons.sort,
-            callback: () => showModalBottomSheet(
-              context: context,
-              builder: (context) => AppWidgets.getActionsModal(
-                context: context,
-                title: sortTitle,
-                currentIndex: sortIndex,
-                list: sortOptions,
-                isClose: true,
-                callback: sortCallback,
-              ),
-            ),
+            callback: sortCallback,
           ),
         ],
       ),

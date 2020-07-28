@@ -141,6 +141,9 @@ class Data {
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
 
+  static List<Doctor> doctors = [doctor1, doctor2, doctor3];
+  static List<Doctor> bookmarkDoctors = [];
+
   static Map<Program, List<Doctor>> programToDoctors = {
     program1: [doctor1, doctor2],
     program2: [doctor1]

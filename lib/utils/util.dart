@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'app_widgets.dart';
 import 'data.dart';
 
 class Util {
@@ -61,5 +62,24 @@ class Util {
     return DateFormat('dd-MM-yyyy').format(date);
   }
 
+  static void showModalBottom({
+    BuildContext context,
+    String title,
+    int currentIndex,
+    List<String> list,
+    bool isClose,
+    Function callback,
+  }) =>
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => AppWidgets.getActionsModal(
+          context: context,
+          title: title,
+          currentIndex: currentIndex,
+          list: list,
+          isClose: isClose,
+          callback: callback,
+        ),
+      );
 
 }

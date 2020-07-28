@@ -1,6 +1,8 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
+import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/util/program_modal.dart';
 import 'package:AibolitFlutter/widget/util/search/search_control_panel.dart';
 import 'package:AibolitFlutter/widget/util/search/search_field.dart';
@@ -60,14 +62,29 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
                 iconData: iconData,
                 bookmarkIconColor: bookmarkColor,
                 bookmarkCallback: _pushBookmark,
-                filterTitle: _filterTitle,
-                filterIndex: _filterIndex,
-                filterOptions: _filterOptions,
-                filterCallback: _filter,
+                filterCallback: () {
+                  Util.showModalBottom(
+                    context: context,
+                    title: _filterTitle,
+                    currentIndex: _filterIndex,
+                    list: _filterOptions,
+                    isClose: true,
+                    callback: _filter,
+                  );
+                },
                 sortTitle: _sortTitle,
                 sortIndex: _sortIndex,
                 sortOptions: _sortOptions,
-                sortCallback: _sort,
+                sortCallback: () {
+                  Util.showModalBottom(
+                    context: context,
+                    title: _sortTitle,
+                    currentIndex: _sortIndex,
+                    list: _sortOptions,
+                    isClose: true,
+                    callback: _sort,
+                  );
+                },
               ),
               SearchResult(
                 list: _getClinics(list),
