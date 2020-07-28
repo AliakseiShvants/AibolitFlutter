@@ -9,13 +9,15 @@ class HomeSearch extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         HomeSearchItem(
-          'Поиск врача',
-          'assets/img/searchdoctor.png',
+          title: 'Поиск врача',
+          assetPath: 'assets/img/searchdoctor.png',
+          callback: () => Navigator.pushNamed(context, '/search/doctor'),
         ),
         Spacer(),
         HomeSearchItem(
-          'Поиск услуги',
-          'assets/img/microscope.png',
+          title: 'Поиск услуги',
+          assetPath: 'assets/img/microscope.png',
+          callback: null,
         ),
       ],
     );

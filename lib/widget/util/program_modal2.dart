@@ -1,21 +1,21 @@
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class ProgramModal extends StatefulWidget {
+class ProgramModalSate extends StatelessWidget {
+  final List<Program> programs;
+  final int programIndex;
+  final Function callback;
 
-  @override
-  _ProgramModalState createState() => _ProgramModalState();
-}
-
-class _ProgramModalState extends State<ProgramModal> {
-  final List<Program> _programs = Data.epamPrograms;
-
-  int _programIndex = 0;
+  const ProgramModalSate({
+    Key key,
+    @required this.programs,
+    @required this.programIndex,
+    @required this.callback,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _ProgramModalState extends State<ProgramModal> {
                 image: AppWidgets.programLogo,
               ),
               title: Text(
-                _programs[_programIndex].program,
+                programs[programIndex].program,
                 style: TextStyle(
                   fontSize: Dimens.TEXT_SIZE_14,
                 ),
@@ -62,21 +62,13 @@ class _ProgramModalState extends State<ProgramModal> {
             builder: (context) => AppWidgets.getActionsModal(
               context: context,
               title: 'Программа для отображения',
-              currentIndex: _programIndex,
-              list: _programs.map((e) => e.program).toList(),
-              callback: _chooseProgram,
+              currentIndex: programIndex,
+              list: programs.map((e) => e.program).toList(),
+              callback: callback,
             ),
           ),
         ),
       ),
     );
-  }
-
-  void _chooseProgram(BuildContext context, int index) {
-    setState(() {
-      _programIndex = index;
-    });
-
-    Navigator.pop(context);
   }
 }
