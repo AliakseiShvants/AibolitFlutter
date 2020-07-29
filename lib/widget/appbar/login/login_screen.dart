@@ -101,7 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: AppColors.grey200,
-      appBar: AppWidgets.getAppBar(context, _appBarTitle),
+      appBar: AppWidgets.getAppBar(
+        context: context,
+        title: _appBarTitle,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: FutureBuilder<void>(

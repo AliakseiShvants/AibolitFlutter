@@ -2,7 +2,7 @@ import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
-import 'package:AibolitFlutter/widget/container/popular_request_item.dart';
+import 'file:///C:/Users/Aliaksei_Shvants/projects/AibolitFlutter/lib/widget/util/popular_request_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -20,7 +20,7 @@ class PopularRequests extends StatelessWidget {
             top: 24,
             bottom: 8,
             isUpperCase: true,
-            fontSize: Dimens.TEXT_SIZE_10,
+            fontSize: Dimens.TEXT_SIZE_11,
             fontWeight: FontWeight.bold,
             fontColor: Colors.black87,
           ),

@@ -40,11 +40,17 @@ class Themes {
         ),
       );
 
-  static TextStyle getTextStyle({double fontSize, FontWeight fontWeight, Color color}) {
+  static TextStyle getTextStyle({
+    Color color,
+    TextDecoration decoration,
+    double fontSize,
+    FontWeight fontWeight,
+  }) {
     return TextStyle(
+      decoration: decoration,
+      color: color != null ? color : Colors.black,
       fontSize: fontSize != null ? fontSize : Dimens.TEXT_SIZE_12,
       fontWeight: fontWeight != null ? fontWeight : FontWeight.normal,
-      color: color != null ? color : Colors.black,
     );
   }
 }

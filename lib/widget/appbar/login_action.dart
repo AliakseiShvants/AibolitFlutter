@@ -31,7 +31,10 @@ class _LoginActionState extends State<LoginAction> {
   Widget build(BuildContext context) {
     if (widget._isLoggedIn) {
       return MaterialButton(
-        child: AppWidgets.getCircleAvatar(16, Data.owner.avatar),
+        child: AppWidgets.getCircleAvatar(
+          radius: 16,
+          asset: Data.owner.avatar,
+        ),
         onPressed: widget._logoutCallback,
       );
     } else {
@@ -52,7 +55,10 @@ class _LoginActionState extends State<LoginAction> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                     {
-                      child = AppWidgets.getCircleAvatar(16, Data.stubAsset);
+                      child = AppWidgets.getCircleAvatar(
+                        radius: 16,
+                        asset: Data.stubAsset,
+                      );
                       callback = null;
 
                       break;
@@ -62,7 +68,10 @@ class _LoginActionState extends State<LoginAction> {
                       child = Stack(
                         alignment: Alignment.center,
                         children: <Widget>[
-                          AppWidgets.getCircleAvatar(16, Data.stubAsset),
+                          AppWidgets.getCircleAvatar(
+                            radius: 16,
+                            asset: Data.stubAsset,
+                          ),
                           CircularProgressIndicator(
                             valueColor:
                                 AlwaysStoppedAnimation<Color>(Colors.white),
@@ -75,7 +84,10 @@ class _LoginActionState extends State<LoginAction> {
                     }
                   case ConnectionState.done:
                     {
-                      child = AppWidgets.getCircleAvatar(16, Data.owner.avatar);
+                      child = AppWidgets.getCircleAvatar(
+                        radius: 16,
+                        asset: Data.owner.avatar,
+                      );
                       callback = widget._logoutCallback;
 
                       break;

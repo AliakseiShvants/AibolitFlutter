@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/home/nearest_visits.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               children: <Widget>[
                 HomeSearch(),
                 PopularRequests(),
-                NearestVisits(Util.getFutureVisits()),
+                NearestVisits(visits: Data.visits),
               ],
             ),
           ),

@@ -1,22 +1,33 @@
+import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:flutter/widgets.dart';
 
-import '../container/home_search_item.dart';
+import '../util/home_search_item.dart';
 
 class HomeSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final SizedBox emptyBox = SizedBox(width: 8);
+    final widget = MainContainerInherited.of(context);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         HomeSearchItem(
-          'Поиск врача',
-          'assets/img/searchdoctor.png',
+          title: 'Поиск врача',
+          assetPath: 'assets/img/searchdoctor.png',
+          callback: () => Navigator.pushNamed(
+            context,
+            '/search/doctor',
+            arguments: <String, dynamic>{
+              'selectedItem': widget.selectedItem,
+              'callback': widget.onMenuClickCallback,
+            },
+          ),
         ),
-        emptyBox,
+        Spacer(),
         HomeSearchItem(
-          'Поиск услуги',
-          'assets/img/microscope.png',
+          title: 'Поиск услуги',
+          assetPath: 'assets/img/microscope.png',
+          callback: null,
         ),
       ],
     );

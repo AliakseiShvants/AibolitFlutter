@@ -16,13 +16,13 @@ class ProgramScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppWidgets.getAppBar(
-        context,
-        _appBarTitle,
+        context: context,
+        title: _appBarTitle,
         actions: [
           MaterialButton(
             child: AppWidgets.getCircleAvatar(
-              16,
-              Data.owner.avatar,
+              radius: 16,
+              asset: Data.owner.avatar,
             ),
           ),
         ],
@@ -120,25 +120,20 @@ class ProgramScreen extends StatelessWidget {
                     ),
                   ),
                   AppWidgets.getText(
-                    title: 'Перейдите по ссылке, чтобы ознакомиться с вашей программой',
+                    title:
+                        'Перейдите по ссылке, чтобы ознакомиться с вашей программой',
                     left: 8,
                     top: 16,
                     bottom: 16,
                   ),
-                  GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        "Условия программы",
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: AppColors.PRIMARY_COLOR,
-                          fontSize: Dimens.TEXT_SIZE_12,
-                        ),
-                      ),
-                    ),
-                    onTap: () => launch('https://benefits.epam.com'),
-                  )
+                  AppWidgets.getText(
+                    title: "Условия программы",
+                    decoration: TextDecoration.underline,
+                    fontColor: AppColors.PRIMARY_COLOR,
+                    fontSize: Dimens.TEXT_SIZE_12,
+                    left: 8,
+                    callback: () => launch('https://benefits.epam.com'),
+                  ),
                 ],
               ),
             ),

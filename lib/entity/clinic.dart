@@ -11,5 +11,28 @@ class Clinic {
   @JsonKey(name: 'TOWN_NAME')
   final String town;
 
-  Clinic({this.logo, this.title, this.address, this.town});
+  @JsonKey(name: 'GEO_X')
+  final String x;
+
+  @JsonKey(name: 'GEO_Y')
+  final String y;
+
+  final bool isOnline;
+
+  Clinic({
+    this.logo,
+    this.title,
+    this.address,
+    this.town,
+    this.x,
+    this.y,
+    this.isOnline = false,
+  });
+
+  @override
+  bool operator ==(Object other) {
+    return this.title == (other as Clinic).title &&
+        this.address == (other as Clinic).address &&
+        this.town == (other as Clinic).town;
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
 import 'package:AibolitFlutter/utils/util.dart';
-import 'package:AibolitFlutter/widget/clinics/clinics_screen.dart';
+import 'package:AibolitFlutter/widget/clinics/clinic_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -19,14 +19,17 @@ class AppWidgets {
 
   static final List<Widget> bottomNavWidgets = [
     HomeScreen(),
-    ClinicsScreen(),
+    ClinicSearchScreen(),
     PillsScreen(),
     VisitCardScreen(),
     SettingsScreen()
   ];
 
-  static getAppBar(BuildContext context, String title,
-          {List<Widget> actions}) =>
+  static getAppBar({
+    @required BuildContext context,
+    @required String title,
+    List<Widget> actions,
+  }) =>
       AppBar(
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
@@ -47,7 +50,10 @@ class AppWidgets {
   static getHeaderWithLogo(String title, String msg, double flex) => SizedBox(
         width: double.infinity,
         child: Container(
-          padding: const EdgeInsets.only(top: 16, bottom: 24),
+          padding: const EdgeInsets.only(
+            top: 16,
+            bottom: 24,
+          ),
           color: AppColors.grey200,
           child: Column(
             children: <Widget>[
@@ -90,14 +96,72 @@ class AppWidgets {
         ),
       );
 
-  static Widget getCircleAvatar(double radius, String asset) {
-    return CircleAvatar(
-      radius: radius,
-      backgroundImage: AssetImage(asset),
+  static Widget getCircleAvatar({
+    @required double radius,
+    String asset,
+    Widget child,
+    Function callback,
+  }) {
+    return GestureDetector(
+      onTap: callback,
+      child: CircleAvatar(
+        radius: radius,
+        backgroundImage: asset != null ? AssetImage(asset) : AppWidgets.stubImg,
+        child: child,
+      ),
     );
   }
 
-  static Widget bookmarkLogo(Clinic clinic, {double padding = 12}) => Padding(
+  static Widget getText({
+    @required String title,
+    double bottom = 0,
+    TextDecoration decoration = TextDecoration.none,
+    fontColor: Colors.black87,
+    fontSize: Dimens.TEXT_SIZE_12,
+    fontWeight: FontWeight.normal,
+    bool isExpanded = false,
+    bool isUpperCase = false,
+    double left = 0,
+    double top = 0,
+    int maxLines = 10,
+    TextOverflow overflow = TextOverflow.ellipsis,
+    double right = 0,
+    softWrap = true,
+    TextAlign textAlign = TextAlign.start,
+    Function callback,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          bottom: bottom,
+          right: right,
+        ),
+        child: GestureDetector(
+          onTap: callback,
+          child: Text(
+            isUpperCase ? title.toUpperCase() : title,
+            maxLines: maxLines,
+            overflow: overflow,
+            textAlign: textAlign,
+            style: Themes.getTextStyle(
+              color: fontColor,
+              decoration: decoration,
+              fontSize: fontSize,
+              fontWeight: fontWeight,
+            ),
+            softWrap: softWrap,
+          ),
+        ),
+      );
+
+  static Widget getCircleAvatarWithLogo({
+    double avatarRadius,
+    String avatar,
+    double padding = 0,
+    double programOpacity = 0,
+  }) =>
+      Padding(
         padding: EdgeInsets.all(padding),
         child: Stack(
           alignment: Alignment.bottomCenter,
@@ -105,59 +169,34 @@ class AppWidgets {
             Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: AppWidgets.getCircleAvatar(
-                28,
-                clinic.logo,
+                radius: avatarRadius,
+                asset: avatar,
               ),
             ),
             Opacity(
-              opacity: Util.getLogoOpacityByClinic(clinic),
-              child: Image(
-                image: AppWidgets.programLogo,
-              ),
+              opacity: programOpacity,
+              child: Image(image: AppWidgets.programLogo),
             ),
           ],
         ),
       );
 
-  static Widget getText({
-    String title,
-    double left = 0,
-    double top = 0,
-    double bottom = 0,
-    double right = 0,
-    fontSize: Dimens.TEXT_SIZE_12,
-    fontWeight: FontWeight.normal,
-    fontColor: Colors.black87,
-    int maxLines = 10,
-    TextOverflow overflow = TextOverflow.fade,
-    TextAlign textAlign = TextAlign.start,
-    bool isUpperCase = false,
-    bool isExpanded = false,
-    softWrap: true,
-  }) {
-    final child = Padding(
-      padding: EdgeInsets.only(
-        left: left,
-        top: top,
-        bottom: bottom,
-        right: right,
-      ),
-      child: Text(
-        isUpperCase ? title.toUpperCase() : title,
-        maxLines: maxLines,
-        overflow: overflow,
-        textAlign: textAlign,
-        style: Themes.getTextStyle(
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          color: fontColor,
+  static Widget getColoredContainer({
+    @required Color color,
+    bool isLeft = true,
+    double radius = 4,
+    double width = 4,
+  }) =>
+      Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.horizontal(
+            left: isLeft ? Radius.circular(radius) : Radius.zero,
+            right: !isLeft ? Radius.circular(radius) : Radius.zero,
+          ),
         ),
-        softWrap: softWrap,
-      ),
-    );
-
-    return child;
-  }
+        width: width,
+      );
 
   static BoxDecoration getColorBorder({
     Color color = Colors.white,
@@ -236,7 +275,7 @@ class AppWidgets {
               ),
               onChanged: (value) {
                 if (callback != null) {
-                  callback(value);
+                  callback(context, value);
                 }
               },
             ),
@@ -269,6 +308,7 @@ class AppWidgets {
                 ),
               ),
             ),
+          if (!isClear) SizedBox(height: 16,),
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Center(
@@ -278,7 +318,7 @@ class AppWidgets {
                     title: title,
                     bottom: 16,
                     fontWeight: FontWeight.bold,
-                    fontSize: Dimens.TEXT_SIZE_13,
+                    fontSize: Dimens.TEXT_SIZE_14,
                   ),
                   if (subtitles != null)
                     ...List.generate(
@@ -389,7 +429,13 @@ class AppWidgets {
   static Widget getControlButtonsRow({
     @required BuildContext context,
     @required String primary,
+    @required Function primaryCallback,
+    @required Color primaryColor,
+    Color primaryDisabledColor,
     @required String secondary,
+    @required Function secondaryCallback,
+    @required Color secondaryColor,
+    Color secondaryDisabledColor,
     double left = 0,
     double top = 0,
     double bottom = 0,
@@ -409,6 +455,11 @@ class AppWidgets {
               child: AppWidgets.getFlatButton(
                 context: context,
                 title: secondary,
+                color: secondaryColor,
+                disabledColor: secondaryDisabledColor != null
+                    ? secondaryDisabledColor
+                    : secondaryColor,
+                callback: secondaryCallback,
               ),
             ),
             Expanded(
@@ -416,6 +467,11 @@ class AppWidgets {
               child: AppWidgets.getMaterialButton(
                 context: context,
                 title: primary,
+                color: primaryColor,
+                disabledColor: primaryDisabledColor != null
+                    ? primaryDisabledColor
+                    : primaryColor,
+                callback: primaryCallback,
               ),
             ),
           ],
@@ -425,10 +481,16 @@ class AppWidgets {
   static Widget getFlatButton({
     @required BuildContext context,
     @required String title,
-    double left = 0,
-    double top = 0,
+    @required Color color,
+    @required Color disabledColor,
+    @required Function callback,
     double bottom = 0,
+    bool isUpperCase = true,
+    FontWeight fontWeight = FontWeight.normal,
+    double left = 0,
     double right = 0,
+    ShapeBorder shape,
+    double top = 0,
   }) =>
       Padding(
         padding: EdgeInsets.only(
@@ -438,11 +500,15 @@ class AppWidgets {
           right: right,
         ),
         child: FlatButton(
+          color: color,
+          disabledColor: disabledColor,
+          shape: shape,
           child: AppWidgets.getText(
-            title: title.toUpperCase(),
+            title: isUpperCase ? title.toUpperCase() : title,
             fontSize: Dimens.TEXT_SIZE_13,
+            fontWeight: fontWeight,
           ),
-          onPressed: () => Navigator.pop(context),
+          onPressed: callback,
         ),
       );
 
@@ -473,6 +539,31 @@ class AppWidgets {
             fontColor: Colors.white,
           ),
           onPressed: callback,
+        ),
+      );
+
+  static Widget getClickableIcon({
+    @required IconData data,
+    @required Function callback,
+    double top = 0,
+    double right = 0,
+    double bottom = 0,
+    double left = 0,
+    Color iconColor = Colors.black54,
+  }) =>
+      Padding(
+        padding: EdgeInsets.only(
+          left: left,
+          top: top,
+          right: right,
+          bottom: bottom,
+        ),
+        child: GestureDetector(
+          child: Icon(
+            data,
+            color: iconColor,
+          ),
+          onTap: callback,
         ),
       );
 }

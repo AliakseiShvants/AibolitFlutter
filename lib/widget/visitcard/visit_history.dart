@@ -31,7 +31,7 @@ class VisitHistory extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   right: 16,
 //                top: 8,
-//                bottom: 8,
+                bottom: 4,
                 ),
                 child: Transform.rotate(
                   angle: 3.14 / 2,

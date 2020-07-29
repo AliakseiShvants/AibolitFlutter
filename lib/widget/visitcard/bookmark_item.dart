@@ -24,7 +24,11 @@ class BookmarkItem extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              AppWidgets.bookmarkLogo(_clinic),
+              AppWidgets.getCircleAvatarWithLogo(
+                avatarRadius: 28,
+                avatar: _clinic.logo,
+                programOpacity: Util.getLogoOpacityByClinic(_clinic),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Text(
