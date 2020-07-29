@@ -5,6 +5,7 @@ import 'package:AibolitFlutter/utils/borders.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -19,29 +20,6 @@ class SettingsScreen extends StatelessWidget {
   static String _updateDatabaseDate = 'Последнее обновление базы ' + _updateDate;
   static String _version = 'XYZ-prod001';
 
-  final Widget _settingsFooter = SizedBox(
-    width: double.infinity,
-    child: Container(
-      padding: EdgeInsets.symmetric(vertical: 8),
-      color: AppColors.grey100,
-      child: Column(
-        children: <Widget>[
-          AppWidgets.getText(
-            title: _updateDatabaseDate,
-            fontSize: Dimens.TEXT_SIZE_9,
-            fontColor: AppColors.primaryGrey,
-          ),
-          AppWidgets.getText(
-            title: 'Версия $_version',
-            isUpperCase: true,
-            fontSize: Dimens.TEXT_SIZE_10,
-            fontColor: AppColors.primaryGrey,
-          ),
-        ],
-      ),
-    ),
-  );
-
   List<Widget> _getSettingItems({List<ActionItem> list}) {
     return List.generate(
       list.length,
@@ -54,6 +32,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widget = MainContainerInherited.of(context);
+
     return Scrollbar(
       child: SingleChildScrollView(
         child: Column(
@@ -65,7 +45,7 @@ class SettingsScreen extends StatelessWidget {
             ),
             ..._getSettingItems(list: Data.settingActions),
             Container(
-              child: _settingsFooter,
+              child: _getSettingsFooter(serverVersion: widget.serverVersion,),
               decoration: BoxDecoration(
                 border: Border(
                   top: Borders.primaryGreyBorderSide,
@@ -77,6 +57,29 @@ class SettingsScreen extends StatelessWidget {
       ),
     );
   }
+
+  Widget _getSettingsFooter({String serverVersion,}) => SizedBox(
+    width: double.infinity,
+    child: Container(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      color: AppColors.grey100,
+      child: Column(
+        children: <Widget>[
+          AppWidgets.getText(
+            title: _updateDatabaseDate,
+            fontSize: Dimens.TEXT_SIZE_9,
+            fontColor: AppColors.primaryGrey,
+          ),
+          AppWidgets.getText(
+            title: 'Версия $serverVersion',
+            isUpperCase: true,
+            fontSize: Dimens.TEXT_SIZE_10,
+            fontColor: AppColors.primaryGrey,
+          ),
+        ],
+      ),
+    ),
+  );
 
   void _settingAction(ActionItem item) {
     if (item.isEmail) {

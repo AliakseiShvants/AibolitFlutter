@@ -2,6 +2,7 @@ import 'package:AibolitFlutter/entity/doctor.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/util/bottom_nav_bar.dart';
 import 'package:AibolitFlutter/widget/util/program_modal.dart';
 import 'package:AibolitFlutter/widget/util/search/search_control_panel.dart';
 import 'package:AibolitFlutter/widget/util/search/search_field.dart';
@@ -31,6 +32,10 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map args = ModalRoute.of(context).settings.arguments as Map;
+    final selectedItem = args != null ? args['selectedItem'] : -1;
+    final callback = args != null ? args['callback'] : null;
+
     final list = _isBookmarkEnabled ? _bookmarkDoctors : _doctors;
 
     return Scaffold(
@@ -73,6 +78,10 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavBar(
+        selectedItem: selectedItem,
+        callback: callback,
       ),
     );
   }

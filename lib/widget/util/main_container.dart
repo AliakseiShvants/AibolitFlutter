@@ -1,5 +1,6 @@
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/network.dart';
 import 'package:AibolitFlutter/utils/preferences.dart';
 import 'package:AibolitFlutter/utils/strings.dart';
 import 'package:AibolitFlutter/widget/util/bottom_nav_bar.dart';
@@ -20,6 +21,7 @@ class _MainContainerState extends State<MainContainer> {
   int _locationIndex = 0;
   bool _isLoggedIn = false;
   User _user = Data.guest;
+  String _serverVersion;
 
   @override
   void initState() {
@@ -32,11 +34,13 @@ class _MainContainerState extends State<MainContainer> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _locationIndex = prefs.getInt(Strings.LOCATION_INDEX) ?? 0;
     _isLoggedIn = prefs.getBool(Strings.IS_LOGGED_IN) ?? false;
+    _serverVersion = await Network.getServerVersion();
   }
 
   @override
   Widget build(BuildContext context) {
     return MainContainerInherited(
+      serverVersion: _serverVersion,
       selectedItem: _selectedItem,
       onMenuClickCallback: _onMenuItemClick,
       child: Scaffold(
@@ -114,11 +118,13 @@ class MainContainerInherited extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<MainContainerInherited>();
   }
 
+  final String serverVersion;
   final int selectedItem;
   final Function onMenuClickCallback;
   final Widget child;
 
-  MainContainerInherited({
+  MainContainerInherited( {
+    this.serverVersion,
     this.selectedItem,
     this.onMenuClickCallback,
     this.child,

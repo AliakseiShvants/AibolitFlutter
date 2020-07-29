@@ -6,6 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class BottomNavBar extends StatelessWidget {
+  final int selectedItem;
+  final Function callback;
+
+  const BottomNavBar({Key key, this.selectedItem = -1, this.callback,}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final widget = MainContainerInherited.of(context);
@@ -17,7 +22,7 @@ class BottomNavBar extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
-        currentIndex: widget.selectedItem,
+        currentIndex: selectedItem != -1 ? selectedItem : widget.selectedItem,
         iconSize: 32,
         items: List.generate(
           AppIcons.bottomNavIcons.length,
@@ -35,7 +40,7 @@ class BottomNavBar extends StatelessWidget {
             );
           },
         ),
-        onTap: widget.onMenuClickCallback,
+        onTap: callback != null ? callback : widget.onMenuClickCallback,
         selectedFontSize: 8,
         selectedItemColor: AppColors.PRIMARY_COLOR,
         showUnselectedLabels: true,

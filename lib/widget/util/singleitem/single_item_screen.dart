@@ -103,7 +103,6 @@ class SingleItemScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 }
