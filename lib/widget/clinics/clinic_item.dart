@@ -4,6 +4,7 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/util/icon_with_text.dart';
 import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -47,11 +48,10 @@ class ClinicItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 AppWidgets.getCircleAvatarWithLogo(
-                  avatar: clinic.logo,
-                  avatarRadius: 28,
-                  padding: 12,
-                  programOpacity: Util.getLogoOpacityByClinic(clinic)
-                ),
+                    avatar: clinic.logo,
+                    avatarRadius: 32,
+                    padding: 12,
+                    programOpacity: Util.getLogoOpacityByClinic(clinic)),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -64,7 +64,7 @@ class ClinicItem extends StatelessWidget {
                         AppWidgets.getText(
                           title: clinic.title,
                           fontWeight: FontWeight.bold,
-                          fontSize: Dimens.TEXT_SIZE_15,
+                          fontSize: Dimens.TEXT_SIZE_13,
                           maxLines: 2,
                           softWrap: false,
                           isExpanded: true,
@@ -74,23 +74,24 @@ class ClinicItem extends StatelessWidget {
                           title: '${clinic.town} ${clinic.address}',
                           top: 8,
                           bottom: 8,
+                          fontSize: Dimens.TEXT_SIZE_11,
                           isUpperCase: false,
                         ),
                         Row(
                           children: <Widget>[
-                            _getIconText(
-                              Icons.access_time,
-                              AppColors.PRIMARY_COLOR,
-                              '8:00 - 20:00',
+                            IconWithText(
+                              iconData: Icons.access_time,
+                              color: AppColors.PRIMARY_COLOR,
+                              text: '8:00 - 20:00',
                               size: 20,
                             ),
                             SizedBox(
                               width: 32,
                             ),
-                            _getIconText(
-                              MaterialIcons.chat,
-                              AppColors.green,
-                              'Нет отзывов',
+                            IconWithText(
+                              iconData: MaterialIcons.chat,
+                              color: AppColors.green,
+                              text: 'Нет отзывов',
                               size: 20,
                             ),
                           ],
@@ -108,20 +109,4 @@ class ClinicItem extends StatelessWidget {
   }
 
   bool _isColoredBorder(Clinic clinic) => Data.epamClinics.contains(clinic);
-
-  Widget _getIconText(IconData iconData, Color color, String text,
-          {double size = 24}) =>
-      Row(
-        children: <Widget>[
-          Icon(
-            iconData,
-            size: size,
-            color: color,
-          ),
-          AppWidgets.getText(
-            title: text,
-            left: 8,
-          ),
-        ],
-      );
 }

@@ -117,24 +117,27 @@ class Data {
   );
 
   static Doctor doctor1 = Doctor(
+    avatar: 'assets/img/doctorwithoutphoto.png',
     firstName: 'Юлия',
     lastName: 'Савицкая',
-    middleName: 'Валентиновна-Валентиновна',
+    middleName: 'Валентиновна',
     specialityLong: 'врач-стоматолог-терапевт',
     speciality: 'врач-стоматолог',
-    centers: [clinic1],
+    centers: [clinic1, clinic2],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor2 = Doctor(
+    avatar: 'assets/img/doctorwithoutphoto.png',
     firstName: 'Галина',
     lastName: 'Мурысева',
     middleName: 'Андреевна',
     speciality: 'рентген-лаборант',
     specialityLong: 'рентген-лаборант',
-    centers: [clinic1],
+    centers: [clinic1, clinic2],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor3 = Doctor(
+    avatar: 'assets/img/doctorwithoutphoto.png',
     firstName: 'Светлана',
     lastName: 'Монастырская',
     middleName: 'Сергеевна',

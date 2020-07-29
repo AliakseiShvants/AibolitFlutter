@@ -11,5 +11,5 @@ class Doctor {
   final List<Clinic> centers;
 
   Doctor({this.firstName, this.lastName, this.middleName, this.speciality,
-      this.specialityLong, this.profiles, this.centers, this.avatar});
+      this.specialityLong, this.profiles, this.centers, this.avatar,});
 }

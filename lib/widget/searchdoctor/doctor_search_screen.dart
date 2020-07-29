@@ -1,12 +1,15 @@
 import 'package:AibolitFlutter/entity/doctor.dart';
+import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
-import 'package:AibolitFlutter/widget/util/bottom_nav_bar.dart';
 import 'package:AibolitFlutter/widget/util/program_modal.dart';
 import 'package:AibolitFlutter/widget/util/search/search_control_panel.dart';
 import 'package:AibolitFlutter/widget/util/search/search_field.dart';
+import 'package:AibolitFlutter/widget/util/search/search_result.dart';
 import 'package:flutter/material.dart';
+
+import 'doctor_item.dart';
 
 class SearchDoctorScreen extends StatefulWidget {
   @override
@@ -33,8 +36,6 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
   @override
   Widget build(BuildContext context) {
     final Map args = ModalRoute.of(context).settings.arguments as Map;
-    final selectedItem = args != null ? args['selectedItem'] : -1;
-    final callback = args != null ? args['callback'] : null;
 
     final list = _isBookmarkEnabled ? _bookmarkDoctors : _doctors;
 
@@ -75,13 +76,15 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
                   );
                 },
               ),
+              SearchResult(
+                list: _getDoctors(
+                  list,
+                  Data.epamPrograms[_programIndex],
+                ),
+              ),
             ],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavBar(
-        selectedItem: selectedItem,
-        callback: callback,
       ),
     );
   }
@@ -123,4 +126,16 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
 
     return result;
   }
+
+  List<DoctorItem> _getDoctors(
+    List<Doctor> list,
+    Program program,
+  ) =>
+      List.generate(
+        list.length,
+        (index) => DoctorItem(
+          doctor: list[index],
+          program: program,
+        ),
+      );
 }
