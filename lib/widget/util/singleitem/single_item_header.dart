@@ -30,84 +30,94 @@ class SingleItemHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 16,
-            left: 12,
-            right: 24,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: AppColors.grey400,
+            width: .5,
           ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              AppWidgets.getCircleAvatarWithLogo(
-                avatarRadius: 40,
-                avatar: avatar,
-                programOpacity: programOpacity,
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 4,
-                    left: 16,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      AppWidgets.getText(
-                        title: itemTitle,
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimens.TEXT_SIZE_14,
-                      ),
-                      AppWidgets.getText(
-                        title: location,
-                        top: 16,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.location_on,
-                              color: AppColors.PRIMARY_COLOR,
-                              size: 20,
-                            ),
-                            AppWidgets.getText(
-                              title: link,
-                              decoration: TextDecoration.underline,
-                              fontColor: AppColors.PRIMARY_COLOR,
-                              fontSize: Dimens.TEXT_SIZE_12,
-                              left: 8,
-                              callback: () => _showOnMap(context),
-                            ),
-                          ],
+        ),
+      ),
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 16,
+              left: 12,
+              right: 24,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                AppWidgets.getCircleAvatarWithLogo(
+                  avatarRadius: 40,
+                  avatar: avatar,
+                  programOpacity: programOpacity,
+                ),
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 4,
+                      left: 16,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        AppWidgets.getText(
+                          title: itemTitle,
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimens.TEXT_SIZE_14,
                         ),
-                      ),
-                    ],
+                        AppWidgets.getText(
+                          title: location,
+                          top: 16,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.location_on,
+                                color: AppColors.PRIMARY_COLOR,
+                                size: 20,
+                              ),
+                              AppWidgets.getText(
+                                title: link,
+                                decoration: TextDecoration.underline,
+                                fontColor: AppColors.PRIMARY_COLOR,
+                                fontSize: Dimens.TEXT_SIZE_12,
+                                left: 8,
+                                callback: () => _showOnMap(context),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 8,
-            horizontal: 12,
-          ),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minWidth: double.infinity),
-            child: AppWidgets.getMaterialButton(
-              context: context,
-              title: buttonTitle,
-              callback: buttonCallback,
-              disabledColor: AppColors.green,
-              color: AppColors.green,
+              ],
             ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 12,
+            ),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: AppWidgets.getMaterialButton(
+                context: context,
+                title: buttonTitle,
+                callback: buttonCallback,
+                disabledColor: AppColors.green,
+                color: AppColors.green,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

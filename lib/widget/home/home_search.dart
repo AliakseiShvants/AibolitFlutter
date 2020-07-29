@@ -18,8 +18,8 @@ class HomeSearch extends StatelessWidget {
             context,
             '/search/doctor',
             arguments: <String, dynamic>{
-              'selectedItem': widget.selectedItem,
-              'callback': widget.onMenuClickCallback,
+              'selectedItem': widget.bottomNavBarItem,
+              'callback': widget.bottomNavBarCallback,
             },
           ),
         ),

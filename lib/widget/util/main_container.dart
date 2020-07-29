@@ -41,8 +41,8 @@ class _MainContainerState extends State<MainContainer> {
   Widget build(BuildContext context) {
     return MainContainerInherited(
       serverVersion: _serverVersion,
-      selectedItem: _selectedItem,
-      onMenuClickCallback: _onMenuItemClick,
+      bottomNavBarItem: _selectedItem,
+      bottomNavBarCallback: _onMenuItemClick,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
@@ -119,14 +119,14 @@ class MainContainerInherited extends InheritedWidget {
   }
 
   final String serverVersion;
-  final int selectedItem;
-  final Function onMenuClickCallback;
+  final int bottomNavBarItem;
+  final Function bottomNavBarCallback;
   final Widget child;
 
   MainContainerInherited( {
     this.serverVersion,
-    this.selectedItem,
-    this.onMenuClickCallback,
+    this.bottomNavBarItem,
+    this.bottomNavBarCallback,
     this.child,
   });
 

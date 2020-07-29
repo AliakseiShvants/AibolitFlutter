@@ -19,15 +19,8 @@ class SingleItemInfoPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       padding: const EdgeInsets.symmetric(vertical: 16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.symmetric(
-          vertical: BorderSide(
-            color: AppColors.grey400,
-          ),
-        ),
-      ),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,4 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
-import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
@@ -32,10 +31,15 @@ class SingleItemInfo extends StatelessWidget {
             iconColor: AppColors.PRIMARY_COLOR,
           ),
         ),
-        VerticalDivider(
-          width: 1,
+        Container(
+          width: 0.5,
+          height: 66,
           color: AppColors.grey400,
         ),
+//        VerticalDivider(
+//          width: 0.5,
+//          color: AppColors.grey400,
+//        ),
         Expanded(
           child: SingleItemInfoPanel(
             title: feedbackTitle,

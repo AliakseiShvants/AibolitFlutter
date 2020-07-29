@@ -3,6 +3,7 @@ import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/util/info_item.dart';
+import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:AibolitFlutter/widget/util/singleitem/single_item_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:map_launcher/map_launcher.dart';
@@ -38,8 +39,10 @@ class _ClinicItemScreenState extends State<ClinicItemScreen> {
     final Map args = ModalRoute.of(context).settings.arguments as Map;
     _clinic = args != null ? args['clinic'] : null;
     _appBarTitle = args != null ? args['title'] : '';
+
     _isBookmarked = Data.clinicBookmarks.contains(_clinic);
     _iconData = _isBookmarked ? Icons.bookmark : Icons.bookmark_border;
+
 
     return SingleItemScreen(
       appBarTitle: _appBarTitle,

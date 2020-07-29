@@ -22,7 +22,7 @@ class BottomNavBar extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
-        currentIndex: selectedItem != -1 ? selectedItem : widget.selectedItem,
+        currentIndex: selectedItem != -1 ? selectedItem : widget.bottomNavBarItem,
         iconSize: 32,
         items: List.generate(
           AppIcons.bottomNavIcons.length,
@@ -40,7 +40,7 @@ class BottomNavBar extends StatelessWidget {
             );
           },
         ),
-        onTap: callback != null ? callback : widget.onMenuClickCallback,
+        onTap: callback != null ? callback : widget.bottomNavBarCallback,
         selectedFontSize: 8,
         selectedItemColor: AppColors.PRIMARY_COLOR,
         showUnselectedLabels: true,

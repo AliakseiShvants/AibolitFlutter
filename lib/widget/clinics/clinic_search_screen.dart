@@ -3,6 +3,7 @@ import 'package:AibolitFlutter/entity/action.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/util.dart';
+import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:AibolitFlutter/widget/util/program_modal.dart';
 import 'package:AibolitFlutter/widget/util/search/search_control_panel.dart';
 import 'package:AibolitFlutter/widget/util/search/search_field.dart';
@@ -41,6 +42,7 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final widget = MainContainerInherited.of(context);
     final list = _isBookmarkEnabled ? _bookmarkClinics : _clinics;
 
     return Container(

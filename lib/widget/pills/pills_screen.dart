@@ -50,15 +50,15 @@ class _PillsScreenState extends State<PillsScreen> {
   }
 
   void getDrugs() async {
-    final response = await Network.getDrugs('уголь');
-
-    List<Drug> result = (json.decode(utf8.decode(response.bodyBytes)) as List)
-        .map((data) => Drug.fromJson(data))
-        .toList();
-
-    setState(() {
-      drugs = result;
-    });
+//    final response = await Network.getDrugs('уголь');
+//
+//    List<Drug> result = (json.decode(utf8.decode(response.bodyBytes)) as List)
+//        .map((data) => Drug.fromJson(data))
+//        .toList();
+//
+//    setState(() {
+//      drugs = result;
+//    });
   }
 
   List<Card> widgets(List<Drug> list) => List.generate(
