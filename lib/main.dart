@@ -1,19 +1,18 @@
-import 'package:AibolitFlutter/widget/appbar/account/notification/notification_screen.dart';
-import 'package:AibolitFlutter/widget/appbar/account/program/program_screen.dart';
-import 'package:AibolitFlutter/widget/clinics/clinic_search_screen.dart';
-import 'package:AibolitFlutter/widget/searchdoctor/doctor_search_screen.dart';
+import 'package:AibolitFlutter/widget/search/service/service_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 import 'utils/themes.dart';
 import 'widget/appbar/account/account_screen.dart';
 import 'widget/appbar/account/family/family_screen.dart';
+import 'widget/appbar/account/notification/notification_screen.dart';
+import 'widget/appbar/account/program/program_screen.dart';
 import 'widget/appbar/login/login_screen.dart';
 import 'widget/clinics/clinic/clinic_item_screen.dart';
+import 'widget/search/doctor/advanced_doctor_search_screen.dart';
+import 'widget/search/doctor/doctor_search_screen.dart';
 import 'widget/util/main_container.dart';
-import 'widget/searchdoctor/advanced_doctor_search_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,8 +40,10 @@ class AibolitApp extends StatelessWidget {
         '/account/program': (context) => ProgramScreen(),
         '/clinic': (context) => ClinicItemScreen(),
         '/login': (context) => LoginScreen(),
-        '/search/doctor' : (context) => SearchDoctorScreen(),
+        '/search/doctor' : (context) => DoctorSearchScreen(),
         '/search/doctor/advanced' : (context) => AdvancedSearchDoctorScreen(),
+        '/search/service' : (context) => ServiceSearchScreen(),
+        '/search/pills' : (context) => ServiceSearchScreen(),
       },
       supportedLocales: [
         const Locale('en', ''),

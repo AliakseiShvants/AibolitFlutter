@@ -25,7 +25,7 @@ class HomeSearch extends StatelessWidget {
           assetPath: 'assets/img/microscope.png',
           callback: () => Navigator.pushNamed(
             context,
-            '/search/doctor',
+            '/search/service',
           ),
         ),
       ],

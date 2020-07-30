@@ -131,8 +131,8 @@ class Data {
     firstName: 'Галина',
     lastName: 'Мурысева',
     middleName: 'Андреевна',
-    speciality: 'рентген-лаборант',
-    specialityLong: 'рентген-лаборант',
+    speciality: 'хирург',
+    specialityLong: 'хирург',
     centers: [clinic1, clinic2],
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
@@ -165,7 +165,7 @@ class Data {
   static final List<Visit> visits = [
     Data.getVisitWithDate(
       Data.user1,
-      DateTime(2020, 7, 30, 15),
+      DateTime(2020, 7, 31, 15),
       Data.clinic1,
       Data.doctor1,
     ),
@@ -292,4 +292,23 @@ class Data {
     'За 1 день, в 10:00 утра': false,
     'За 1 день, в 20:00 вечера': false,
   };
+
+  static List<String> searchService = [
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+    'Аллергология',
+  ];
 }

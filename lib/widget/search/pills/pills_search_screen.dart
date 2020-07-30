@@ -7,12 +7,12 @@ import 'package:AibolitFlutter/utils/network.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class PillsScreen extends StatefulWidget {
+class PillsSearchScreen extends StatefulWidget {
   @override
-  _PillsScreenState createState() => _PillsScreenState();
+  _PillsSearchScreenState createState() => _PillsSearchScreenState();
 }
 
-class _PillsScreenState extends State<PillsScreen> {
+class _PillsSearchScreenState extends State<PillsSearchScreen> {
   String text = 'find';
   List<Drug> drugs = [];
 
