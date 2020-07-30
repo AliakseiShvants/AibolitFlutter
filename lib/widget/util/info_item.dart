@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class InfoItem extends StatelessWidget {
-  final String logo;
+  final Widget logo;
   final String title;
   final String hint;
   final Color textColor;
@@ -14,8 +14,10 @@ class InfoItem extends StatelessWidget {
   final bool isCapitalize;
   final FontWeight fontWeight;
   final bool isTrailing;
+  final Color trailingColor;
   final Function callback;
   final String url;
+  final bool isBottomBorder;
 
   InfoItem({
     this.title,
@@ -29,21 +31,32 @@ class InfoItem extends StatelessWidget {
     this.isTrailing = true,
     this.callback,
     this.url,
+    this.trailingColor,
+    this.isBottomBorder = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final border = isBottomBorder
+        ? Border(
+            bottom: BorderSide(
+              color: AppColors.grey400,
+              width: .5,
+            ),
+          )
+        : Border(
+            top: BorderSide(
+              color: AppColors.grey400,
+              width: .5,
+            ),
+          );
+
     return GestureDetector(
       onTap: callback,
       child: Container(
         decoration: BoxDecoration(
           color: color,
-          border: Border(
-            top: BorderSide(
-              color: AppColors.grey400,
-              width: .5,
-            ),
-          ),
+          border: border,
         ),
         child: Padding(
           padding: EdgeInsets.all(20),
@@ -52,7 +65,7 @@ class InfoItem extends StatelessWidget {
               if (logo != null)
                 Padding(
                   padding: EdgeInsets.only(right: 16),
-                  child: Image.asset(logo),
+                  child: logo,
                 ),
               if (hint != null)
                 Expanded(
@@ -84,7 +97,7 @@ class InfoItem extends StatelessWidget {
                   child: Icon(
                     Icons.arrow_forward_ios,
                     size: 16,
-                    color: AppColors.grey400,
+                    color: trailingColor,
                   ),
                 ),
             ],

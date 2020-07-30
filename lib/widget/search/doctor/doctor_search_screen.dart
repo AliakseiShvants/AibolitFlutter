@@ -11,12 +11,12 @@ import 'package:flutter/material.dart';
 
 import 'doctor_item.dart';
 
-class SearchDoctorScreen extends StatefulWidget {
+class DoctorSearchScreen extends StatefulWidget {
   @override
-  _SearchDoctorScreenState createState() => _SearchDoctorScreenState();
+  _DoctorSearchScreenState createState() => _DoctorSearchScreenState();
 }
 
-class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
+class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
   final String _appBarTitle = 'Поиск врача';
   final String _searchHint = 'Поиск врача (от трёх символов)...';
   final String _sortTitle = 'Сортировать список врачей';

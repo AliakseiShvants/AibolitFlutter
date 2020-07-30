@@ -94,7 +94,7 @@ class AccountScreen extends StatelessWidget {
               GestureDetector(
                 child: InfoItem(
                   title: Data.user1.program.title,
-                  logo: Data.user1.program.logo,
+                  logo: Image.asset(Data.user1.program.logo),
                 ),
                 onTap: () => Navigator.pushNamed(context, '/account/program'),
               ),

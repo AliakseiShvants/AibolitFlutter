@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../widget/home/home_screen.dart';
-import '../widget/pills/pills_screen.dart';
+import '../widget/pills/pills_search_screen.dart';
 import '../widget/settings/settings_screen.dart';
 import '../widget/visitcard/visit_card_screen.dart';
 import 'app_colors.dart';

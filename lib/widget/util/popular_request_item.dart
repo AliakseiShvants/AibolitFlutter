@@ -8,24 +8,49 @@ class PopularRequestItem extends StatelessWidget {
   final String title;
   final GlobalKey key;
 
-  PopularRequestItem({@required this.title, @required this.isHuman, this.key});
+  PopularRequestItem({
+    @required this.title,
+    @required this.isHuman,
+    this.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-      child: Container(
-        decoration: BoxDecoration(
-          color: isHuman ? AppColors.PRIMARY_COLOR : Color(0xff009688),
-          borderRadius: BorderRadius.all(
-            Radius.circular(32),
+    return GestureDetector(
+      onTap: () {
+        if (isHuman) {
+          Navigator.pushNamed(
+            context,
+            '/search/doctor',
+            arguments: {
+
+            },
+          );
+        } else {
+          Navigator.pushNamed(
+            context,
+            '/search/pills',
+            arguments: {
+
+            },
+          );
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+        child: Container(
+          decoration: BoxDecoration(
+            color: isHuman ? AppColors.PRIMARY_COLOR : Color(0xff009688),
+            borderRadius: BorderRadius.all(
+              Radius.circular(32),
+            ),
           ),
-        ),
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        child: Text(
-          title,
-          style: Themes.getTextStyle(
-            color: Colors.white,
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+          child: Text(
+            title,
+            style: Themes.getTextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
