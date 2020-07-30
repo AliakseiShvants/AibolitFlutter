@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
       child: Scrollbar(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(12),
             child: Column(
               children: <Widget>[
                 HomeSearch(),

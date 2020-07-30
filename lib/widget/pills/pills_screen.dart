@@ -35,7 +35,11 @@ class _PillsScreenState extends State<PillsScreen> {
           ),
           child: AppWidgets.getInputField(
             context: context,
-            borderColor: AppColors.grey500,
+            borderColor: AppColors.grey400,
+            top: 12,
+            right: 12,
+            bottom: 12,
+            left: 12,
             prefixIcon: Icon(
               Icons.search,
               color: AppColors.grey500,

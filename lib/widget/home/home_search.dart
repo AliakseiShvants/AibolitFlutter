@@ -17,17 +17,16 @@ class HomeSearch extends StatelessWidget {
           callback: () => Navigator.pushNamed(
             context,
             '/search/doctor',
-            arguments: <String, dynamic>{
-              'selectedItem': widget.bottomNavBarItem,
-              'callback': widget.bottomNavBarCallback,
-            },
           ),
         ),
         Spacer(),
         HomeSearchItem(
           title: 'Поиск услуги',
           assetPath: 'assets/img/microscope.png',
-          callback: null,
+          callback: () => Navigator.pushNamed(
+            context,
+            '/search/doctor',
+          ),
         ),
       ],
     );

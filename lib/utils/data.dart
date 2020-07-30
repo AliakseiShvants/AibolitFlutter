@@ -165,34 +165,34 @@ class Data {
   static final List<Visit> visits = [
     Data.getVisitWithDate(
       Data.user1,
-      DateTime(2020, 7, 17, 16),
+      DateTime(2020, 7, 30, 15),
       Data.clinic1,
       Data.doctor1,
     ),
-    Data.getVisitWithDate(
-      Data.user2,
-      DateTime.now().add(Duration(hours: 2)),
-      Data.clinic2,
-      Data.doctor3,
-    ),
-    Data.getVisitWithDate(
-      Data.user1,
-      DateTime.now().add(Duration(hours: 1)),
-      Data.clinic2,
-      Data.doctor2,
-    ),
-    Data.getVisitWithDate(
-      Data.user1,
-      DateTime.now().add(Duration(hours: 1)),
-      Data.clinic2,
-      Data.doctor3,
-    ),
-    Data.getVisitWithDate(
-      Data.user2,
-      DateTime.now().add(Duration(hours: 1)),
-      Data.clinic2,
-      Data.doctor1,
-    ),
+//    Data.getVisitWithDate(
+//      Data.user2,
+//      DateTime.now().add(Duration(hours: 2)),
+//      Data.clinic2,
+//      Data.doctor3,
+//    ),
+//    Data.getVisitWithDate(
+//      Data.user1,
+//      DateTime.now().add(Duration(hours: 1)),
+//      Data.clinic2,
+//      Data.doctor2,
+//    ),
+//    Data.getVisitWithDate(
+//      Data.user1,
+//      DateTime.now().add(Duration(hours: 1)),
+//      Data.clinic2,
+//      Data.doctor3,
+//    ),
+//    Data.getVisitWithDate(
+//      Data.user2,
+//      DateTime.now().add(Duration(hours: 1)),
+//      Data.clinic2,
+//      Data.doctor1,
+//    ),
     Data.visit,
     Data.getVisitWithDate(
       Data.user1,
