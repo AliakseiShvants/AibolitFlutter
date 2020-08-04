@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:AibolitFlutter/entity/drug.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
-import 'package:AibolitFlutter/utils/network.dart';
+import 'package:AibolitFlutter/utils/dimens.dart';
+import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,14 +12,20 @@ class PillsSearchScreen extends StatefulWidget {
 }
 
 class _PillsSearchScreenState extends State<PillsSearchScreen> {
-  String text = 'find';
-  List<Drug> drugs = [];
+  final String _text = 'find';
+  final String _emptyTitle = 'история поиска';
+  final String _emptyBody =
+      'После авторизации здесь будет отображаться ваша история поиска лекарств.';
+  List<Drug> _drugs = [];
 
-  var drugController = TextEditingController();
+  var _drugController = TextEditingController();
+  bool _isLoggedIn;
 
   @override
   Widget build(BuildContext context) {
-    drugController.addListener(() {});
+    final widget = MainContainerInherited.of(context);
+    _isLoggedIn = widget.isLoggedIn;
+    _drugController.addListener(() {});
 
     return Column(
       children: <Widget>[
@@ -29,7 +34,7 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
             color: AppColors.grey100,
             border: Border(
               bottom: BorderSide(
-                color: AppColors.grey300,
+                color: AppColors.grey400,
               ),
             ),
           ),
@@ -49,6 +54,42 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
             controller: null,
           ),
         ),
+        if (/*!_isLoggedIn*/ true)
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minWidth: double.infinity),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: AppColors.grey400,
+                        ),
+                      ),
+                    ),
+                    child: AppWidgets.getText(
+                      title: _emptyTitle,
+                      fontSize: Dimens.TEXT_SIZE_14,
+                      isUpperCase: true,
+                      top: 12,
+                      bottom: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              AppWidgets.getText(
+                title: _emptyBody,
+                top: 12,
+                left: 16,
+                fontColor: AppColors.primaryGrey,
+              ),
+            ],
+          )
       ],
     );
   }
@@ -68,7 +109,7 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
   List<Card> widgets(List<Drug> list) => List.generate(
         list.length,
         (index) {
-          var drug = drugs[index];
+          var drug = _drugs[index];
 
           return Card(
             child: Column(

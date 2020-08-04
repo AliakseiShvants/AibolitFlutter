@@ -23,7 +23,7 @@ class PopularRequestItem extends StatelessWidget {
             context,
             '/search/doctor',
             arguments: {
-
+              'searchParameter' : title,
             },
           );
         } else {
@@ -31,7 +31,7 @@ class PopularRequestItem extends StatelessWidget {
             context,
             '/search/pills',
             arguments: {
-
+              'searchParameter' : title,
             },
           );
         }

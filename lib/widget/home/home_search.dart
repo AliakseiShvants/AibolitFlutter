@@ -13,7 +13,7 @@ class HomeSearch extends StatelessWidget {
       children: <Widget>[
         HomeSearchItem(
           title: 'Поиск врача',
-          assetPath: 'assets/img/searchdoctor.png',
+          assetPath: 'assets/img/doctor/search.png',
           callback: () => Navigator.pushNamed(
             context,
             '/search/doctor',

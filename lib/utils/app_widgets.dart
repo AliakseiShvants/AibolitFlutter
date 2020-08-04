@@ -2,11 +2,11 @@ import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
 import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/clinics/clinic_search_screen.dart';
+import 'package:AibolitFlutter/widget/search/pills/pills_search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../widget/home/home_screen.dart';
-import '../widget/pills/pills_search_screen.dart';
 import '../widget/settings/settings_screen.dart';
 import '../widget/visitcard/visit_card_screen.dart';
 import 'app_colors.dart';
@@ -20,7 +20,7 @@ class AppWidgets {
   static final List<Widget> bottomNavWidgets = [
     HomeScreen(),
     ClinicSearchScreen(),
-    PillsScreen(),
+    PillsSearchScreen(),
     VisitCardScreen(),
     SettingsScreen()
   ];

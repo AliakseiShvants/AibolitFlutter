@@ -36,8 +36,8 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
   @override
   Widget build(BuildContext context) {
     final Map args = ModalRoute.of(context).settings.arguments as Map;
-
-    final list = _isBookmarkEnabled ? _bookmarkDoctors : _doctors;
+    final searchParameter = args != null ? args['searchParameter'] : null;
+    final list = _getListBySearch(searchParameter);
 
     return Scaffold(
       appBar: AppWidgets.getAppBar(
@@ -58,7 +58,7 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
                 controller: _doctorController,
               ),
               SearchControlPanel(
-                title: _getPluralDoctorsCount(list.length),
+                title: _getPluralDoctorsCount(list.length, _isBookmarkEnabled,),
                 isBookmarkEnabled: _isBookmarkEnabled,
                 bookmarkCallback: _pushBookmark,
                 filterCallback: () => Navigator.pushNamed(
@@ -77,6 +77,9 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
                 },
               ),
               SearchResult(
+                stubImg: 'assets/img/clinic/clinic_stub.jpg',
+                emptyTitle: 'У вас в закладках пока нет врачей',
+                emptyText: 'Добавляйте в закладки врачей, которые вам понравились. Так их всегда будет легко найти.',
                 list: _getDoctors(
                   list,
                   Data.epamPrograms[_programIndex],
@@ -111,17 +114,18 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
     Navigator.pop(context);
   }
 
-  String _getPluralDoctorsCount(int count) {
+  String _getPluralDoctorsCount(int count, bool isBookmarkEnabled,) {
     String result;
+    final bookmark = isBookmarkEnabled ? 'в закладках' : '';
 
     if (count == 0) {
-      result = 'нет врачей';
+      result = 'нет врачей $bookmark';
     } else if (count == 1) {
-      result = '$count врач';
+      result = '$count врач $bookmark';
     } else if (count > 4) {
-      result = '$count врачей';
+      result = '$count врачей $bookmark';
     } else {
-      result = '$count врача';
+      result = '$count врача $bookmark';
     }
 
     return result;
@@ -138,4 +142,14 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
           program: program,
         ),
       );
+
+  List<Doctor> _getListBySearch(String search) {
+    var list =  _isBookmarkEnabled ? _bookmarkDoctors : _doctors;
+
+    if (search != null) {
+      list = list.where((element) => element.speciality.contains(search)).toList();
+    }
+
+    return list;
+  }
 }
