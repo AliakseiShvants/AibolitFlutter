@@ -86,6 +86,9 @@ class _ClinicSearchScreenState extends State<ClinicSearchScreen> {
                 },
               ),
               SearchResult(
+                stubImg: 'assets/img/clinic/clinic_stub.jpg',
+                emptyTitle: 'У вас в закладках пока нет медцентров',
+                emptyText: 'Добавляйте в закладки медцентры, которые вам понравились. Так их всегда будет легко найти.',
                 list: _getClinics(list),
               ),
             ],

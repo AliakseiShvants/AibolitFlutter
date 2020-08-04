@@ -43,6 +43,7 @@ class _MainContainerState extends State<MainContainer> {
       serverVersion: _serverVersion,
       bottomNavBarItem: _selectedItem,
       bottomNavBarCallback: _onMenuItemClick,
+      isLoggedIn: _isLoggedIn,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: true,
@@ -121,12 +122,14 @@ class MainContainerInherited extends InheritedWidget {
   final String serverVersion;
   final int bottomNavBarItem;
   final Function bottomNavBarCallback;
+  final bool isLoggedIn;
   final Widget child;
 
-  MainContainerInherited( {
+  MainContainerInherited(  {
     this.serverVersion,
     this.bottomNavBarItem,
     this.bottomNavBarCallback,
+    this.isLoggedIn,
     this.child,
   });
 

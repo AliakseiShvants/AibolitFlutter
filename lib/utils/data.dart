@@ -117,7 +117,7 @@ class Data {
   );
 
   static Doctor doctor1 = Doctor(
-    avatar: 'assets/img/doctorwithoutphoto.png',
+    avatar: 'assets/img/doctor/withoutphoto.png',
     firstName: 'Юлия',
     lastName: 'Савицкая',
     middleName: 'Валентиновна',
@@ -127,7 +127,7 @@ class Data {
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor2 = Doctor(
-    avatar: 'assets/img/doctorwithoutphoto.png',
+    avatar: 'assets/img/doctor/withoutphoto.png',
     firstName: 'Галина',
     lastName: 'Мурысева',
     middleName: 'Андреевна',
@@ -137,7 +137,7 @@ class Data {
     profiles: ['Взрослые', 'Дети с 0 лет'],
   );
   static Doctor doctor3 = Doctor(
-    avatar: 'assets/img/doctorwithoutphoto.png',
+    avatar: 'assets/img/doctor/withoutphoto.png',
     firstName: 'Светлана',
     lastName: 'Монастырская',
     middleName: 'Сергеевна',
