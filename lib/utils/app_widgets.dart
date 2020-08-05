@@ -1,6 +1,4 @@
-import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/utils/themes.dart';
-import 'package:AibolitFlutter/utils/util.dart';
 import 'package:AibolitFlutter/widget/clinics/clinic_search_screen.dart';
 import 'package:AibolitFlutter/widget/search/pills/pills_search_screen.dart';
 import 'package:flutter/material.dart';
@@ -308,7 +306,10 @@ class AppWidgets {
                 ),
               ),
             ),
-          if (!isClear) SizedBox(height: 16,),
+          if (!isClear)
+            SizedBox(
+              height: 16,
+            ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: Center(
@@ -436,10 +437,13 @@ class AppWidgets {
     @required Function secondaryCallback,
     @required Color secondaryColor,
     Color secondaryDisabledColor,
+    Color primaryTitleColor = Colors.white,
+    Color secondaryTitleColor = Colors.white,
     double left = 0,
     double top = 0,
     double bottom = 0,
     double right = 0,
+    isNeedSpaceBetween = false,
   }) =>
       Padding(
         padding: EdgeInsets.only(
@@ -452,22 +456,28 @@ class AppWidgets {
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: AppWidgets.getFlatButton(
+              child: AppWidgets.getMaterialButton(
                 context: context,
                 title: secondary,
                 color: secondaryColor,
+                titleColor: secondaryTitleColor,
                 disabledColor: secondaryDisabledColor != null
                     ? secondaryDisabledColor
                     : secondaryColor,
                 callback: secondaryCallback,
               ),
             ),
+            if (isNeedSpaceBetween)
+              SizedBox(
+                width: 8,
+              ),
             Expanded(
               flex: 1,
               child: AppWidgets.getMaterialButton(
                 context: context,
                 title: primary,
                 color: primaryColor,
+                titleColor: primaryTitleColor,
                 disabledColor: primaryDisabledColor != null
                     ? primaryDisabledColor
                     : primaryColor,
@@ -518,6 +528,7 @@ class AppWidgets {
     @required Function callback,
     @required Color disabledColor,
     @required Color color,
+    Color titleColor = Colors.white,
     double left = 0,
     double top = 0,
     double bottom = 0,
@@ -536,7 +547,7 @@ class AppWidgets {
           child: AppWidgets.getText(
             title: title.toUpperCase(),
             fontSize: Dimens.TEXT_SIZE_13,
-            fontColor: Colors.white,
+            fontColor: titleColor,
           ),
           onPressed: callback,
         ),

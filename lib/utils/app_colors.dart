@@ -13,5 +13,6 @@ class AppColors {
   static Color green100 = green.withOpacity(0.1);
 
   static Color indigo50 = Color(0xFFE8EAF6);
+  static Color indigo100 = Color(0xFFC5CAE9);
   static Color indigo200 = Color(0xFF9FA8DA);
 }
