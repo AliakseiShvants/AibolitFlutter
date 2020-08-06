@@ -186,6 +186,7 @@ class AccountScreen extends StatelessWidget {
                     secondary: 'Отменить',
                     primaryColor: AppColors.green,
                     secondaryColor: Colors.white,
+                    secondaryTitleColor: Colors.black87,
                     primaryCallback: null,
                     secondaryCallback: () => Navigator.pop(context),
                   ),

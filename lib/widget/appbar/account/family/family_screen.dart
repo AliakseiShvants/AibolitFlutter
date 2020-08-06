@@ -59,7 +59,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
                     ),
                   );
                 }
-              }),
+              },),
         ),
       ),
       floatingActionButton: Column(

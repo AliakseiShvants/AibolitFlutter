@@ -1,9 +1,13 @@
-import 'package:AibolitFlutter/entity/drug.dart';
+import 'package:AibolitFlutter/entity/network/drug_autocomplete.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
+import 'package:AibolitFlutter/utils/converter.dart';
+import 'package:AibolitFlutter/utils/data.dart';
+import 'package:AibolitFlutter/utils/network.dart';
 import 'package:AibolitFlutter/widget/search/pills/pill_error.dart';
-import 'package:AibolitFlutter/widget/search/pills/pill_guest.dart';
+import 'package:AibolitFlutter/widget/search/pills/pill_search.dart';
 import 'package:AibolitFlutter/widget/util/main_container.dart';
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -14,17 +18,25 @@ class PillsSearchScreen extends StatefulWidget {
 }
 
 class _PillsSearchScreenState extends State<PillsSearchScreen> {
-  final String _text = 'find';
-  List<Drug> _drugs = [];
+  final _drugController = TextEditingController();
 
-  var _drugController = TextEditingController();
+  String _searchLine;
+  List<DrugAutocomplete> _searchHistory = Data.drugSearchHistory;
+  List<DrugAutocomplete> _searchResult = [];
+  List<Widget> drugWidgetList = [];
   bool _isLoggedIn;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _drugController.addListener(_updateSearchLine);
+  }
 
   @override
   Widget build(BuildContext context) {
     final widget = MainContainerInherited.of(context);
     _isLoggedIn = widget.isLoggedIn;
-    _drugController.addListener(() {});
 
     return Container(
       color: AppColors.grey100,
@@ -43,9 +55,47 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
               size: 28,
             ),
             hint: 'Поиск (по полному названию)...',
-            controller: null,
+            controller: _drugController,
+//            onChangedCallback: _updateSearchLine
           ),
-          if (true) Expanded(child: PillGuest()),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  top: BorderSide(
+                    color: AppColors.grey400,
+                  ),
+                ),
+              ),
+              child: _searchLine != null && _searchLine.length > 2
+                  ? FutureBuilder<List<DrugAutocomplete>>(
+                      future: _getResult(),
+                      builder: (context, snapshot) {
+                        List<DrugAutocomplete> list;
+
+                        if (snapshot.connectionState == ConnectionState.none) {
+                          return PillError();
+                        } else if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else if (snapshot.hasData) {
+                          list = snapshot.data;
+                        }
+
+                        return PillSearch(
+                          isLoggedIn: _isLoggedIn,
+                          list: list,
+                        );
+                      },
+                    )
+                  : PillSearch(
+                      isLoggedIn: _isLoggedIn,
+                    ),
+            ),
+          ),
 
           //no internet connection
 //          Expanded(
@@ -59,33 +109,20 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
     );
   }
 
-  void getDrugs() async {
-//    final response = await Network.getDrugs('уголь');
-//
-//    List<Drug> result = (json.decode(utf8.decode(response.bodyBytes)) as List)
-//        .map((data) => Drug.fromJson(data))
-//        .toList();
-//
-//    setState(() {
-//      drugs = result;
-//    });
+  Future<List<DrugAutocomplete>> _getResult() async {
+    final response = await Network.getDrugsAutocomplete(_drugController.text);
+    final list = Converter.getDrugAutocomplete(response);
+
+    return list;
   }
 
-  List<Card> widgets(List<Drug> list) => List.generate(
-        list.length,
-        (index) {
-          var drug = _drugs[index];
+  void _updateSearchLine(/*String value*/) {
+    final text = _drugController.text;
 
-          return Card(
-            child: Column(
-              children: <Widget>[
-                Text(drug.title),
-                Text(drug.form),
-                Text(drug.country),
-                Text(drug.name),
-              ],
-            ),
-          );
-        },
-      );
+    if (text.length > 2 && !StringUtils.equalsIgnoreCase(_searchLine, text)) {
+      setState(() {
+        _searchLine = text;
+      });
+    }
+  }
 }

@@ -397,6 +397,7 @@ class AppWidgets {
     String hint,
     TextInputType keyboardType = TextInputType.text,
     Function callback,
+    Function onChangedCallback,
   }) =>
       Padding(
         padding: EdgeInsets.only(
@@ -422,6 +423,9 @@ class AppWidgets {
                 hintText: hint,
               ),
               keyboardType: keyboardType,
+              onChanged: (value) {
+                onChangedCallback(value);
+              },
             ),
           ),
         ),
