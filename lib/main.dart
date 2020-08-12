@@ -16,8 +16,10 @@ import 'widget/util/main_container.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   SystemChrome.setSystemUIOverlayStyle(Themes.systemUiOverlayStyle);
 
   runApp(AibolitApp());
@@ -40,10 +42,10 @@ class AibolitApp extends StatelessWidget {
         '/account/program': (context) => ProgramScreen(),
         '/clinic': (context) => ClinicItemScreen(),
         '/login': (context) => LoginScreen(),
-        '/search/doctor' : (context) => DoctorSearchScreen(),
-        '/search/doctor/advanced' : (context) => AdvancedSearchDoctorScreen(),
-        '/search/service' : (context) => ServiceSearchScreen(),
-        '/search/pills' : (context) => ServiceSearchScreen(),
+        '/search/doctor': (context) => DoctorSearchScreen(),
+        '/search/doctor/advanced': (context) => AdvancedSearchDoctorScreen(),
+        '/search/service': (context) => ServiceSearchScreen(),
+        '/search/pills': (context) => ServiceSearchScreen(),
       },
       supportedLocales: [
         const Locale('en', ''),

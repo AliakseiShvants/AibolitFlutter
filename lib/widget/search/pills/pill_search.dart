@@ -23,55 +23,65 @@ class PillSearch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(minWidth: double.infinity),
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: AppColors.grey400,
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border(
+          top: BorderSide(
+            color: AppColors.grey400,
+          ),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minWidth: double.infinity),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: AppColors.grey400,
+                    ),
+                  ),
+                ),
+                child: AppWidgets.getText(
+                  title: list != null
+                      ? _getPluralDrugsCount(list.length)
+                      : _historyTitle,
+                  fontSize: Dimens.TEXT_SIZE_14,
+                  isUpperCase: true,
+                  top: 12,
+                  bottom: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+          if (list == null)
+            AppWidgets.getText(
+              title: isLoggedIn ? _historyBody : _guestBody,
+              top: 12,
+              left: 16,
+              fontColor: AppColors.primaryGrey,
+            ),
+          if (list != null)
+            Scrollbar(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Column(
+                    children: [
+                      ..._getSearchResult(list: list),
+                    ],
                   ),
                 ),
               ),
-              child: AppWidgets.getText(
-                title: list != null
-                    ? _getPluralDrugsCount(list.length)
-                    : _historyTitle,
-                fontSize: Dimens.TEXT_SIZE_14,
-                isUpperCase: true,
-                top: 12,
-                bottom: 12,
-                fontWeight: FontWeight.bold,
-              ),
             ),
-          ),
-        ),
-        if (list == null)
-          AppWidgets.getText(
-            title: isLoggedIn ? _historyBody : _guestBody,
-            top: 12,
-            left: 16,
-            fontColor: AppColors.primaryGrey,
-          ),
-        if (list != null)
-          Scrollbar(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: Column(
-                  children: [
-                    ..._getSearchResult(list: list),
-                  ],
-                ),
-              ),
-            ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 

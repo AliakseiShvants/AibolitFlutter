@@ -394,6 +394,7 @@ class AppWidgets {
     double right = 0,
     Color borderColor,
     Icon prefixIcon,
+    bool isSuffixIcon = false,
     String hint,
     TextInputType keyboardType = TextInputType.text,
     Function callback,
@@ -421,6 +422,15 @@ class AppWidgets {
                 focusedBorder: AppWidgets.textFieldBorder,
                 enabledBorder: AppWidgets.textFieldBorder,
                 hintText: hint,
+                suffixIcon: isSuffixIcon
+                    ? IconButton(
+                        icon: Icon(
+                          Icons.clear,
+                          color: Colors.black87,
+                        ),
+                        onPressed: () => controller.clear(),
+                      )
+                    : null,
               ),
               keyboardType: keyboardType,
               onChanged: (value) {

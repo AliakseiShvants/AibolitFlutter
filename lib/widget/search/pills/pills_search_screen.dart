@@ -56,54 +56,37 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
             ),
             hint: 'Поиск (по полному названию)...',
             controller: _drugController,
+            isSuffixIcon: true,
 //            onChangedCallback: _updateSearchLine
           ),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
-                  top: BorderSide(
-                    color: AppColors.grey400,
-                  ),
-                ),
-              ),
-              child: _searchLine != null && _searchLine.length > 2
-                  ? FutureBuilder<List<DrugAutocomplete>>(
-                      future: _getResult(),
-                      builder: (context, snapshot) {
-                        List<DrugAutocomplete> list;
+            child: _searchLine != null && _searchLine.length > 2
+                ? FutureBuilder<List<DrugAutocomplete>>(
+                    future: _getResult(),
+                    builder: (context, snapshot) {
+                      List<DrugAutocomplete> list;
 
-                        if (snapshot.connectionState == ConnectionState.none) {
-                          return PillError();
-                        } else if (snapshot.connectionState ==
-                            ConnectionState.waiting) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (snapshot.hasData) {
-                          list = snapshot.data;
-                        }
-
-                        return PillSearch(
-                          isLoggedIn: _isLoggedIn,
-                          list: list,
+                      if (snapshot.hasError) {
+                        return PillError();
+                      } else if (snapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return Center(
+                          child: CircularProgressIndicator(),
                         );
-                      },
-                    )
-                  : PillSearch(
-                      isLoggedIn: _isLoggedIn,
-                    ),
-            ),
-          ),
+                      } else if (snapshot.hasData) {
+                        list = snapshot.data;
+                      }
 
-          //no internet connection
-//          Expanded(
-//            child: Align(
-//              alignment: Alignment.bottomCenter,
-//              child: PillError(),
-//            ),
-//          ),
+                      return PillSearch(
+                        isLoggedIn: _isLoggedIn,
+                        list: list,
+                      );
+                    },
+                  )
+                : PillSearch(
+                    isLoggedIn: _isLoggedIn,
+                  ),
+          ),
         ],
       ),
     );

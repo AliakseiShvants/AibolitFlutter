@@ -12,37 +12,41 @@ class PillError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset('assets/img/pill/notfound.png'),
-        AppWidgets.getText(
-          title: _wrongTitle,
-          top: 32,
-          bottom: 16,
-          fontWeight: FontWeight.bold,
-          fontSize: Dimens.TEXT_SIZE_16,
-        ),
-        AppWidgets.getText(
-          title: _wrongBody,
-          left: 24,
-          right: 24,
-          textAlign: TextAlign.center,
-        ),
-        AppWidgets.getControlButtonsRow(
-          context: context,
-          primary: _primaryTitle,
-          primaryCallback: null,
-          primaryColor: AppColors.green,
-          secondary: _secondaryTitle,
-          secondaryCallback: null,
-          secondaryColor: AppColors.indigo100,
-          left: 32,
-          right: 32,
-          top: 32,
-          bottom: 16,
-          isNeedSpaceBetween: true,
-        ),
-      ],
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset('assets/img/pill/notfound.png'),
+          AppWidgets.getText(
+            title: _wrongTitle,
+            top: 32,
+            bottom: 16,
+            fontWeight: FontWeight.bold,
+            fontSize: Dimens.TEXT_SIZE_16,
+          ),
+          AppWidgets.getText(
+            title: _wrongBody,
+            left: 24,
+            right: 24,
+            textAlign: TextAlign.center,
+          ),
+          AppWidgets.getControlButtonsRow(
+            context: context,
+            primary: _primaryTitle,
+            primaryCallback: null,
+            primaryColor: AppColors.green,
+            secondary: _secondaryTitle,
+            secondaryCallback: null,
+            secondaryColor: AppColors.indigo100,
+            left: 32,
+            right: 32,
+            top: 32,
+            bottom: 16,
+            isNeedSpaceBetween: true,
+          ),
+        ],
+      ),
     );
   }
 }
