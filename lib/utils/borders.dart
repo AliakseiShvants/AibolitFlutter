@@ -7,6 +7,6 @@ class Borders {
   );
   static BorderSide primaryGreyBorderSide = BorderSide(
     color: AppColors.grey400,
-    width: .5,
+    width: 1,
   );
 }

@@ -4,7 +4,6 @@ import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/converter.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/network.dart';
-import 'package:AibolitFlutter/widget/search/pills/pill_error.dart';
 import 'package:AibolitFlutter/widget/search/pills/pill_search.dart';
 import 'package:AibolitFlutter/widget/util/main_container.dart';
 import 'package:basic_utils/basic_utils.dart';
@@ -67,7 +66,16 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
                       List<DrugAutocomplete> list;
 
                       if (snapshot.hasError) {
-                        return PillError();
+//                        return PillError();
+                        return PillSearch(
+                          isLoggedIn: _isLoggedIn,
+                          list: List.generate(
+                            Data.searchService.length,
+                            (index) => DrugAutocomplete(
+                              name: Data.searchService[index],
+                            ),
+                          ),
+                        );
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
                         return Center(

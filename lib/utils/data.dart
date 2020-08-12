@@ -313,5 +313,7 @@ class Data {
     'Аллергология',
   ];
 
-  static List<DrugAutocomplete> drugSearchHistory = [];
+  static List<DrugAutocomplete> drugSearchHistory = [
+
+  ];
 }

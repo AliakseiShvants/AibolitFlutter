@@ -32,12 +32,12 @@ class PillSearch extends StatelessWidget {
           ),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: ConstrainedBox(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ConstrainedBox(
               constraints: BoxConstraints(minWidth: double.infinity),
               child: Container(
                 decoration: BoxDecoration(
@@ -55,32 +55,33 @@ class PillSearch extends StatelessWidget {
                   isUpperCase: true,
                   top: 12,
                   bottom: 12,
+                  left: 12,
+                  right: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-          ),
-          if (list == null)
-            AppWidgets.getText(
-              title: isLoggedIn ? _historyBody : _guestBody,
-              top: 12,
-              left: 16,
-              fontColor: AppColors.primaryGrey,
-            ),
-          if (list != null)
-            Scrollbar(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Column(
-                    children: [
-                      ..._getSearchResult(list: list),
-                    ],
+            if (list == null)
+              AppWidgets.getText(
+                title: isLoggedIn ? _historyBody : _guestBody,
+                top: 12,
+                left: 16,
+                fontColor: AppColors.primaryGrey,
+              ),
+            if (list != null)
+              Expanded(
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        ..._getSearchResult(list: list),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -106,13 +107,15 @@ class PillSearch extends StatelessWidget {
         (index) => ConstrainedBox(
           constraints: BoxConstraints(minWidth: double.infinity),
           child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: AppColors.grey400,
-                ),
-              ),
-            ),
+            decoration: index != 0
+                ? BoxDecoration(
+                    border: Border(
+                      top: BorderSide(
+                        color: AppColors.grey400,
+                      ),
+                    ),
+                  )
+                : null,
             child: AppWidgets.getText(
               title: StringUtils.capitalize(list[index].name),
               fontSize: Dimens.TEXT_SIZE_15,
