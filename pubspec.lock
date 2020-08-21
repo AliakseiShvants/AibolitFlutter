@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.6.0"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.5"
   assorted_layout_widgets:
     dependency: "direct main"
     description:
@@ -43,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.2"
+  basic_utils:
+    dependency: "direct main"
+    description:
+      name: basic_utils
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.6.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -536,6 +550,13 @@ packages:
     dependency: transitive
     description:
       name: plugin_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"

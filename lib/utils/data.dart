@@ -2,6 +2,7 @@ import 'package:AibolitFlutter/entity/action.dart';
 import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/clinic.dart';
 import 'package:AibolitFlutter/entity/doctor.dart';
+import 'package:AibolitFlutter/entity/network/drug_autocomplete.dart';
 import 'package:AibolitFlutter/entity/program.dart';
 import 'package:AibolitFlutter/entity/request_item.dart';
 import 'package:AibolitFlutter/entity/user.dart';
@@ -310,5 +311,9 @@ class Data {
     'Аллергология',
     'Аллергология',
     'Аллергология',
+  ];
+
+  static List<DrugAutocomplete> drugSearchHistory = [
+
   ];
 }

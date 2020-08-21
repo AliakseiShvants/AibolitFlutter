@@ -62,6 +62,7 @@ class _MainContainerState extends State<MainContainer> {
             ),
           ],
         ),
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: AppWidgets.bottomNavWidgets[_selectedItem],
         ),

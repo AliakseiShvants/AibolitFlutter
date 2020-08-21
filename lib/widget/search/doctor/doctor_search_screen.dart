@@ -77,7 +77,7 @@ class _DoctorSearchScreenState extends State<DoctorSearchScreen> {
                 },
               ),
               SearchResult(
-                stubImg: 'assets/img/clinic/clinic_stub.jpg',
+                stubImg: 'assets/img/doctor/withoutphoto.jpg',
                 emptyTitle: 'У вас в закладках пока нет врачей',
                 emptyText: 'Добавляйте в закладки врачей, которые вам понравились. Так их всегда будет легко найти.',
                 list: _getDoctors(

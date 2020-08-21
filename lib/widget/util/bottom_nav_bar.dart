@@ -9,7 +9,11 @@ class BottomNavBar extends StatelessWidget {
   final int selectedItem;
   final Function callback;
 
-  const BottomNavBar({Key key, this.selectedItem = -1, this.callback,}) : super(key: key);
+  const BottomNavBar({
+    Key key,
+    this.selectedItem = -1,
+    this.callback,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,8 @@ class BottomNavBar extends StatelessWidget {
         ),
       ),
       child: BottomNavigationBar(
-        currentIndex: selectedItem != -1 ? selectedItem : widget.bottomNavBarItem,
+        currentIndex:
+            selectedItem != -1 ? selectedItem : widget.bottomNavBarItem,
         iconSize: 32,
         items: List.generate(
           AppIcons.bottomNavIcons.length,
