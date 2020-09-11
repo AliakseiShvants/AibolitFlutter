@@ -11,6 +11,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'pill_error.dart';
+
 class PillsSearchScreen extends StatefulWidget {
   @override
   _PillsSearchScreenState createState() => _PillsSearchScreenState();
@@ -34,7 +36,7 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final widget = MainContainerInherited.of(context);
+    final widget = context.dependOnInheritedWidgetOfExactType<MainContainerInherited>();
     _isLoggedIn = widget.isLoggedIn;
 
     return Container(
@@ -66,16 +68,7 @@ class _PillsSearchScreenState extends State<PillsSearchScreen> {
                       List<DrugAutocomplete> list;
 
                       if (snapshot.hasError) {
-//                        return PillError();
-                        return PillSearch(
-                          isLoggedIn: _isLoggedIn,
-                          list: List.generate(
-                            Data.searchService.length,
-                            (index) => DrugAutocomplete(
-                              name: Data.searchService[index],
-                            ),
-                          ),
-                        );
+                        return PillError();
                       } else if (snapshot.connectionState ==
                           ConnectionState.waiting) {
                         return Center(

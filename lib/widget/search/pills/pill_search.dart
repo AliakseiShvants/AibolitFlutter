@@ -2,6 +2,8 @@ import 'package:AibolitFlutter/entity/network/drug_autocomplete.dart';
 import 'package:AibolitFlutter/utils/app_colors.dart';
 import 'package:AibolitFlutter/utils/app_widgets.dart';
 import 'package:AibolitFlutter/utils/dimens.dart';
+import 'package:AibolitFlutter/widget/search/pills/detailed_pill_search.dart';
+import 'package:animations/animations.dart';
 import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -74,7 +76,10 @@ class PillSearch extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        ..._getSearchResult(list: list),
+                        ..._getSearchResult(
+                          context: context,
+                          list: list,
+                        ),
                       ],
                     ),
                   ),
@@ -102,27 +107,39 @@ class PillSearch extends StatelessWidget {
     return result;
   }
 
-  List<Widget> _getSearchResult({List<DrugAutocomplete> list}) => List.generate(
+  List<Widget> _getSearchResult({
+    BuildContext context,
+    List<DrugAutocomplete> list,
+  }) =>
+      List.generate(
         list.length,
-        (index) => ConstrainedBox(
-          constraints: BoxConstraints(minWidth: double.infinity),
-          child: Container(
-            decoration: index != 0
-                ? BoxDecoration(
-                    border: Border(
-                      top: BorderSide(
-                        color: AppColors.grey400,
+        (index) => GestureDetector(
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => DetailedPillSearch(),
+            ),
+          ),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(minWidth: double.infinity),
+            child: Container(
+              decoration: index != 0
+                  ? BoxDecoration(
+                      border: Border(
+                        top: BorderSide(
+                          color: AppColors.grey400,
+                        ),
                       ),
-                    ),
-                  )
-                : null,
-            child: AppWidgets.getText(
-              title: StringUtils.capitalize(list[index].name),
-              fontSize: Dimens.TEXT_SIZE_15,
-              top: 12,
-              bottom: 12,
-              right: 12,
-              left: 12,
+                    )
+                  : null,
+              child: AppWidgets.getText(
+                title: StringUtils.capitalize(list[index].name),
+                fontSize: Dimens.TEXT_SIZE_15,
+                top: 12,
+                bottom: 12,
+                right: 12,
+                left: 12,
+              ),
             ),
           ),
         ),

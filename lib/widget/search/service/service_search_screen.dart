@@ -26,7 +26,7 @@ class _ServiceSearchScreenState extends State<ServiceSearchScreen> {
     return Scaffold(
       appBar: AppWidgets.getAppBar(
         context: context,
-        title: _appBarTitle,
+        title: Text(_appBarTitle),
       ),
       body: Scrollbar(
         child: SingleChildScrollView(

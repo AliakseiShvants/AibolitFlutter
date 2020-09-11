@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppColors.grey200,
       appBar: AppWidgets.getAppBar(
         context: context,
-        title: _appBarTitle,
+        title: Text(_appBarTitle),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -55,7 +55,7 @@ class AccountScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppWidgets.getAppBar(
         context: context,
-        title: _appBarTitle,
+        title: Text(_appBarTitle),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

@@ -57,7 +57,7 @@ class SingleItemScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppWidgets.getAppBar(
         context: context,
-        title: appBarTitle,
+        title: Text(appBarTitle),
         actions: [
           AppWidgets.getClickableIcon(
             data: iconData,

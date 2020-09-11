@@ -1,3 +1,4 @@
+import 'package:AibolitFlutter/entity/city.dart';
 import 'package:AibolitFlutter/entity/user.dart';
 import 'package:AibolitFlutter/utils/data.dart';
 import 'package:AibolitFlutter/utils/network.dart';
@@ -44,21 +45,27 @@ class _MainContainerState extends State<MainContainer> {
       bottomNavBarItem: _selectedItem,
       bottomNavBarCallback: _onMenuItemClick,
       isLoggedIn: _isLoggedIn,
+      locationIndex: _locationIndex,
+      locationCallback: _setLocation,
+      user: _user,
+      isNeedToRefresh: true,
+      loginCallback: _login,
+      logoutCallback: _logout,
       child: Scaffold(
-        appBar: AppBar(
+        appBar: AppWidgets.getAppBar(
           automaticallyImplyLeading: true,
           title: Location(
-            _locationIndex,
-            Data.cities,
-            _setLocation,
+            locationIndex: _locationIndex,
+            cities: Data.cities,
+            locationCallback: _setLocation,
           ),
           actions: <Widget>[
             LoginAction(
-              _user,
-              _isLoggedIn,
-              true,
-              _login,
-              _logout,
+              user: _user,
+              isLoggedIn: _isLoggedIn,
+              isNeedToRefresh: true,
+              loginCallback: _login,
+              logoutCallback: _logout,
             ),
           ],
         ),
@@ -120,17 +127,31 @@ class MainContainerInherited extends InheritedWidget {
     return context.dependOnInheritedWidgetOfExactType<MainContainerInherited>();
   }
 
+  final AppBar appBar;
   final String serverVersion;
   final int bottomNavBarItem;
   final Function bottomNavBarCallback;
   final bool isLoggedIn;
+  final int locationIndex;
+  final Function locationCallback;
+  final User user;
+  final bool isNeedToRefresh;
+  final Function loginCallback;
+  final Function logoutCallback;
   final Widget child;
 
-  MainContainerInherited(  {
+  MainContainerInherited({
+    this.appBar,
     this.serverVersion,
     this.bottomNavBarItem,
     this.bottomNavBarCallback,
     this.isLoggedIn,
+    this.locationIndex,
+    this.locationCallback,
+    this.user,
+    this.isNeedToRefresh,
+    this.loginCallback,
+    this.logoutCallback,
     this.child,
   });
 

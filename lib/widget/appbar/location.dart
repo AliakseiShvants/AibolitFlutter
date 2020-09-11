@@ -1,9 +1,7 @@
 import 'package:AibolitFlutter/utils/app_colors.dart';
-import 'package:AibolitFlutter/utils/data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../entity/city.dart';
 import '../../utils/borders.dart';
@@ -11,11 +9,15 @@ import '../../utils/dimens.dart';
 import '../../utils/strings.dart';
 
 class Location extends StatelessWidget {
-  final int _locationIndex;
-  final List<City> _cities;
-  final Function _locationCallback;
+  final int locationIndex;
+  final List<City> cities;
+  final Function locationCallback;
 
-  Location(this._locationIndex, this._cities, this._locationCallback);
+  Location({
+    this.locationIndex,
+    this.cities,
+    this.locationCallback,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class Location extends StatelessWidget {
                 ),
               ),
               child: Text(
-                _cities[_locationIndex].title,
+                cities[locationIndex].title,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: Dimens.TEXT_SIZE_15,
@@ -46,7 +48,7 @@ class Location extends StatelessWidget {
             ),
             iconSize: 0,
             iconEnabledColor: AppColors.PRIMARY_COLOR,
-            onChanged: (value) => _locationCallback(_cities.indexOf(value)),
+            onChanged: (value) => locationCallback(cities.indexOf(value)),
           ),
         ),
         Expanded(
@@ -62,7 +64,7 @@ class Location extends StatelessWidget {
   }
 
   List<DropdownMenuItem<City>> _getLocations() {
-    return _cities.map((City city) {
+    return cities.map((City city) {
       return DropdownMenuItem<City>(
         value: city,
         child: Text(

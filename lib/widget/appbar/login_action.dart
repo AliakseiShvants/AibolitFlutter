@@ -8,19 +8,19 @@ import '../../utils/data.dart';
 import '../../utils/strings.dart';
 
 class LoginAction extends StatefulWidget {
-  final User _user;
-  final bool _isLoggedIn;
-  final bool _isNeedToRefresh;
-  final Function _loginCallback;
-  final Function _logoutCallback;
+  final User user;
+  final bool isLoggedIn;
+  final bool isNeedToRefresh;
+  final Function loginCallback;
+  final Function logoutCallback;
 
-  LoginAction(
-    this._user,
-    this._isLoggedIn,
-    this._isNeedToRefresh,
-    this._loginCallback,
-    this._logoutCallback,
-  );
+  LoginAction({
+    this.user,
+    this.isLoggedIn,
+    this.isNeedToRefresh,
+    this.loginCallback,
+    this.logoutCallback,
+  });
 
   @override
   _LoginActionState createState() => _LoginActionState();
@@ -29,25 +29,25 @@ class LoginAction extends StatefulWidget {
 class _LoginActionState extends State<LoginAction> {
   @override
   Widget build(BuildContext context) {
-    if (widget._isLoggedIn) {
+    if (widget.isLoggedIn) {
       return MaterialButton(
         child: AppWidgets.getCircleAvatar(
           radius: 16,
           asset: Data.owner.avatar,
         ),
-        onPressed: widget._logoutCallback,
+        onPressed: widget.logoutCallback,
       );
     } else {
-      return widget._user == Data.guest
+      return widget.user == Data.guest
           ? MaterialButton(
               child: Text(
                 Strings.LOGIN,
                 style: const TextStyle(color: Colors.white),
               ),
-              onPressed: widget._loginCallback,
+              onPressed: widget.loginCallback,
             )
           : FutureBuilder<bool>(
-              future: widget._isNeedToRefresh ? _needToRefresh() : null,
+              future: widget.isNeedToRefresh ? _needToRefresh() : null,
               builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
                 var child;
                 var callback;
@@ -88,7 +88,7 @@ class _LoginActionState extends State<LoginAction> {
                         radius: 16,
                         asset: Data.owner.avatar,
                       );
-                      callback = widget._logoutCallback;
+                      callback = widget.logoutCallback;
 
                       break;
                     }

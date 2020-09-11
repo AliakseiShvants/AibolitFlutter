@@ -51,7 +51,14 @@ class AibolitApp extends StatelessWidget {
         const Locale('en', ''),
         const Locale('ru', 'RU'),
       ],
-      theme: Themes.appTheme,
+      theme: Themes.appTheme.copyWith(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android : ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS : CupertinoPageTransitionsBuilder(),
+          }
+        ),
+      ),
     );
   }
 }

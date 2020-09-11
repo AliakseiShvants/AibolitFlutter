@@ -23,7 +23,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       appBar: AppWidgets.getAppBar(
         context: context,
-        title: _appBarTitle,
+        title: Text(_appBarTitle),
       ),
       body: SafeArea(
         child: Container(

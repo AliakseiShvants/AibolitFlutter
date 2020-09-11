@@ -25,15 +25,19 @@ class AppWidgets {
 
   static getAppBar({
     @required BuildContext context,
-    @required String title,
+    @required Widget title,
+    bool automaticallyImplyLeading = false,
     List<Widget> actions,
   }) =>
       AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text(title),
+        automaticallyImplyLeading: automaticallyImplyLeading,
+        leading: !automaticallyImplyLeading
+            ? IconButton(
+                icon: Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.pop(context),
+              )
+        : null,
+        title: title,
         actions: actions,
       );
 
