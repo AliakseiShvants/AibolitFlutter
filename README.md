@@ -2,9 +2,8 @@
 
 This project is a copy of https://play.google.com/store/apps/details?id=md.aibolit.member&hl=ru.
 
-## Video
 
-[![](https://github.com/AliakseiShvants/AibolitFlutter/blob/master/screen%26video/main.png)](https://github.com/AliakseiShvants/AibolitFlutter/blob/master/screen%26video/aibolit.mp4)
+## [Video](https://github.com/AliakseiShvants/AibolitFlutter/blob/master/screen%26video/aibolit.mp4)
 
 ## Screenshots
 
